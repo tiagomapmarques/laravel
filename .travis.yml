@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - 5.5
+
+before_script:
+  - cp .env.local .env
+  - php artisan key:generate
+  - composer self-update
+  - composer install --no-interaction
+  - npm install
+  - touch database/database.sqlite
+  - php artisan migrate
+  - php artisan db:seed
+
+script:
+  - vendor/bin/phpunit
