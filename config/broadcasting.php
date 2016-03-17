@@ -1,7 +1,6 @@
 <?php
 
 return [
-
 	/*
 	|--------------------------------------------------------------------------
 	| Default Broadcaster
@@ -12,7 +11,6 @@ return [
 	| any of the connections defined in the "connections" array below.
 	|
 	*/
-
 	'default' => env('BROADCAST_DRIVER', 'pusher'),
 
 	/*
@@ -25,7 +23,6 @@ return [
 	| each available type of connection are provided inside this array.
 	|
 	*/
-
 	'connections' => [
 
 		'pusher' => [
@@ -37,16 +34,12 @@ return [
 				//
 			],
 		],
-
 		'redis' => [
 			'driver' => 'redis',
 			'connection' => 'default',
 		],
-
 		'log' => [
 			'driver' => 'log',
 		],
-
 	],
-
 ];

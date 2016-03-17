@@ -1,7 +1,6 @@
 <?php
 
 return [
-
 	/*
 	|--------------------------------------------------------------------------
 	| Additional Compiled Classes
@@ -12,7 +11,6 @@ return [
 	| that are included on basically every request into the application.
 	|
 	*/
-
 	'files' => [
 		//
 	],
@@ -27,9 +25,7 @@ return [
 	| easy way to get common files from any packages you are utilizing.
 	|
 	*/
-
 	'providers' => [
 		//
 	],
-
 ];
