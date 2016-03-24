@@ -1,6 +1,6 @@
 # LURK (Laravel Up and Running Kit)
 
-[![Build Status](https://travis-ci.org/tiagomapmarques/laravel.svg?branch=tiagomapmarques)](https://travis-ci.org/tiagomapmarques/laravel)
+[![Build Status](https://travis-ci.org/tiagomapmarques/lurk.svg?branch=lurk)](https://travis-ci.org/tiagomapmarques/lurk)
 
 LURK is a Laravel fork that includes a bunch of other useful dependencies. Also linting. Beautiful code needs beautiful linting.
 
