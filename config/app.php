@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * Application Environment
+	/* --------------------------------------------------------------------------
+	 *  Application Environment
 	 * --------------------------------------------------------------------------
 	 *
 	 * This value determines the "environment" your application is currently
@@ -13,9 +12,8 @@ return [
 	 */
 	'env' => env('APP_ENV', 'production'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Application Debug Mode
+	/* --------------------------------------------------------------------------
+	 *  Application Debug Mode
 	 * --------------------------------------------------------------------------
 	 *
 	 * When your application is in debug mode, detailed error messages with
@@ -25,9 +23,8 @@ return [
 	 */
 	'debug' => env('APP_DEBUG', false),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Application URL
+	/* --------------------------------------------------------------------------
+	 *  Application URL
 	 * --------------------------------------------------------------------------
 	 *
 	 * This URL is used by the console to properly generate URLs when using
@@ -37,9 +34,8 @@ return [
 	 */
 	'url' => env('APP_URL', 'http://localhost'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Application Timezone
+	/* --------------------------------------------------------------------------
+	 *  Application Timezone
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may specify the default timezone for your application, which
@@ -49,9 +45,8 @@ return [
 	 */
 	'timezone' => 'UTC',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Application Locale Configuration
+	/* --------------------------------------------------------------------------
+	 *  Application Locale Configuration
 	 * --------------------------------------------------------------------------
 	 *
 	 * The application locale determines the default locale that will be used
@@ -61,9 +56,8 @@ return [
 	 */
 	'locale' => 'en',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Application Fallback Locale
+	/* --------------------------------------------------------------------------
+	 *  Application Fallback Locale
 	 * --------------------------------------------------------------------------
 	 *
 	 * The fallback locale determines the locale to use when the current one
@@ -73,9 +67,8 @@ return [
 	 */
 	'fallback_locale' => 'en',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Encryption Key
+	/* --------------------------------------------------------------------------
+	 *  Encryption Key
 	 * --------------------------------------------------------------------------
 	 *
 	 * This key is used by the Illuminate encrypter service and should be set
@@ -86,9 +79,8 @@ return [
 	'key' => env('APP_KEY'),
 	'cipher' => 'AES-256-CBC',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Logging Configuration
+	/* --------------------------------------------------------------------------
+	 *  Logging Configuration
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may configure the log settings for your application. Out of
@@ -100,9 +92,8 @@ return [
 	 */
 	'log' => env('APP_LOG', 'single'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Autoloaded Service Providers
+	/* --------------------------------------------------------------------------
+	 *  Autoloaded Service Providers
 	 * --------------------------------------------------------------------------
 	 *
 	 * The service providers listed here will be automatically loaded on the
@@ -155,9 +146,8 @@ return [
 		Intervention\Image\ImageServiceProvider::class,
 	],
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Class Aliases
+	/* --------------------------------------------------------------------------
+	 *  Class Aliases
 	 * --------------------------------------------------------------------------
 	 *
 	 * This array of class aliases will be registered when this application

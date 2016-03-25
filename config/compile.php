@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * Additional Compiled Classes
+	/* --------------------------------------------------------------------------
+	 *  Additional Compiled Classes
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may specify additional classes to include in the compiled file
@@ -15,9 +14,8 @@ return [
 		//
 	],
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Compiled File Providers
+	/* --------------------------------------------------------------------------
+	 *  Compiled File Providers
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may list service providers which define a "compiles" function

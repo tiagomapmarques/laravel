@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * PDO Fetch Style
+	/* --------------------------------------------------------------------------
+	 *  PDO Fetch Style
 	 * --------------------------------------------------------------------------
 	 *
 	 * By default, database results will be returned as instances of the PHP
@@ -13,9 +12,8 @@ return [
 	 */
 	'fetch' => PDO::FETCH_CLASS,
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Default Database Connection Name
+	/* --------------------------------------------------------------------------
+	 *  Default Database Connection Name
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may specify which of the database connections below you wish
@@ -25,9 +23,8 @@ return [
 	 */
 	'default' => env('DB_CONNECTION', 'mysql'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Database Connections
+	/* --------------------------------------------------------------------------
+	 *  Database Connections
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here are each of the database connections setup for your application.
@@ -73,9 +70,8 @@ return [
 		],
 	],
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Migration Repository Table
+	/* --------------------------------------------------------------------------
+	 *  Migration Repository Table
 	 * --------------------------------------------------------------------------
 	 *
 	 * This table keeps track of all the migrations that have already run for
@@ -85,9 +81,8 @@ return [
 	 */
 	'migrations' => 'migrations',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Redis Databases
+	/* --------------------------------------------------------------------------
+	 *  Redis Databases
 	 * --------------------------------------------------------------------------
 	 *
 	 * Redis is an open source, fast, and advanced key-value store that also

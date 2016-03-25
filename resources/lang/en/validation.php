@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * Validation Language Lines
+	/* --------------------------------------------------------------------------
+	 *  Validation Language Lines
 	 * --------------------------------------------------------------------------
 	 *
 	 * The following language lines contain the default error messages used by
@@ -78,9 +77,8 @@ return [
 	'unique'      => 'The :attribute has already been taken.',
 	'url'         => 'The :attribute format is invalid.',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Custom Validation Language Lines
+	/* --------------------------------------------------------------------------
+	 *  Custom Validation Language Lines
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may specify custom validation messages for attributes using the
@@ -94,9 +92,8 @@ return [
 		],
 	],
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Custom Validation Attributes
+	/* --------------------------------------------------------------------------
+	 *  Custom Validation Attributes
 	 * --------------------------------------------------------------------------
 	 *
 	 * The following language lines are used to swap attribute place-holders
