@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Config;
+
 class Handler extends ExceptionHandler {
 	/**
 	 * A list of the exception types that should not be reported.
@@ -42,6 +44,9 @@ class Handler extends ExceptionHandler {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function render($request, Exception $e) {
+		if(!Config::get('app.debug') && ($request->is('api') || $request->is('api/*'))) {
+			return '';
+		}
 		return parent::render($request, $e);
 	}
 }
