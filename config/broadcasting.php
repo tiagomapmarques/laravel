@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * Default Broadcaster
+	/* --------------------------------------------------------------------------
+	 *  Default Broadcaster
 	 * --------------------------------------------------------------------------
 	 *
 	 * This option controls the default broadcaster that will be used by the
@@ -13,9 +12,8 @@ return [
 	 */
 	'default' => env('BROADCAST_DRIVER', 'pusher'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Broadcast Connections
+	/* --------------------------------------------------------------------------
+	 *  Broadcast Connections
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may define all of the broadcast connections that will be used

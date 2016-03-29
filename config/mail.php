@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * Mail Driver
+	/* --------------------------------------------------------------------------
+	 *  Mail Driver
 	 * --------------------------------------------------------------------------
 	 *
 	 * Laravel supports both SMTP and PHP's "mail" function as drivers for the
@@ -16,9 +15,8 @@ return [
 	 */
 	'driver' => env('MAIL_DRIVER', 'smtp'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * SMTP Host Address
+	/* --------------------------------------------------------------------------
+	 *  SMTP Host Address
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may provide the host address of the SMTP server used by your
@@ -28,9 +26,8 @@ return [
 	 */
 	'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * SMTP Host Port
+	/* --------------------------------------------------------------------------
+	 *  SMTP Host Port
 	 * --------------------------------------------------------------------------
 	 *
 	 * This is the SMTP port used by your application to deliver e-mails to
@@ -40,9 +37,8 @@ return [
 	 */
 	'port' => env('MAIL_PORT', 587),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Global "From" Address
+	/* --------------------------------------------------------------------------
+	 *  Global "From" Address
 	 * --------------------------------------------------------------------------
 	 *
 	 * You may wish for all e-mails sent by your application to be sent from
@@ -52,9 +48,8 @@ return [
 	 */
 	'from' => ['address' => null, 'name' => null],
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * E-Mail Encryption Protocol
+	/* --------------------------------------------------------------------------
+	 *  E-Mail Encryption Protocol
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may specify the encryption protocol that should be used when
@@ -64,9 +59,8 @@ return [
 	 */
 	'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * SMTP Server Username
+	/* --------------------------------------------------------------------------
+	 *  SMTP Server Username
 	 * --------------------------------------------------------------------------
 	 *
 	 * If your SMTP server requires a username for authentication, you should
@@ -76,9 +70,8 @@ return [
 	 */
 	'username' => env('MAIL_USERNAME'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * SMTP Server Password
+	/* --------------------------------------------------------------------------
+	 *  SMTP Server Password
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may set the password required by your SMTP server to send out
@@ -88,9 +81,8 @@ return [
 	 */
 	'password' => env('MAIL_PASSWORD'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Sendmail System Path
+	/* --------------------------------------------------------------------------
+	 *  Sendmail System Path
 	 * --------------------------------------------------------------------------
 	 *
 	 * When using the "sendmail" driver to send e-mails, we will need to know

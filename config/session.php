@@ -1,9 +1,8 @@
 <?php
 
 return [
-	/*
-	 * --------------------------------------------------------------------------
-	 * Default Session Driver
+	/* --------------------------------------------------------------------------
+	 *  Default Session Driver
 	 * --------------------------------------------------------------------------
 	 *
 	 * This option controls the default session "driver" that will be used on
@@ -16,9 +15,8 @@ return [
 	 */
 	'driver' => env('SESSION_DRIVER', 'file'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Lifetime
+	/* --------------------------------------------------------------------------
+	 *  Session Lifetime
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may specify the number of minutes that you wish the session
@@ -29,9 +27,8 @@ return [
 	'lifetime' => 120,
 	'expire_on_close' => false,
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Encryption
+	/* --------------------------------------------------------------------------
+	 *  Session Encryption
 	 * --------------------------------------------------------------------------
 	 *
 	 * This option allows you to easily specify that all of your session data
@@ -41,9 +38,8 @@ return [
 	 */
 	'encrypt' => false,
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session File Location
+	/* --------------------------------------------------------------------------
+	 *  Session File Location
 	 * --------------------------------------------------------------------------
 	 *
 	 * When using the native session driver, we need a location where session
@@ -53,9 +49,8 @@ return [
 	 */
 	'files' => storage_path('framework/sessions'),
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Database Connection
+	/* --------------------------------------------------------------------------
+	 *  Session Database Connection
 	 * --------------------------------------------------------------------------
 	 *
 	 * When using the "database" or "redis" session drivers, you may specify a
@@ -65,9 +60,8 @@ return [
 	 */
 	'connection' => null,
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Database Table
+	/* --------------------------------------------------------------------------
+	 *  Session Database Table
 	 * --------------------------------------------------------------------------
 	 *
 	 * When using the "database" session driver, you may specify the table we
@@ -77,9 +71,8 @@ return [
 	 */
 	'table' => 'sessions',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Sweeping Lottery
+	/* --------------------------------------------------------------------------
+	 *  Session Sweeping Lottery
 	 * --------------------------------------------------------------------------
 	 *
 	 * Some session drivers must manually sweep their storage location to get
@@ -89,9 +82,8 @@ return [
 	 */
 	'lottery' => [2, 100],
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Cookie Name
+	/* --------------------------------------------------------------------------
+	 *  Session Cookie Name
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may change the name of the cookie used to identify a session
@@ -101,9 +93,8 @@ return [
 	 */
 	'cookie' => 'laravel_session',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Cookie Path
+	/* --------------------------------------------------------------------------
+	 *  Session Cookie Path
 	 * --------------------------------------------------------------------------
 	 *
 	 * The session cookie path determines the path for which the cookie will
@@ -113,9 +104,8 @@ return [
 	 */
 	'path' => '/',
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * Session Cookie Domain
+	/* --------------------------------------------------------------------------
+	 *  Session Cookie Domain
 	 * --------------------------------------------------------------------------
 	 *
 	 * Here you may change the domain of the cookie used to identify a session
@@ -125,9 +115,8 @@ return [
 	 */
 	'domain' => null,
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * HTTPS Only Cookies
+	/* --------------------------------------------------------------------------
+	 *  HTTPS Only Cookies
 	 * --------------------------------------------------------------------------
 	 *
 	 * By setting this option to true, session cookies will only be sent back
@@ -137,9 +126,8 @@ return [
 	 */
 	'secure' => false,
 
-	/*
-	 * --------------------------------------------------------------------------
-	 * HTTP Access Only
+	/* --------------------------------------------------------------------------
+	 *  HTTP Access Only
 	 * --------------------------------------------------------------------------
 	 *
 	 * Setting this value to true will prevent JavaScript from accessing the

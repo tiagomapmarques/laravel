@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller {
-	/*
-	 * --------------------------------------------------------------------------
-	 * Password Reset Controller
+	/* --------------------------------------------------------------------------
+	 *  Password Reset Controller
 	 * --------------------------------------------------------------------------
 	 *
 	 * This controller is responsible for handling password reset requests
