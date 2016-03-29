@@ -34,7 +34,8 @@ abstract class API extends Controller {
 		$this->request = $request;
 		$array = $this->request->request->all();
 		foreach($array as $key => $item) {
-			$this->parameters[$key] = $item;
+			if($key!=='_token')
+				$this->parameters[$key] = $item;
 		}
 		return $this->execute();
 	}
