@@ -44,9 +44,19 @@ class Handler extends ExceptionHandler {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function render($request, Exception $e) {
-		if(!Config::get('app.debug') && ($request->is('api') || $request->is('api/*'))) {
+		$api_prefix = Config::get('app.api_prefix');
+		if(strlen($api_prefix)<1) {
+			$api_check = true;
+		}
+		else {
+			$api_check = ($request->is($api_prefix) || $request->is($api_prefix.'/*'));
+		}
+
+		if(!Config::get('app.debug') && $api_check) {
 			return '';
 		}
-		return parent::render($request, $e);
+		else {
+			return parent::render($request, $e);
+		}
 	}
 }
