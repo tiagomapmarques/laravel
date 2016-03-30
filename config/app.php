@@ -35,6 +35,17 @@ return [
 	'url' => env('APP_URL', 'http://localhost'),
 
 	/* --------------------------------------------------------------------------
+	 *  Application API Prefix
+	 * --------------------------------------------------------------------------
+	 *
+	 * This is the URL prefix used for the API. This will apply to all API
+	 * paths and interactions and should always be set if you are using the
+	 * functionality. A common use case for this is lazy loading.
+	 *
+	 */
+	'api_prefix' => 'api',
+
+	/* --------------------------------------------------------------------------
 	 *  Application Timezone
 	 * --------------------------------------------------------------------------
 	 *
