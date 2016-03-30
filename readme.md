@@ -2,11 +2,16 @@
 
 [![Build Status](https://travis-ci.org/tiagomapmarques/lurk.svg?branch=lurk)](https://travis-ci.org/tiagomapmarques/lurk)
 
-LURK is a Laravel fork that includes a bunch of other useful dependencies. Also linting. Beautiful code needs beautiful linting.
+LURK is a Laravel fork that includes a bunch of other useful dependencies, functions and settings.
 
-## Laravel
-
-For Laravel specific documentation, please refer to the [Laravel website](http://laravel.com/docs) or their [Github page](https://github.com/laravel/laravel).
+## Features
+ * **File processing** - All controllers inherit standardised file, image and zip processing functions
+ * **API** - Handling of API requests (e.g. lazy loading) is made simpler and safer
+ * **Blade/Bootstrap/Sass** - Improved out-of-the-box support
+ * **SleepingOwl** - _coming soon_
+ * **Demo** - _coming not so soon_
+ * **Stabilisation** - Versions are not volatile and do not break as easily (demo will help with this)
+ * **Also linting** - Beautiful code needs beautiful rules for programming - Period
 
 ## Quick start
 - Clone the repo
@@ -17,6 +22,10 @@ For Laravel specific documentation, please refer to the [Laravel website](http:/
 - Create an environment file with "cp .env.local .env"
 - Generate a key for it with "php artisan key:generate"
 - Run it with pride with "php artisan serve"
+
+## Laravel
+
+For Laravel specific documentation, please refer to the [Laravel website](http://laravel.com/docs) or their [Github page](https://github.com/laravel/laravel).
 
 ## Issues
 
