@@ -8,6 +8,9 @@
  * It's a breeze. Simply tell Laravel the URIs it should respond to
  * and give it the controller to call when that URI is requested.
  *
+ * The 'web' middleware is used as the default if a Route is registered
+ * without a group. But making it explicit is never harmful.
+ *
  */
 Route::group(['middleware' => ['web']], function () {
 
