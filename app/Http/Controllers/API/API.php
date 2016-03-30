@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
-abstract class API extends Controller {
+abstract class API extends BaseController {
 	/**
 	 * A copy of the full request for later access.
 	 *
@@ -23,21 +23,28 @@ abstract class API extends Controller {
 	/**
 	 * The API component's point of entry.
 	 *
-	 * It parses the request, looking for GET or POST parameters to store
-	 * and calls the execute method.
+	 * It parses the request, looking for POST parameters to store
+	 * and calls the execute method. It only accepts POST requests but
+	 * should always receive all requests as to standardise the response.
 	 * This method is final and should not be overwritten.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return string
 	 */
 	public final function run(Request $request) {
-		$this->request = $request;
-		$array = $this->request->request->all();
-		foreach($array as $key => $item) {
-			if($key!=='_token')
-				$this->parameters[$key] = $item;
+		if($request->isMethod('post')) {
+			$this->request = $request;
+			$array = $this->request->request->all();
+			foreach($array as $key => $item) {
+				if($key!=='_token') {
+					$this->parameters[$key] = $item;
+				}
+			}
+			return $this->execute();
 		}
-		return $this->execute();
+		else {
+			abort(404);
+		}
 	}
 
 	/**
