@@ -1,6 +1,17 @@
+# Dependencies
 /vendor
 /node_modules
-/public/storage
+
+# Environment
 Homestead.yaml
 Homestead.json
 .env
+
+# Generated files
+/public/css/*
+/public/css/*.css.map
+/public/build/*
+/public/build/css/*.css.map
+
+# User space
+/public/storage
