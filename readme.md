@@ -12,7 +12,7 @@ For Laravel specific documentation, please refer to the [Laravel website](http:/
 - Clone the repo
 - Make sure composer and npm are installed and available from the root folder of your repo
 - Install dependencies with "composer install && npm install"
-- Compile assets with "node_modules/gulp/bin/gulp.js"
+- Compile assets with "node node_modules/gulp/bin/gulp.js"
 - Create a database with "touch database/database.sqlite && php artisan migrate && php artisan db:seed"
 - Create an environment file with "cp .env.local .env"
 - Generate a key for it with "php artisan key:generate"

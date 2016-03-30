@@ -7,12 +7,12 @@ before_script:
   - cp .env.local .env
   - composer self-update
   - composer install --no-interaction
-  - npm install -g npm@latest
+  - npm install -g npm@2 && npm install
   - touch database/database.sqlite
   - php artisan key:generate
   - php artisan migrate
   - php artisan db:seed
-  - node_modules/gulp/bin/gulp.js
+  - node node_modules/gulp/bin/gulp.js
 
 script:
   - vendor/bin/phpunit
