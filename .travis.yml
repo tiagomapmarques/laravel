@@ -12,6 +12,7 @@ before_script:
   - php artisan key:generate
   - php artisan migrate
   - php artisan db:seed
+  - node_modules/gulp/bin/gulp.js
 
 script:
   - vendor/bin/phpunit
