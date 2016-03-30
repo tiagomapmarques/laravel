@@ -5,15 +5,19 @@
 LURK is a Laravel fork that includes a bunch of other useful dependencies, functions and settings.
 
 ## Features
- * **File processing** - All controllers inherit standardised file, image and zip processing functions
- * **API** - Handling of API requests (e.g. lazy loading) is made simpler and safer
- * **Blade/Bootstrap/Sass** - Improved out-of-the-box support
- * **SleepingOwl** - _coming soon_
- * **Demo** - _coming not so soon_
- * **Stabilisation** - Versions are not volatile and do not break as easily (demo will help with this)
- * **Also linting** - Beautiful code needs beautiful rules for programming - Period
+
+Aside from all the benefits of an active, community-driven, MVC for PHP, we include:
+
+- **File processing** - All controllers inherit standardised file, image and zip processing functions
+- **API** - Handling of API requests (e.g. lazy loading) is made simpler, safer and modular
+- **Blade/Bootstrap/Sass** - Improved out-of-the-box support
+- **SleepingOwl** - _coming soon_
+- **Demo** - _coming not so soon_
+- **Stabilisation** - Versions are not volatile and do not break as easily (demo + composer.lock)
+- **Also linting** - Beautiful code needs beautiful rules for programming - Period
 
 ## Quick start
+
 - Clone the repo
 - Make sure composer and npm are installed and available from the root folder of your repo
 - Install dependencies with "composer install && npm install"
