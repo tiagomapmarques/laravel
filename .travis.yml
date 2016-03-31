@@ -7,9 +7,9 @@ php:
   - '7.0'
 
 before_script:
-  - pecl install pdo_sqlite
-  - pecl install fileinfo
-  - pecl install imagick
+  - echo "\n" | pecl install pdo_sqlite
+  - echo "\n" | pecl install fileinfo
+  - echo "\n" | pecl install imagick
   - composer self-update
   - npm install -g npm@2
   - composer setup-no-interaction
