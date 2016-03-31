@@ -1,14 +1,20 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "tiagomapmarques/lurk",
+    "description": "LURK - Laravel Up and Running Kit",
+    "keywords": ["php", "mvc", "framework", "laravel", "lurk"],
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
+        "php": "^5.5.9 || ^7.0",
         "laravel/framework": "5.2.*",
+        "ext-openssl": "*",
+        "ext-mbstring": "*",
+        "ext-pdo_sqlite": "*",
+        "ext-tokenizer": "*",
         "laravelcollective/html": "5.2.*",
-        "intervention/image": "dev-master"
+        "intervention/image": "2.3.*",
+        "ext-fileinfo": "*",
+        "ext-imagick": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -47,6 +53,36 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "clean": [
+            "rm -rf vendor",
+            "rm -rf node_modules"
+        ],
+        "setup": [
+            "composer install",
+            "npm install"
+        ],
+        "setup-no-interaction": [
+            "composer install --no-interaction",
+            "npm install"
+        ],
+        "compile": [
+            "node node_modules/gulp/bin/gulp.js"
+        ],
+        "set-local": [
+            "rm -f database/database.sqlite",
+            "rm -f .env",
+            "cp .env.local .env",
+            "php artisan key:generate",
+            "touch database/database.sqlite",
+            "php artisan migrate",
+            "php artisan db:seed"
+        ],
+        "test": [
+            "vendor/bin/phpunit"
+        ],
+        "run": [
+            "php artisan serve"
         ]
     },
     "config": {

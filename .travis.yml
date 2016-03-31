@@ -7,15 +7,14 @@ php:
   - '7.0'
 
 before_script:
-  - cp .env.local .env
+  - echo "\n" | pecl install pdo_sqlite
+  - echo "\n" | pecl install fileinfo
+  - echo "\n" | pecl install imagick
   - composer self-update
-  - composer install --no-interaction
-  - npm install -g npm@2 && npm install
-  - touch database/database.sqlite
-  - php artisan key:generate
-  - php artisan migrate
-  - php artisan db:seed
-  - node node_modules/gulp/bin/gulp.js
+  - npm install -g npm@2
+  - composer setup-no-interaction
+  - composer compile
+  - composer set-local
 
 script:
-  - vendor/bin/phpunit
+  - composer test
