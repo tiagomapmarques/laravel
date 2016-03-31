@@ -7,6 +7,12 @@ php:
   - '7.0'
 
 before_script:
+  - pecl install openssl
+  - pecl install mbstring
+  - pecl install pdo_sqlite
+  - pecl install tokenizer
+  - pecl install fileinfo
+  - pecl install imagick
   - composer self-update
   - npm install -g npm@2
   - composer setup-no-interaction
