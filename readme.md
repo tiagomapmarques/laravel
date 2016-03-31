@@ -20,12 +20,11 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, we incl
 
 - Clone the repo
 - Make sure composer and npm are installed and available from the root folder of your repo
-- Install dependencies with "composer install && npm install"
-- Compile assets with "node node_modules/gulp/bin/gulp.js"
-- Create a database with "touch database/database.sqlite && php artisan migrate && php artisan db:seed"
-- Create an environment file with "cp .env.local .env"
-- Generate a key for it with "php artisan key:generate"
-- Run it with pride with "php artisan serve"
+- Install dependencies with "composer setup"
+- Compile assets with "composer compile"
+- Create a local environment with "composer set-local"
+- Run the tests with "composer test", to make sure nothing is broken
+- Run it with pride with "composer run"
 
 ## Laravel
 
