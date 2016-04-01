@@ -10,11 +10,12 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, we incl
 
 - **File processing** - All controllers inherit standardised file, image and zip processing functions
 - **API** - Handling of API requests (e.g. lazy loading) is made simpler, safer and modular
-- **Blade/Bootstrap/Sass** - Improved out-of-the-box support
+- **Localisation** - Improved out-of-the-box support
+- **Blade/Bootstrap/Sass** - Templates and basic structure for quick deployment
 - **SleepingOwl** - _coming soon_
 - **Demo** - _coming not so soon_
-- **Stabilisation** - Versions are not volatile and do not break as easily (demo + composer.lock)
-- **Also linting** - Beautiful code needs beautiful rules for programming - Period
+- **Stable** - Production-oriented versioning and testing (composer.lock)
+- **Also linting** - Beautiful code needs beautiful standards for programming
 
 ## Quick start
 
@@ -24,7 +25,7 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, we incl
 - Compile assets with "composer compile"
 - Create a local environment with "composer set-local"
 - Run the tests with "composer test", to make sure nothing is broken
-- Run it with pride with "composer run"
+- Run it with pride with "php artisan serve"
 
 ## Laravel
 

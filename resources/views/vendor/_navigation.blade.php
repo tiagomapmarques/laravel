@@ -38,15 +38,20 @@
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">{{ trans_choice('common.link',1) }}</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">{{ trans_choice('common.action',1) }}</a></li>
-						<li><a href="#">{{ trans_choice('common.action',1) }} 2</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">{{ trans_choice('common.link',1) }}</a></li>
-					</ul>
-				</li>
+				<?php $_navigation_locales = Helper::getAllLocales(); ?>
+				@if(count($_navigation_locales)>1)
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans_choice('common.language',1) }} <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<?php $_navigation_original_locale = Helper::getLocale(); ?>
+							@foreach($_navigation_locales as $locale)
+								<?php Helper::applyLocale($locale); ?>
+								<li><a href="/locale/{{ $locale }}">{{ trans('web.language-name') }}</a></li>
+							@endforeach
+							<?php Helper::applyLocale($_navigation_original_locale); ?>
+						</ul>
+					</li>
+				@endif
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
@@ -55,3 +60,7 @@
 @else
 	</div>
 @endif
+<?php
+	unset($_navigation_locales);
+	unset($_navigation_original_locale);
+?>

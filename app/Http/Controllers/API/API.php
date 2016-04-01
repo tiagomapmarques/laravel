@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
+use Helper;
+
 abstract class API extends BaseController {
 	/**
 	 * A copy of the full request for later access.
@@ -19,6 +21,17 @@ abstract class API extends BaseController {
 	 * @var array
 	 */
 	protected $parameters = Array();
+
+	/**
+	 * Constructor for all API classes.
+	 *
+	 * Function to create an API instance. Also sets the locale in order
+	 * for it not to be ambiguous during processing.
+	 */
+	public function __construct() {
+		Helper::applyLocale();
+		//parent::__construct();
+	}
 
 	/**
 	 * The API component's point of entry.

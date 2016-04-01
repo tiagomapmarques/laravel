@@ -31,7 +31,7 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Http/helpers.php"
+            "app/Http/Helper.php"
         ]
     },
     "autoload-dev": {
@@ -80,9 +80,6 @@
         ],
         "test": [
             "vendor/bin/phpunit"
-        ],
-        "run": [
-            "php artisan serve"
         ]
     },
     "config": {

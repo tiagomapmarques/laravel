@@ -10,6 +10,7 @@ return [
 	 * consider creating a new language file if need be.
 	 *
 	 */
-	'description' => 'Description of your webpage',
-	'title'       => 'LURK App',
+	'language-name' => 'English',
+	'description'   => 'Description of your webpage',
+	'title'         => 'LURK App',
 ];
