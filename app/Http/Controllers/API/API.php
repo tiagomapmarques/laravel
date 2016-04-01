@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
+use Helper;
+
 abstract class API extends BaseController {
 	/**
 	 * A copy of the full request for later access.
