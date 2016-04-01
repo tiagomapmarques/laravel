@@ -21,6 +21,17 @@ abstract class API extends BaseController {
 	protected $parameters = Array();
 
 	/**
+	 * Constructor for all API classes.
+	 *
+	 * Function to create an API instance. Also sets the locale in order
+	 * for it not to be ambiguous during processing.
+	 */
+	public function __construct() {
+		Helper::applyLocale();
+		//parent::__construct();
+	}
+
+	/**
 	 * The API component's point of entry.
 	 *
 	 * It parses the request, looking for POST parameters to store

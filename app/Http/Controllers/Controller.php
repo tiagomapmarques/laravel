@@ -7,10 +7,23 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use Helper;
 use Image;
 
 class Controller extends BaseController {
+
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+	/**
+	 * Constructor for all page controllers.
+	 *
+	 * Function to create a controller instance. Also sets the locale of the
+	 * page in order for it not to be ambiguous during page processing.
+	 */
+	public function __construct() {
+		Helper::applyLocale();
+		//parent::__construct();
+	}
 
 	/**
 	 * Function to zip a list of files to to a specified folder
