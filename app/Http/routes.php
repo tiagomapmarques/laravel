@@ -15,6 +15,11 @@
 Route::group(['middleware' => ['web']], function () {
 
 	Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
+
+	Route::get('/locale/{locale?}', function($locale = null) {
+		Helper::applyLocale($locale);
+		return redirect()->back();
+	});
 });
 
 /* --------------------------------------------------------------------------
