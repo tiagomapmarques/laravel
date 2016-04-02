@@ -20,6 +20,22 @@ Route::group(['middleware' => ['web']], function () {
 		Helper::applyLocale($locale);
 		return redirect()->back();
 	});
+
+	// Routes for logged users only
+	Route::group(['middleware' => ['auth']], function () {
+		// Auth routes
+		Route::get('logout', 'Auth\AuthController@getLogout');
+	});
+
+		// Routes for guests only
+	Route::group(['middleware' => ['guest']], function () {
+		// Auth routes
+		Route::get('register', 'Auth\AuthController@getRegister');
+		Route::post('register', 'Auth\AuthController@postRegister');
+		Route::get('login', 'Auth\AuthController@getLogin');
+		Route::post('login', 'Auth\AuthController@postLogin');
+		Route::controllers([ 'password' => 'Auth\PasswordController' ]);
+	});
 });
 
 /* --------------------------------------------------------------------------
@@ -41,4 +57,8 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['namespace' => 'API', 'prefix' => Config::get('app.api_prefix'), 'middleware' => ['api']], function() {
 
 	Route::any('echo', 'DefaultAction@run');
+
+	Route::group(['middleware' => ['auth']], function() {
+		// API available for logged users only
+	});
 });
