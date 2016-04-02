@@ -12,4 +12,14 @@ return [
 	 */
 	'failed'   => 'These credentials do not match our records.',
 	'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+	'login'    => 'Login',
+	'remember' => 'Remember me',
+	'email'    => 'Email',
+	'password' => 'Password',
+
+	'register'          => 'Register',
+	'name'              => 'Name',
+	'password-confirm'  => 'Confirm Password',
+	'save'              => 'Save',
 ];
