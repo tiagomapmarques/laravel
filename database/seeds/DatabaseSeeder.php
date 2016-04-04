@@ -15,9 +15,11 @@ class DatabaseSeeder extends Seeder {
 	public function run() {
 		$faker = Faker::create();
 
+		// truncate all the tables
 		DB::table('users')->truncate();
 		DB::table('password_resets')->truncate();
 
+		// create users
 		$user1 = new User();
 		$user1->name = $faker->name;
 		$user1->email = 'user@example.com';

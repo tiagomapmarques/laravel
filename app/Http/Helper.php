@@ -6,7 +6,7 @@ use Session as Session;
 
 class Helper {
 	/**
-	 * Function to get the locale from Session data.
+	 * Function to translate single or multiple phrases.
 	 *
 	 * @return void
 	 */
