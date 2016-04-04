@@ -8,36 +8,33 @@
  * It's a breeze. Simply tell Laravel the URIs it should respond to
  * and give it the controller to call when that URI is requested.
  *
- * The 'web' middleware is used as the default if a Route is registered
- * without a group. But making it explicit is never harmful.
+ * The 'web' middleware is used as the default if a Route is registered with
+ * no group. Making it explicit will break error messages in authentication.
  *
  */
-Route::group(['middleware' => ['web']], function () {
+Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
 
-	Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
+Route::get('/locale/{locale?}', function($locale = null) {
+	Helper::applyLocale($locale);
+	return redirect()->back();
+});
 
-	Route::get('/locale/{locale?}', function($locale = null) {
-		Helper::applyLocale($locale);
-		return redirect()->back();
-	});
+// Routes for logged users only
+Route::group(['middleware' => ['auth']], function () {
+	// Auth routes
+	Route::get('logout', 'Auth\AuthController@logout');
+});
 
-	// Routes for logged users only
-	Route::group(['middleware' => ['auth']], function () {
-		// Auth routes
-		Route::get('logout', 'Auth\AuthController@logout');
-	});
-
-		// Routes for guests only
-	Route::group(['middleware' => ['guest']], function () {
-		// Auth routes
-		Route::get('register', 'Auth\AuthController@showRegistrationForm'); //getRegister
-		Route::post('register', 'Auth\AuthController@register'); //postRegister
-		Route::get('login', 'Auth\AuthController@showLoginForm'); //getLogin
-		Route::post('login', 'Auth\AuthController@login'); //postLogin
-		Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-		Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-		Route::post('password/reset', 'Auth\PasswordController@reset');
-	});
+	// Routes for guests only
+Route::group(['middleware' => ['guest']], function () {
+	// Auth routes
+	Route::get('register', 'Auth\AuthController@showRegistrationForm'); //getRegister
+	Route::post('register', 'Auth\AuthController@register'); //postRegister
+	Route::get('login', 'Auth\AuthController@showLoginForm'); //getLogin
+	Route::post('login', 'Auth\AuthController@login'); //postLogin
+	Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+	Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+	Route::post('password/reset', 'Auth\PasswordController@reset');
 });
 
 /* --------------------------------------------------------------------------
