@@ -22,4 +22,8 @@ return [
 	'name'              => 'Name',
 	'password-confirm'  => 'Confirm Password',
 	'save'              => 'Save',
+
+	'reset'      => 'Reset Password',
+	'reset-send' => 'Send Password Reset Link',
+	'reset-text' => 'Click here to reset your password',
 ];
