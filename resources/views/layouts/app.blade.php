@@ -45,24 +45,24 @@
 	<title>{{ Helper::trans('web.title') }}</title>
 
 	<!-- Fonts -->
-	@include('vendor._fonts')
+	@include('layouts._fonts')
 
 	<!-- Styles -->
-	@include('vendor._styles')
+	@include('layouts._styles')
 </head>
 <body id="app-layout">
 
 	<div class="content">
-		@include('vendor._navigation')
-		@include('vendor._messages')
+		@include('layouts._navigation')
+		@include('layouts._messages')
 
 		@yield('content')
 	</div>
 
-	@include('vendor._footer')
+	@include('layouts._footer')
 
 	<!-- JavaScripts -->
-	@include('vendor._scripts')
+	@include('layouts._scripts')
 </body>
 </html>
 <?php
