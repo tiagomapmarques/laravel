@@ -6,6 +6,16 @@ use Session as Session;
 
 class Helper {
 	/**
+	 * Function to translate single or multiple phrases.
+	 *
+	 * @return void
+	 */
+	public static function trans($id, $choice = 1) {
+		$phrase = explode('|', trans($id));
+		return $phrase[$choice-1];
+	}
+
+	/**
 	 * Function to get the locale from Session data.
 	 *
 	 * @return void
@@ -54,10 +64,13 @@ class Helper {
 	 * @param  boolean  $case_sensitive
 	 * @return string
 	 */
-	public static function generateRandomString($length = 32, $case_sensitive = false) {
+	public static function generateRandomString($length = 32, $case_sensitive = false, $additional_chars = false) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 		if($case_sensitive) {
 			$characters .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		}
+		if($additional_chars) {
+			$characters .= '-_';
 		}
 		$characters_length = strlen($characters);
 		$random_string = '';
@@ -74,6 +87,15 @@ class Helper {
 	 */
 	public static function generateRandomFilename() {
 		return date('YmdHis').'_'.Helper::generateRandomString();
+	}
+
+	/**
+	 * Function to generate a hash.
+	 *
+	 * @return string
+	 */
+	public static function generateHash() {
+		return Helper::generateRandomString(64, true, true);
 	}
 
 	/**

@@ -8,18 +8,33 @@
  * It's a breeze. Simply tell Laravel the URIs it should respond to
  * and give it the controller to call when that URI is requested.
  *
- * The 'web' middleware is used as the default if a Route is registered
- * without a group. But making it explicit is never harmful.
+ * The 'web' middleware is used as the default if a Route is registered with
+ * no group. Making it explicit will break error messages in authentication.
  *
  */
-Route::group(['middleware' => ['web']], function () {
+Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
 
-	Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
+Route::get('/locale/{locale?}', function($locale = null) {
+	Helper::applyLocale($locale);
+	return redirect()->back();
+});
 
-	Route::get('/locale/{locale?}', function($locale = null) {
-		Helper::applyLocale($locale);
-		return redirect()->back();
-	});
+// Routes for logged users only
+Route::group(['middleware' => ['auth']], function () {
+	// Auth routes
+	Route::get('logout', 'Auth\AuthController@logout'); //getLogout does not work
+});
+
+	// Routes for guests only
+Route::group(['middleware' => ['guest']], function () {
+	// Auth routes
+	Route::get('register', 'Auth\AuthController@getRegister');
+	Route::post('register', 'Auth\AuthController@postRegister');
+	Route::get('login', 'Auth\AuthController@getLogin');
+	Route::post('login', 'Auth\AuthController@postLogin');
+	Route::get('password/reset/{token?}', 'Auth\PasswordController@getReset');
+	Route::post('password/email', 'Auth\PasswordController@postEmail');
+	Route::post('password/reset', 'Auth\PasswordController@postReset');
 });
 
 /* --------------------------------------------------------------------------
@@ -41,4 +56,8 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['namespace' => 'API', 'prefix' => Config::get('app.api_prefix'), 'middleware' => ['api']], function() {
 
 	Route::any('echo', 'DefaultAction@run');
+
+	Route::group(['middleware' => ['auth']], function() {
+		// API available for logged users only
+	});
 });

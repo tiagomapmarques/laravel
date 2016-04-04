@@ -21,8 +21,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<meta name="description" content="{{ trans('web.description') }}" />
-	<meta name="keywords" content="{{ trans('web.keywords') }}">
+	<meta name="description" content="{{ Helper::trans('web.description') }}" />
+	<meta name="keywords" content="{{ Helper::trans('web.keywords') }}">
 	<meta name="author" content="Legendary Coders">
 
 	<!-- Web-crawlers -->
@@ -42,7 +42,7 @@
 	}
 	</script>
 
-	<title>{{ trans('web.title') }}</title>
+	<title>{{ Helper::trans('web.title') }}</title>
 
 	<!-- Fonts -->
 	@include('vendor._fonts')
