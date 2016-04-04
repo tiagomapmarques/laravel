@@ -20,7 +20,7 @@
 				<ul class="nav navbar-nav">
 					<?php if(!isset($_navigation_selected)) $_navigation_selected = null; ?>
 					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="#">{{ Helper::trans('common.home') }}</a></li>
-					<li class="{{ $_navigation_selected==='link'?'active':'' }}"><a href="#">{{ Helper::trans('common.link',1) }}</a></li>
+					<li class=""><a href="#">{{ Helper::trans('common.link',1) }}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

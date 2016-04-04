@@ -19,10 +19,10 @@ return [
 	'email'    => 'Email',
 	'password' => 'Password',
 
-	'register'          => 'Register',
-	'name'              => 'Name',
-	'password-confirm'  => 'Confirm Password',
-	'save'              => 'Save',
+	'register'         => 'Register',
+	'name'             => 'Name',
+	'password-confirm' => 'Confirm Password',
+	'save'             => 'Save',
 
 	'reset'      => 'Reset Password',
 	'reset-send' => 'Send Password Reset Link',
