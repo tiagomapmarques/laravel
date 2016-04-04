@@ -47,7 +47,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									{{ Form::submit(Helper::trans('auth.login'), ['class' => 'submit btn btn-primary']) }}
-									<a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+									<a id="forgot-password-button" class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 								</div>
 							</div>
 

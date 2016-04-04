@@ -39,10 +39,10 @@
 						</li>
 					@endif
 					@if(Auth::user())
-						<li><a href="/logout">{{ Helper::trans('auth.logout') }}</a></li>
+						<li><a id="logout-button" href="/logout">{{ Helper::trans('auth.logout') }}</a></li>
 					@else
-						<li><a href="/register">{{ Helper::trans('auth.register') }}</a></li>
-						<li><a href="/login">{{ Helper::trans('auth.login') }}</a></li>
+						<li><a id="register-button" href="/register">{{ Helper::trans('auth.register') }}</a></li>
+						<li><a id="login-button" href="/login">{{ Helper::trans('auth.login') }}</a></li>
 					@endif
 				</ul>
 
