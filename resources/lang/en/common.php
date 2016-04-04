@@ -15,19 +15,18 @@ return [
 	 * translation of both the plural and single form of all words.
 	 *
 	 */
-	'brand'      => 'Brand|Brands',
+	'home'       => 'Home',
 	'link'       => 'Link|Links',
 	'menu'       => 'Menu|Menus',
 	'search'     => 'Search|Searches',
 	'submit'     => 'Submit|Submits',
 	'action'     => 'Action|Actions',
 	'choice'     => 'Choice|Choices',
-	'selected'   => 'Selected|Selected',
-	'here'       => 'Here|Here',
+	'selected'   => 'Selected',
+	'here'       => 'Here',
 	'click'      => 'Click|Clicks',
-	'toggle'     => 'Toggle|Toggle',
+	'toggle'     => 'Toggle',
 	'navigation' => 'Navigation|Navigations',
 	'change'     => 'Change|Changes',
 	'language'   => 'Language|Languages',
-	'current'    => 'Current|Current',
 ];
