@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('auth.reset') }}</div>
+					<div class="panel-heading">{{ Helper::trans('auth.reset') }}</div>
 					<div class="panel-body">
 						@if(session('status'))
 							<div class="alert alert-success">
@@ -16,9 +16,9 @@
 						{!! Form::open(['url' => '/password/email', 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-								{{ Form::label('email', trans('auth.email'), array('for' => 'email', 'class' => 'col-md-4 control-label')) }}
+								{{ Form::label('email', Helper::trans('auth.email'), ['for' => 'email', 'class' => 'col-md-4 control-label']) }}
 								<div class="col-md-6">
-									{{ Form::email('email', old('email'), array('class' => 'form-control')) }}
+									{{ Form::email('email', old('email'), ['class' => 'form-control']) }}
 									@if ($errors->has('email'))
 										<span class="help-block">
 											<strong>{{ $errors->first('email') }}</strong>
@@ -29,7 +29,7 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									{{ Form::submit(trans('auth.reset-send'), ['class' => 'submit btn btn-primary']) }}
+									{{ Form::submit(Helper::trans('auth.reset-send'), ['class' => 'submit btn btn-primary']) }}
 								</div>
 							</div>
 

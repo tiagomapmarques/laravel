@@ -5,14 +5,14 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('auth.login') }}</div>
+					<div class="panel-heading">{{ Helper::trans('auth.login') }}</div>
 					<div class="panel-body">
 						{!! Form::open(['url' => '/login', 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-								{{ Form::label('email', trans('auth.email'), array('for' => 'email', 'class' => 'col-md-4 control-label')) }}
+								{{ Form::label('email', Helper::trans('auth.email'), ['for' => 'email', 'class' => 'col-md-4 control-label']) }}
 								<div class="col-md-6">
-									{{ Form::email('email', old('email'), array('class' => 'form-control')) }}
+									{{ Form::email('email', old('email'), ['class' => 'form-control']) }}
 									@if ($errors->has('email'))
 										<span class="help-block">
 											<strong>{{ $errors->first('email') }}</strong>
@@ -22,9 +22,9 @@
 							</div>
 
 							<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-								{{ Form::label('password', trans('auth.password'), array('for' => 'password', 'class' => 'col-md-4 control-label')) }}
+								{{ Form::label('password', Helper::trans('auth.password'), ['for' => 'password', 'class' => 'col-md-4 control-label']) }}
 								<div class="col-md-6">
-									{{ Form::password('password', array('class' => 'form-control')) }}
+									{{ Form::password('password', ['class' => 'form-control']) }}
 									@if ($errors->has('password'))
 										<span class="help-block">
 											<strong>{{ $errors->first('password') }}</strong>
@@ -38,7 +38,7 @@
 									<div class="checkbox">
 										<label>
 											{{ Form::checkbox('remember') }}
-											{{ trans('auth.remember') }}
+											{{ Helper::trans('auth.remember') }}
 										</label>
 									</div>
 								</div>
@@ -46,7 +46,7 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									{{ Form::submit(trans('auth.login'), array('class' => 'submit btn btn-primary')) }}
+									{{ Form::submit(Helper::trans('auth.login'), ['class' => 'submit btn btn-primary']) }}
 									<a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 								</div>
 							</div>

@@ -5,16 +5,16 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">{{ trans('auth.reset') }}</div>
+					<div class="panel-heading">{{ Helper::trans('auth.reset') }}</div>
 					<div class="panel-body">
 						{!! Form::open(['url' => '/password/reset', 'class' => 'form-horizontal']) !!}
 
 							{{ Form::hidden('token', $token); }}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-								{{ Form::label('email', trans('auth.email'), array('for' => 'email', 'class' => 'col-md-4 control-label')) }}
+								{{ Form::label('email', Helper::trans('auth.email'), ['for' => 'email', 'class' => 'col-md-4 control-label']) }}
 								<div class="col-md-6">
-									{{ Form::email('email', $email or old('email'), array('class' => 'form-control')) }}
+									{{ Form::email('email', $email or old('email'), ['class' => 'form-control']) }}
 									@if ($errors->has('email'))
 										<span class="help-block">
 											<strong>{{ $errors->first('email') }}</strong>
@@ -24,7 +24,7 @@
 							</div>
 
 							<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-								{{ Form::label('password', trans('auth.password'), ['for' => 'password', 'class' => 'col-md-4 control-label']) }}
+								{{ Form::label('password', Helper::trans('auth.password'), ['for' => 'password', 'class' => 'col-md-4 control-label']) }}
 								<div class="col-md-6">
 									{{ Form::password('password', ['class' => 'form-control']) }}
 									@if ($errors->has('password'))
@@ -36,7 +36,7 @@
 							</div>
 
 							<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-								{{ Form::label('password_confirmation', trans('auth.password-confirm'), ['for' => 'password_confirmation', 'class' => 'col-md-4 control-label']) }}
+								{{ Form::label('password_confirmation', Helper::trans('auth.password-confirm'), ['for' => 'password_confirmation', 'class' => 'col-md-4 control-label']) }}
 								<div class="col-md-6">
 									{{ Form::password('password_confirmation', ['class' => 'form-control']) }}
 									@if ($errors->has('password_confirmation'))
@@ -49,7 +49,7 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									{{ Form::submit(trans('auth.reset'), ['class' => 'submit btn btn-primary']) }}
+									{{ Form::submit(Helper::trans('auth.reset'), ['class' => 'submit btn btn-primary']) }}
 								</div>
 							</div>
 
