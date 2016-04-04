@@ -7,7 +7,7 @@
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav-1" aria-expanded="false">
-					<span class="sr-only">{{ trans('common.toggle').' '.trans_choice('common.navigation',1) }}</span>
+					<span class="sr-only">{{ Helper::trans('common.toggle').' '.Helper::trans('common.navigation',1) }}</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -19,38 +19,38 @@
 
 				<ul class="nav navbar-nav">
 					<?php if(!isset($_navigation_selected)) $_navigation_selected = null; ?>
-					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="#">{{ trans('common.home') }}</a></li>
-					<li class="{{ $_navigation_selected==='link'?'active':'' }}"><a href="#">{{ trans_choice('common.link',1) }}</a></li>
+					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="#">{{ Helper::trans('common.home') }}</a></li>
+					<li class="{{ $_navigation_selected==='link'?'active':'' }}"><a href="#">{{ Helper::trans('common.link',1) }}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					<?php $_navigation_locales = Helper::getAllLocales(); ?>
 					@if(count($_navigation_locales)>1)
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans_choice('common.language',1) }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Helper::trans('common.language',1) }} <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<?php $_navigation_original_locale = Helper::getLocale(); ?>
 								@foreach($_navigation_locales as $locale)
 									<?php Helper::applyLocale($locale); ?>
-									<li><a href="/locale/{{ $locale }}">{{ trans('web.language-name') }}</a></li>
+									<li><a href="/locale/{{ $locale }}">{{ Helper::trans('web.language-name') }}</a></li>
 								@endforeach
 								<?php Helper::applyLocale($_navigation_original_locale); ?>
 							</ul>
 						</li>
 					@endif
 					@if(Auth::user())
-						<li><a href="/logout">{{ trans('auth.logout') }}</a></li>
+						<li><a href="/logout">{{ Helper::trans('auth.logout') }}</a></li>
 					@else
-						<li><a href="/register">{{ trans('auth.register') }}</a></li>
-						<li><a href="/login">{{ trans('auth.login') }}</a></li>
+						<li><a href="/register">{{ Helper::trans('auth.register') }}</a></li>
+						<li><a href="/login">{{ Helper::trans('auth.login') }}</a></li>
 					@endif
 				</ul>
 
 				{!! Form::open(['method' => 'GET', 'url' => '/search', 'class' => 'navbar-form navbar-right']) !!}
 					<div class="form-group">
-						{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => trans_choice('common.search',1).' + Enter']) }}
+						{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => Helper::trans('common.search',1).' + Enter']) }}
 					</div>
-					{{-- Form::submit(trans_choice('common.search',1), array('class' => 'btn btn-primary')) --}}
+					{{-- Form::submit(Helper::trans('common.search',1), array('class' => 'btn btn-primary')) --}}
 				{!! Form::close() !!}
 
 			</div>
