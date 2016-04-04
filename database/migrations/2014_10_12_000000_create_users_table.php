@@ -13,7 +13,6 @@ class CreateUsersTable extends Migration {
 		Schema::create('users', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('hash', 64)
-				->default(Helper::generateHash())
 				->unique();
 			$table->string('name');
 			$table->string('email')
