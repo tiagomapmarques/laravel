@@ -14,27 +14,32 @@
  */
 Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
 
-Route::get('/locale/{locale?}', function($locale = null) {
+Route::get('/search', ['as' => 'search', 'uses' => function() {
+	// TODO: implement search
+	abort(404);
+}]);
+
+Route::get('/locale/{locale?}', ['as' => 'locale', 'uses' => function($locale = null) {
 	Helper::applyLocale($locale);
 	return redirect()->back();
-});
+}]);
 
 // Routes for logged users only
 Route::group(['middleware' => ['auth']], function () {
 	// Auth routes
-	Route::get('logout', 'Auth\AuthController@logout'); //getLogout does not work
+	Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']); //getLogout does not work
 });
 
 	// Routes for guests only
 Route::group(['middleware' => ['guest']], function () {
 	// Auth routes
-	Route::get('register', 'Auth\AuthController@getRegister');
-	Route::post('register', 'Auth\AuthController@postRegister');
-	Route::get('login', 'Auth\AuthController@getLogin');
-	Route::post('login', 'Auth\AuthController@postLogin');
-	Route::get('password/reset/{token?}', 'Auth\PasswordController@getReset');
-	Route::post('password/email', 'Auth\PasswordController@postEmail');
-	Route::post('password/reset', 'Auth\PasswordController@postReset');
+	Route::get('register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
+	Route::post('register', ['as' => 'register_post', 'uses' => 'Auth\AuthController@postRegister']);
+	Route::get('login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+	Route::post('login', ['as' => 'login_post', 'uses' => 'Auth\AuthController@postLogin']);
+	Route::get('password/reset/{token?}', ['as' => 'password_reset', 'uses' => 'Auth\PasswordController@getReset']);
+	Route::post('password/email', ['as' => 'password_email_post', 'uses' => 'Auth\PasswordController@postEmail']);
+	Route::post('password/reset', ['as' => 'password_reset_post', 'uses' => 'Auth\PasswordController@postReset']);
 });
 
 /* --------------------------------------------------------------------------
