@@ -26,7 +26,7 @@ class Controller extends BaseController {
 	}
 
 	/**
-	 * Function to zip a list of files to to a specified folder
+	 * Function to zip a list of files to to a specified folder.
 	 *
 	 * This function takes a list of files and zips them with or without folder
 	 * structure to a specified folder. The archive's name must also be given.

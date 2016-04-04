@@ -2,19 +2,24 @@
 
 [![Build Status](https://travis-ci.org/tiagomapmarques/lurk.svg?branch=lurk)](https://travis-ci.org/tiagomapmarques/lurk)
 
-LURK is a Laravel fork that includes a bunch of other useful dependencies, functions and settings.
+LURK is a Laravel fork that includes a bunch of useful dependencies, functions and settings.
+
+It is built for PHP developers who want a starting point for their applications (one that actually works
+out-of-the-box) and are tired of managing composer dependencies, creating templates, folder structures,
+authentication, administration pages and all kinds of utilities and shenanigans from scratch.
 
 ## Features
 
-Aside from all the benefits of an active, community-driven, MVC for PHP, we include:
+Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk implements:
 
 - **File processing** - All controllers inherit standardised file, image and zip processing functions
-- **API** - Handling of API requests (e.g. lazy loading) is made simpler, safer and modular
-- **Localisation** - Improved out-of-the-box support
+- **API requests** - Handling of API requests (e.g. lazy loading) is made simpler, safer and modular
+- **Localisation** - Just works out-of-the-box (provided you translate from english)
 - **Blade/Bootstrap/Sass** - Templates and basic structure for quick deployment
+- **Authentication** - Fully scaffolded, tweaked and tuned-up
 - **SleepingOwl** - _coming soon_
 - **Demo** - _coming not so soon_
-- **Stable** - Production-oriented versioning and testing (composer.lock)
+- **Stable** - Production-oriented versioning (composer.lock) and fully e2e tested
 - **Also linting** - Beautiful code needs beautiful standards for programming
 
 ## Quick start
