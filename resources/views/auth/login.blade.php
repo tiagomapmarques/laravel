@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">{{ trans('auth.login') }}</div>
 					<div class="panel-body">
-						{!! Form::open(['url' => '/register', 'class' => 'form-horizontal']) !!}
+						{!! Form::open(['url' => '/login', 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 								{{ Form::label('email', trans('auth.email'), array('for' => 'email', 'class' => 'col-md-4 control-label')) }}
