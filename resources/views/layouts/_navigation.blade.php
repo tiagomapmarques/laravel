@@ -12,14 +12,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Lurk</a>
+				<a class="navbar-brand" href="{{ route('root') }}">Lurk</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="collapsable-nav-1">
 
 				<ul class="nav navbar-nav">
 					<?php if(!isset($_navigation_selected)) $_navigation_selected = null; ?>
-					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="#">{{ Helper::trans('common.home') }}</a></li>
+					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="{{ route('root') }}">{{ Helper::trans('common.home') }}</a></li>
 					<li class=""><a href="#">{{ Helper::trans('common.link',1) }}</a></li>
 				</ul>
 
@@ -39,14 +39,14 @@
 						</li>
 					@endif
 					@if(Auth::user())
-						<li><a id="logout-button" href="/logout">{{ Helper::trans('auth.logout') }}</a></li>
+						<li><a id="logout-button" href="{{ route('logout') }}">{{ Helper::trans('auth.logout') }}</a></li>
 					@else
-						<li><a id="register-button" href="/register">{{ Helper::trans('auth.register') }}</a></li>
-						<li><a id="login-button" href="/login">{{ Helper::trans('auth.login') }}</a></li>
+						<li><a id="register-button" href="{{ route('register') }}">{{ Helper::trans('auth.register') }}</a></li>
+						<li><a id="login-button" href="{{ route('login') }}">{{ Helper::trans('auth.login') }}</a></li>
 					@endif
 				</ul>
 
-				{!! Form::open(['method' => 'GET', 'url' => '/search', 'class' => 'navbar-form navbar-right']) !!}
+				{!! Form::open(['method' => 'GET', 'url' => route('search'), 'class' => 'navbar-form navbar-right']) !!}
 					<div class="form-group">
 						{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => Helper::trans('common.search',1).' + Enter']) }}
 					</div>

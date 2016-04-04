@@ -13,7 +13,7 @@
 							</div>
 						@endif
 
-						{!! Form::open(['url' => '/password/email', 'class' => 'form-horizontal']) !!}
+						{!! Form::open(['url' => route('password_email_post'), 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 								{{ Form::label('email', Helper::trans('auth.email'), ['for' => 'email', 'class' => 'col-md-4 control-label']) }}
