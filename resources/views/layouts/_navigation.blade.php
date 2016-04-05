@@ -24,20 +24,15 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<?php $_navigation_locales = Helper::getAllLocales(); ?>
-					@if(count($_navigation_locales)>1)
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Helper::trans('common.language',1) }} <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<?php $_navigation_original_locale = Helper::getLocale(); ?>
-								@foreach($_navigation_locales as $locale)
-									<?php Helper::applyLocale($locale); ?>
-									<li><a href="/locale/{{ $locale }}">{{ Helper::trans('web.language-name') }}</a></li>
-								@endforeach
-								<?php Helper::applyLocale($_navigation_original_locale); ?>
-							</ul>
-						</li>
-					@endif
+					<li>
+						{!! Form::open(['method' => 'GET', 'url' => route('search'), 'class' => 'navbar-form navbar-right']) !!}
+							<div class="form-group">
+								{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => Helper::trans('common.search',1).' + Enter']) }}
+							</div>
+							{{-- Form::submit(Helper::trans('common.search',1), array('class' => 'btn btn-primary')) --}}
+						{!! Form::close() !!}
+					<li>
+
 					@if(Auth::user())
 						<li><a id="logout-button" href="{{ route('logout') }}">{{ Helper::trans('auth.logout') }}</a></li>
 					@else
@@ -45,13 +40,6 @@
 						<li><a id="login-button" href="{{ route('login') }}">{{ Helper::trans('auth.login') }}</a></li>
 					@endif
 				</ul>
-
-				{!! Form::open(['method' => 'GET', 'url' => route('search'), 'class' => 'navbar-form navbar-right']) !!}
-					<div class="form-group">
-						{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => Helper::trans('common.search',1).' + Enter']) }}
-					</div>
-					{{-- Form::submit(Helper::trans('common.search',1), array('class' => 'btn btn-primary')) --}}
-				{!! Form::close() !!}
 
 			</div>
 		</div>
@@ -61,6 +49,5 @@
 	</div>
 @endif
 <?php
-	unset($_navigation_locales);
 	unset($_navigation_original_locale);
 ?>

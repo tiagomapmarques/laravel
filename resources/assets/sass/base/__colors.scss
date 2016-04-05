@@ -1,0 +1,38 @@
+
+/**
+ * SCSS file with different color styles
+ */
+
+
+// Base colors
+
+$__style_color_base: white;
+$__style_color_main: #f8f8f8;
+$__style_color_text: black;
+$__style_color_special: #f8f8f8;
+
+
+// Extrapolated coloring system
+
+$color_background: $__style_color_base;
+$color_background_inverted: invert($color_background);
+
+$color_text: $__style_color_text;
+$color_text_light: lighen($color_text, 10%);
+$color_text_lighter: lighen($color_text, 20%);
+
+$color_text_inverted: invert($color_text);
+$color_text_inverted_light: lighen($color_text_inverted, 10%);
+$color_text_inverted_lighter: lighen($color_text_inverted, 20%);
+
+$color_main: $__style_color_main;
+$color_main_dark: darken($color_main, 10%);
+$color_main_darker: darken($color_main, 20%);
+
+$color_main_inverted: invert($color_main);
+$color_main_inverted_dark: darken($color_main_inverted, 10%);
+$color_main_inverted_darker: darken($color_main_inverted, 20%);
+
+$color_special: $__style_color_special;
+$color_special_dark: darken($color_special, 10%);
+$color_special_darker: darken($color_special, 20%);
