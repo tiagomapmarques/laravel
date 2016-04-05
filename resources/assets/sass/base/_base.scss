@@ -1,0 +1,29 @@
+
+/**
+ * Importer for the "base" css style
+ */
+
+// Different color styles
+@import "__colors";
+
+// CSS variables to modify the bootstrap template
+@import "bootstrap/__variables";
+
+// Mixins
+@import "__mixins";
+
+// Bootstrap template
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Rewrites over the original bootstrap
+@import "bootstrap/__rewrites";
+
+// Basic CSS for all well-designed pages
+html, body {
+	@include no-spaces;
+	height: 100%;
+	width: 100%;
+}
+
+// CSS for page elements
+@import "style/__mycss.scss";

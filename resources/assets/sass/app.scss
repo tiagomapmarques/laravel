@@ -1,1 +1,9 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/**
+ * Define which is the active CSS. You are free to re-implement the structure
+ * as your please, but keep in mind, most of the work is already layed down
+ * in our "base" css structure. You can just fill-in the gaps :)
+ */
+
+// import the actual CSS
+@import "base/_base";

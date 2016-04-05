@@ -1,0 +1,38 @@
+
+/**
+ * SCSS file aimed at rewriting some bootstrap rules
+ */
+
+// make navbar only have a bottom border
+.navbar {
+	border: 0px none;
+	border-bottom: 1px solid $color_main_darker;
+}
+
+// definition of the footer height
+// important in order to make it stick to the bottom
+$footer-height: $navbar-height / 2;
+
+// tell the page that it should fill the whole height
+// except where the footer is going to be
+body .body-page {
+	min-height: 100%;
+	padding-bottom: $footer-height;
+}
+
+// define the footer as an overlay on top of the padding-bottom
+// of the "body .page" - see above
+footer,
+#footer {
+	height: $footer-height;
+	margin-top: -$footer-height;
+	overflow: hidden;
+}
+
+// overwrite navbar settings when inside a footer
+footer.navbar,
+#footer.navbar {
+	min-height: $footer-height;
+	border: 0px none;
+	border-top: 1px solid $color_main_darker;
+}

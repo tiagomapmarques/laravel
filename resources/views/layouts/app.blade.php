@@ -52,11 +52,13 @@
 </head>
 <body id="app-layout">
 
-	<div class="content">
+	<div class="body-page">
 		@include('layouts._navigation')
 		@include('layouts._messages')
 
-		@yield('content')
+		<div class="body-content">
+			@yield('content')
+		</div>
 	</div>
 
 	@include('layouts._footer')

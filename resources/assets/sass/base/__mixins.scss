@@ -1,0 +1,17 @@
+
+/**
+ * SCSS file with useful mixins to be used throughout this style
+ */
+
+@mixin no-spaces {
+	padding: 0px;
+	border: 0px none;
+	margin: 0px;
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
