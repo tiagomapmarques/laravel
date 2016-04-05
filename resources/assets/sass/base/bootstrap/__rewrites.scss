@@ -26,7 +26,6 @@ footer,
 #footer {
 	height: $footer-height;
 	margin-top: -$footer-height;
-	overflow: hidden;
 }
 
 // overwrite navbar settings when inside a footer
@@ -35,4 +34,12 @@ footer.navbar,
 	min-height: $footer-height;
 	border: 0px none;
 	border-top: 1px solid $color_main_darker;
+	font-size: smaller;
+
+	.nav li a,
+	.nav li span {
+		padding-top: 0px;
+		padding-bottom: 0px;
+		line-height: $footer-height - 1;
+	}
 }
