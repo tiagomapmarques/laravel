@@ -1,4 +1,4 @@
-@extends('vendor.app')
+@extends('layouts.app')
 
 @section('content')
 	<div class="container">
@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">{{ Helper::trans('auth.register') }}</div>
 					<div class="panel-body">
-						{!! Form::open(['url' => '/register', 'class' => 'form-horizontal']) !!}
+						{!! Form::open(['url' => route('register_post'), 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 								{{ Form::label('name', Helper::trans('auth.name'), ['for' => 'name', 'class' => 'col-md-4 control-label']) }}

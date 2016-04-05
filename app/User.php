@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Traits\ModelImage as ModelImage;
 use Helper;
 
 class User extends Authenticatable {
+
+	use ModelImage;
+
 	/**
 	 * The attributes that are mass assignable.
 	 *

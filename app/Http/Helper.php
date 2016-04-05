@@ -6,6 +6,15 @@ use Session as Session;
 
 class Helper {
 	/**
+	 * Function to retrieve the version of LURK.
+	 *
+	 * @return string
+	 */
+	public static function version() {
+		return '0.1-alpha1';
+	}
+
+	/**
 	 * Function to translate single or multiple phrases.
 	 *
 	 * @return void

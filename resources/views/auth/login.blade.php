@@ -1,4 +1,4 @@
-@extends('vendor.app')
+@extends('layouts.app')
 
 @section('content')
 	<div class="container">
@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">{{ Helper::trans('auth.login') }}</div>
 					<div class="panel-body">
-						{!! Form::open(['url' => '/login', 'class' => 'form-horizontal']) !!}
+						{!! Form::open(['url' => route('login_post'), 'class' => 'form-horizontal']) !!}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 								{{ Form::label('email', Helper::trans('auth.email'), ['for' => 'email', 'class' => 'col-md-4 control-label']) }}
@@ -47,7 +47,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
 									{{ Form::submit(Helper::trans('auth.login'), ['class' => 'submit btn btn-primary']) }}
-									<a id="forgot-password-button" class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+									<a id="forgot-password-button" class="btn btn-link" href="{{ route('password_reset') }}">Forgot Your Password?</a>
 								</div>
 							</div>
 

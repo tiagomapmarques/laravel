@@ -1,4 +1,4 @@
-@extends('vendor.app')
+@extends('layouts.app')
 
 @section('content')
 	<div class="container">
@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">{{ Helper::trans('auth.reset') }}</div>
 					<div class="panel-body">
-						{!! Form::open(['url' => '/password/reset', 'class' => 'form-horizontal']) !!}
+						{!! Form::open(['url' => route('password_reset_post'), 'class' => 'form-horizontal']) !!}
 
 							{{ Form::hidden('token', $token); }}
 
