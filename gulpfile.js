@@ -14,4 +14,7 @@ elixir(function(mix) {
 	mix.sass('app.scss').version([
 		'public/css/app.css'
 	]);
+	mix.scripts([ 'search.js', 'app.js' ],
+		'public/js/app.js'
+	);
 });
