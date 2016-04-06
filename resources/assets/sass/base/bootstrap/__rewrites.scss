@@ -3,6 +3,13 @@
  * SCSS file aimed at rewriting some bootstrap rules
  */
 
+// Basic CSS for all well-designed pages
+html, body {
+	@include no-spaces;
+	height: 100%;
+	width: 100%;
+}
+
 // make navbar only have a bottom border
 .navbar {
 	border: 0px none;
