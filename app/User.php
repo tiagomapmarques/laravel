@@ -12,7 +12,7 @@ class User extends Authenticatable {
 	use ImagePathing;
 
 	/**
-	 * The attributes that are searchable automatically.
+	 * The attributes that are searchable.
 	 *
 	 * @var array
 	 */

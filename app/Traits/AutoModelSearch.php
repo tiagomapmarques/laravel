@@ -4,8 +4,19 @@ namespace App\Traits;
 
 trait AutoModelSearch {
 
-	//protected $search_targets = [];
-
+	/**
+	 * Function to get all search results from models.
+	 *
+	 * This function retrieves all the results from models registered using the
+	 * "search_targets" array of the class using this trait. It looks for
+	 * "searchable" properties of models and compares them to each word from the
+	 * given query.
+	 * TODO: implement result relevance
+	 *
+	 * @param  string  $query
+	 * @param  string  $class_path
+	 * @return string
+	 */
 	protected function get_search_results($query, $class_path = '\\App\\') {
 		$results = [];
 		$targets = [];
@@ -25,6 +36,15 @@ trait AutoModelSearch {
 		return $results;
 	}
 
+	/**
+	 * Function to check if a given item matches a general search criteria.
+	 *
+	 * @param  string                              $class
+	 * @param  Illuminate\Database\Eloquent\Model  $object
+	 * @param  string                              $string
+	 * @param  string                              $separator
+	 * @return boolean
+	 */
 	private function check_result($class, $object, $string, $separator = ' ') {
 		if(is_null($string) || !is_string($string) || strlen($string)<=0) {
 			return false;
