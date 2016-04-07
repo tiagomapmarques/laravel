@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 trait AutoModelSearch {
-
 	/**
 	 * Function to get all search results from models.
 	 *

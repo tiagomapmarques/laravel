@@ -20,7 +20,7 @@
 						</div>
 						<div class="panel-body" style="text-align: center;">
 							@if(count($all)<=0)
-								<p>0 results</p>
+								<p>0 {{ strtolower(Helper::trans('common.result',2)) }}</p>
 							@else
 								@foreach($all as $item)
 									<p>
