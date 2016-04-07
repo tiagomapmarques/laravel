@@ -9,7 +9,7 @@
 ?>
 {!! Form::open(['method' => 'GET', 'url' => route('search'), 'class' => $_search_class, 'style' => $_search_style]) !!}
 	<div class="form-group">
-		{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => Helper::trans('common.search').' + Enter']) }}
+		{{ Form::text('q', '', ['class' => 'form-control', 'placeholder' => Helper::trans('common.search')]) }}
 	</div>
 	{{-- Form::submit(Helper::trans('common.search'), array('class' => 'btn btn-primary')) --}}
 {!! Form::close() !!}
