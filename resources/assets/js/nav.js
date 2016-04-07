@@ -9,6 +9,10 @@ function nav_init() {
 	$('#search-button-nav').click(search_button_nav_click);
 	$('#search-button-bar').click(search_button_bar_click);
 	$('#search-cancel-bar').click(search_cancel_bar_click);
+	if($('#search-bar').is(":visible")) {
+		var input = $('#search-bar input')
+		input.focus();
+	}
 }
 
 //
