@@ -1,5 +1,5 @@
 @if($_app_html5)
-	<nav class="navbar navbar-default">
+	<nav id="nav" class="navbar navbar-default">
 @else
 	<div id="nav" class="navbar navbar-default">
 @endif
@@ -24,10 +24,7 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li id="search-bar" class="hidden-xs">
-						@include('layouts.__search', ['_search_class' => 'navbar-form navbar-right'])
-					<li>
-					<li id="search-button" class="hidden-xs">
+					<li id="search-button-nav" class="hidden-xs">
 						<a><span class="fa fa-search"></span></a>
 					<li>
 
@@ -39,11 +36,37 @@
 					@endif
 
 					<li class="hidden-sm hidden-md hidden-lg">
-						@include('layouts.__search', ['_search_class' => 'navbar-form navbar-right'])
+						<a href="{{ route('search') }}">{{ Helper::trans('common.search') }}</a>
 					<li>
 				</ul>
 
 			</div>
+		</div>
+@if($_app_html5)
+	</nav>
+@else
+	</div>
+@endif
+
+@if($_app_html5)
+	<nav id="search-bar" class="navbar navbar-default hidden-xs">
+@else
+	<div id="search-bar" class="navbar navbar-default hidden-xs">
+@endif
+		<div class="container">
+			<ul class="nav navbar-nav navbar-right">
+				<li id="search-button-bar">
+					<a><span class="fa fa-search"></span></a>
+				<li>
+				<li id="search-cancel-bar">
+					<a><span class="fa fa-times"></span></a>
+				<li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li id="search-input-bar">
+					@include('layouts.__search', ['_search_class' => 'navbar-form'])
+				<li>
+			</ul>
 		</div>
 @if($_app_html5)
 	</nav>
