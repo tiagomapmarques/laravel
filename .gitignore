@@ -8,6 +8,8 @@ Homestead.json
 .env
 
 # Generated files
+/public/js/*
+/public/js/*.js.map
 /public/css/*
 /public/css/*.css.map
 /public/build/*

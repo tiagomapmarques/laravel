@@ -7,3 +7,19 @@
 body .body-content {
 	padding-top: 20px;
 }
+
+#search-bar {
+	width: 0px;
+	overflow: hidden;
+
+	form,
+	form input {
+		margin-left: 0px;
+		margin-right: 0px;
+		padding-right: 5px;
+	}
+}
+
+#search-button a {
+	padding-left: 5px;
+}
