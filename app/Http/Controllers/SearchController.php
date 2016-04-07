@@ -15,6 +15,8 @@ class SearchController extends Controller {
 
 	public function index(Request $request) {
 		return view('search.index', [
+			'_navigation_search' => false,
+			'_search_text' => $request->q,
 			'_seacrh_results' => $this->get_search_results($request->q)
 		]);
 	}
