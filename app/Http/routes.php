@@ -14,10 +14,7 @@
  */
 Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
 
-Route::get('/search', ['as' => 'search', 'uses' => function() {
-	// TODO: implement search
-	abort(404);
-}]);
+Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
 Route::get('/locale/{locale?}', ['as' => 'locale', 'uses' => function($locale = null) {
 	Helper::applyLocale($locale);
