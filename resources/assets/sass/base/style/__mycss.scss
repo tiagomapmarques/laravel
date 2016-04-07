@@ -9,17 +9,18 @@ body .body-content {
 }
 
 #search-bar {
-	width: 0px;
-	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	margin-top: -50px;
+	border-bottom-color: transparent;
 
-	form,
-	form input {
-		margin-left: 0px;
-		margin-right: 0px;
-		padding-right: 5px;
+	.form-group,
+	.form-group input {
+		width: 100%;
 	}
-}
 
-#search-button a {
-	padding-left: 5px;
+	#search-input-bar {
+		width: 300px;
+	}
 }
