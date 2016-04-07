@@ -3,6 +3,11 @@
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				@include('layouts.__search')
+			</div>
+		</div>
+		<div class="row">
 			@foreach($_seacrh_results as $class => $all)
 				<?php
 					$class_name = ucfirst($class);
