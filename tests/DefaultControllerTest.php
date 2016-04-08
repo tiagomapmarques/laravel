@@ -4,8 +4,6 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use Faker\Factory as Faker;
-
 class DefaultControllerTest extends TestCase {
 	/**
 	 * Test the reponse of the home page
