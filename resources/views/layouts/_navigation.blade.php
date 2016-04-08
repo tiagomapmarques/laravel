@@ -32,8 +32,8 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					@if($_navigation_search)
-						<li id="search-button-nav" class="hidden-xs">
-							<a><span class="fa fa-search"></span></a>
+						<li class="hidden-xs">
+							<a id="search-button-nav"><span class="fa fa-search"></span></a>
 						<li>
 					@endif
 
