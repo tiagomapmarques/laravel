@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SearchControllerTest extends TestCase {
 	/**
-	 * Test the login and logout screens.
+	 * Test the search functionality
 	 *
 	 * @dataProvider searchData
 	 * @return void
