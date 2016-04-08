@@ -3,13 +3,19 @@
 @section('content')
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2" style="display: flex;">
-				<div id="search-bar" style="width: 75%;">
-					@include('layouts.__search')
+			<div class="col-md-8 col-md-offset-2">
+				<div class="row">
+					<div class="col-md-9">
+						<div id="search-bar">
+							@include('layouts.__search')
+						</div>
+					</div>
+					<div class="col-md-3">
+						<a id="search-button-bar" class="btn btn-primary" style="width: 100%;">
+							<span class="fa fa-search"></span>
+						</a>
+					</div>
 				</div>
-				<button id="search-button-bar" style="width: 25%; margin-top: 3px; margin-bottom: 17px; margin-left: 10px;">
-					<span class="fa fa-search"></span>
-				</button>
 			</div>
 		</div>
 		<div class="row">
