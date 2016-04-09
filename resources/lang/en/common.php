@@ -19,6 +19,7 @@ return [
 	'link'       => 'Link|Links',
 	'menu'       => 'Menu|Menus',
 	'search'     => 'Search|Searches',
+	'result'     => 'Result|Results',
 	'submit'     => 'Submit|Submits',
 	'action'     => 'Action|Actions',
 	'choice'     => 'Choice|Choices',

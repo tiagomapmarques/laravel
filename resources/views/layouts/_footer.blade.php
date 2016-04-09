@@ -31,4 +31,5 @@
 @endif
 <?php
 	unset($_navigation_locales);
+	unset($_navigation_original_locale);
 ?>

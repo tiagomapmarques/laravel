@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait ModelImage {
+trait ImagePathing {
 
 	protected static $base_image_path = 'images';
 

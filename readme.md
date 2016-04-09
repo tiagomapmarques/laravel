@@ -14,7 +14,8 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk im
 
 - **File processing** - All controllers inherit standardised file, image and zip processing functions
 - **API requests** - Handling of API requests (e.g. lazy loading) is made simpler, safer and modular
-- **Localisation** - Just works out-of-the-box (provided you translate from english)
+- **Localisation** - Just works out-of-the-box, with no setup whatsoever (provided you translate from english)
+- **Search** - Searching mechanism for models is versatile and effortless
 - **Blade/Bootstrap/Sass** - Templates and basic structure for quick deployment
 - **Authentication** - Fully scaffolded, tweaked and tuned-up
 - **SleepingOwl** - _coming soon_

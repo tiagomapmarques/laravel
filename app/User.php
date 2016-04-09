@@ -4,12 +4,21 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Traits\ModelImage as ModelImage;
+use App\Traits\ImagePathing as ImagePathing;
 use Helper;
 
 class User extends Authenticatable {
 
-	use ModelImage;
+	use ImagePathing;
+
+	/**
+	 * The attributes that are searchable.
+	 *
+	 * @var array
+	 */
+	public static $searchable = [
+		'name', 'email',
+	];
 
 	/**
 	 * The attributes that are mass assignable.

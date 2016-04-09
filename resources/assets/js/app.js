@@ -1,5 +1,5 @@
 
 // Document ready function
 $(document).ready(function() {
-	search_init();
+	nav_init();
 });
