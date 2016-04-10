@@ -154,9 +154,9 @@ $btn-default-color:              $color_text_inverted;//#333;
 $btn-default-bg:                 $color_special;//#fff;
 $btn-default-border:             $color_special_dark;//#ccc;
 
-// $btn-primary-color:              #fff;
-// $btn-primary-bg:                 $brand-primary;
-// $btn-primary-border:             darken($btn-primary-bg, 5%);
+$btn-primary-color:              $color_text_inverted;//#fff;
+$btn-primary-bg:                 $color_special;//$brand-primary;
+$btn-primary-border:             $color_special_darker;//darken($btn-primary-bg, 5%);
 
 // $btn-success-color:              #fff;
 // $btn-success-bg:                 $brand-success;
