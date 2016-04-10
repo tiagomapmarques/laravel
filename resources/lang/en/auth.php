@@ -18,6 +18,7 @@ return [
 	'remember' => 'Remember me',
 	'email'    => 'Email',
 	'password' => 'Password',
+	'image'    => 'Image',
 	'admin'    => 'Admin',
 	'root'     => 'Home',
 
