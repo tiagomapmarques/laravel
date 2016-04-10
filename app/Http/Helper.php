@@ -50,6 +50,16 @@ class Helper {
 	}
 
 	/**
+	 * Function check if the current route is an admin route
+	 *
+	 * @return boolean
+	 */
+	public static function routeIsAdmin() {
+		$prefix = Config::get('sleeping_owl.url_prefix');
+		return Request::is($prefix) || Request::is($prefix.'/*');
+	}
+
+	/**
 	 * Function to return all available traslations (locales).
 	 *
 	 * @return array

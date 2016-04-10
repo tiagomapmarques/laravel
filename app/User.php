@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Traits\ImagePathing as ImagePathing;
 use Helper;
+use Config;
 
 use App\Role;
 
