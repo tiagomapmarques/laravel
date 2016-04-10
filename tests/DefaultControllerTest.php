@@ -18,7 +18,7 @@ class DefaultControllerTest extends TestCase {
 
 	/**
 	 * Test main content of the home page.
-	 * TODO: make sure "Home" exists and is the "active" button on nav
+	 * TODO: make sure "Home" is the "active" button on nav
 	 *
 	 * @return void
 	 */

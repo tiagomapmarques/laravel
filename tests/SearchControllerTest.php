@@ -35,12 +35,21 @@ class SearchControllerTest extends TestCase {
 			->see($result);
 	}
 
+	/**
+	 * Function to set up the test environment for each test
+	 *
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 		$User = factory(User::class)->create();
 	}
 
-	// function to provide data for the tests
+	/**
+	 * Function to provide data for the tests
+	 *
+	 * @return array(array)
+	 */
 	public function searchData() {
 		return array(
 			array('', null),

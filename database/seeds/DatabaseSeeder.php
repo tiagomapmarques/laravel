@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder {
 		$User_role->class = 'User';
 		$User_role->save();
 
+		// create an initial administrator
 		$admin_email = 'admin@example.com';
 		$Admin = factory(App\User::class, 'admin')->create([
 			'name' => 'Administrator',

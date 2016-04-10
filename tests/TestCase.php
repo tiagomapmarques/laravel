@@ -25,13 +25,25 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 		return $app;
 	}
 
+	/**
+	 * Function to set up the test environment for each test function
+	 *
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
+		// create a minimalistic database
 		Artisan::call('migrate');
 		Artisan::call('db:seed');
 	}
 
+	/**
+	 * Function to tear down the test environment after each test function
+	 *
+	 * @return void
+	 */
 	public function tearDown() {
+		// destroy all data and migrations from the database
 		Artisan::call('migrate:reset');
 		parent::tearDown();
 	}
