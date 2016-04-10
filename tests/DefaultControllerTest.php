@@ -11,6 +11,7 @@ class DefaultControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testResponse() {
+		// test root page 200 response code
 		$this->visit('/')
 			->assertResponseOk();
 	}
@@ -22,9 +23,11 @@ class DefaultControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testContent() {
+		// test root page's content
 		$this->visit('/')
 			->see('Laravel Up and Running Kit');
 
+		// test home button functionality
 		$this->visit('/')
 			->see('li class="active"')
 			->click('Home')
