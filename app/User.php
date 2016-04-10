@@ -56,7 +56,24 @@ class User extends Authenticatable {
 		});
 	}
 
+	/**
+	 * Function to return the User's role as an Eloquent relationship.
+	 *
+	 * This function returns the actual Role of the user.
+	 * It will also return an App\Role if it is used as a class property.
+	 *
+	 * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
 	public function role() {
 		return $this->belongsTo(Role::class);
+	}
+
+	/**
+	 * Function to check if the User is an administrator.
+	 *
+	 * @return boolean
+	 */
+	public function isAdmin() {
+		return strpos($this->role->name, Config::get('auth.admin_role_prefix'))===0;
 	}
 }
