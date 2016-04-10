@@ -71,11 +71,10 @@
             "node node_modules/gulp/bin/gulp.js"
         ],
         "set-local": [
-            "rm -f database/database.sqlite",
-            "rm -f .env",
+            "rm -f .env database/database.sqlite database/testing.sqlite",
             "cp .env.local .env",
             "php artisan key:generate",
-            "touch database/database.sqlite",
+            "touch database/database.sqlite database/testing.sqlite",
             "php artisan migrate",
             "php artisan db:seed"
         ],
