@@ -2,6 +2,16 @@
 
 return [
 	/* --------------------------------------------------------------------------
+	 *  Admin Role Prefix
+	 * --------------------------------------------------------------------------
+	 *
+	 * This is the role prefix used for the admin area. All roles that begin
+	 * with this string will automatically be allowed to enter the admin area.
+	 *
+	 */
+	'admin_role_prefix' => 'admin',
+
+	/* --------------------------------------------------------------------------
 	 *  Authentication Defaults
 	 * --------------------------------------------------------------------------
 	 *

@@ -2,9 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use Faker\Factory as Faker;
-
-use App\User;
+use App\Role;
 
 class DatabaseSeeder extends Seeder {
 	/**
@@ -13,17 +11,29 @@ class DatabaseSeeder extends Seeder {
 	 * @return void
 	 */
 	public function run() {
-		$faker = Faker::create();
-
 		// truncate all the tables
+		DB::table('roles')->truncate();
 		DB::table('users')->truncate();
 		DB::table('password_resets')->truncate();
 
-		// create users
-		$user1 = new User();
-		$user1->name = $faker->name;
-		$user1->email = 'user@example.com';
-		$user1->password = bcrypt('user4user');
-		$user1->save();
+		// create mandatory Roles
+		// - admin
+		$Admin_role = new Role();
+		$Admin_role->name = Config::get('auth.admin_role_prefix');
+		$Admin_role->class = 'Administrator';
+		$Admin_role->save();
+		// - user
+		$User_role = new Role();
+		$User_role->name = 'user';
+		$User_role->class = 'User';
+		$User_role->save();
+
+		// create an initial administrator
+		$admin_email = 'admin@example.com';
+		$Admin = factory(App\User::class, 'admin')->create([
+			'name' => 'Administrator',
+			'email' => $admin_email,
+			'password' => bcrypt($admin_email),
+		]);
 	}
 }

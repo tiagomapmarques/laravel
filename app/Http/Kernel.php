@@ -30,6 +30,11 @@ class Kernel extends HttpKernel {
 			\App\Http\Middleware\VerifyCsrfToken::class,
 		],
 
+		'admin' => [
+			\App\Http\Middleware\Authenticate::class,
+			\App\Http\Middleware\AdministratorAuth::class,
+		],
+
 		'api' => [
 			'throttle:60,1',
 			\App\Http\Middleware\EncryptCookies::class,

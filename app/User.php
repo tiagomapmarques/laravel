@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\ImagePathing as ImagePathing;
 use Helper;
 
+use App\Role;
+
 class User extends Authenticatable {
 
 	use ImagePathing;
@@ -26,7 +28,7 @@ class User extends Authenticatable {
 	 * @var array
 	 */
 	protected $fillable = [
-		'hash', 'name', 'email', 'password',
+		'hash', 'name', 'email', 'image', 'password',
 	];
 
 	/**
@@ -38,8 +40,40 @@ class User extends Authenticatable {
 		'password', 'remember_token',
 	];
 
-	public function __construct(array $attributes = []) {
-		$this->hash = Helper::generateHash();
-		parent::__construct($attributes);
+	/**
+	 * Model boot function override.
+	 *
+	 * @return void
+	 */
+	protected static function boot() {
+		parent::boot();
+		static::creating(function($User) {
+			$User->hash = Helper::generateHash();
+			if(is_null($User->role_id)) {
+				$Role_user = Role::where('name', 'user')->first();
+				$User->role()->associate($Role_user);
+			}
+		});
+	}
+
+	/**
+	 * Function to return the User's role as an Eloquent relationship.
+	 *
+	 * This function returns the actual Role of the user.
+	 * It will also return an App\Role if it is used as a class property.
+	 *
+	 * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function role() {
+		return $this->belongsTo(Role::class);
+	}
+
+	/**
+	 * Function to check if the User is an administrator.
+	 *
+	 * @return boolean
+	 */
+	public function isAdmin() {
+		return strpos($this->role->name, Config::get('auth.admin_role_prefix'))===0;
 	}
 }
