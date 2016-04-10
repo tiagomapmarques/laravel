@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\ImagePathing as ImagePathing;
 use Helper;
 
+use App\Role;
+
 class User extends Authenticatable {
 
 	use ImagePathing;
@@ -26,7 +28,7 @@ class User extends Authenticatable {
 	 * @var array
 	 */
 	protected $fillable = [
-		'hash', 'name', 'email', 'password',
+		'hash', 'name', 'email', 'image', 'password',
 	];
 
 	/**
@@ -38,8 +40,23 @@ class User extends Authenticatable {
 		'password', 'remember_token',
 	];
 
-	public function __construct(array $attributes = []) {
-		$this->hash = Helper::generateHash();
-		parent::__construct($attributes);
+	/**
+	 * Model boot function override.
+	 *
+	 * @return void
+	 */
+	protected static function boot() {
+		parent::boot();
+		static::creating(function($User) {
+			$User->hash = Helper::generateHash();
+			if(is_null($User->role_id)) {
+				$Role_user = Role::where('name', 'user')->first();
+				$User->role()->associate($Role_user);
+			}
+		});
+	}
+
+	public function role() {
+		return $this->belongsTo(Role::class);
 	}
 }
