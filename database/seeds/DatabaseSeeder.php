@@ -16,11 +16,13 @@ class DatabaseSeeder extends Seeder {
 		DB::table('users')->truncate();
 		DB::table('password_resets')->truncate();
 
-		// create mandatory Roles (admin + user)
+		// create mandatory Roles
+		// - admin
 		$Admin_role = new Role();
 		$Admin_role->name = Config::get('auth.admin_role_prefix');
 		$Admin_role->class = 'Administrator';
 		$Admin_role->save();
+		// - user
 		$User_role = new Role();
 		$User_role->name = 'user';
 		$User_role->class = 'User';
