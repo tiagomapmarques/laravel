@@ -30,7 +30,7 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk br
 	git clone [repo-url] [local-folder]
 	```
 - Make sure composer and npm are installed and available from the root folder of your repo
-- Clean any remainder local dependencies:
+- Clean any remaining local dependencies:
 	```
 	composer clean
 	```
