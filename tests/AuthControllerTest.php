@@ -4,13 +4,48 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use Faker\Factory as Faker;
-
+use App\User;
 use App\Role;
 
 class AuthControllerTest extends TestCase {
+	/**
+	 * Test the register screen.
+	 *
+	 * @return void
+	 */
+	public function testRegister() {
+		// just make new user and dont save it to the database
+		$password = 'password';
+		$User = factory(User::class)->make([
+			'password' => bcrypt($password)
+		]);
 
-	use DatabaseTransactions;
+		// test register page 200 response code
+		$this->visit('/register')
+			->assertResponseOk();
+
+		// test the registration process
+		$this->visit('/')
+			->click('#register-button')
+			->seePageIs('/register')
+			->type($User->name, 'name')
+			->type($User->email, 'email')
+			->type($password, 'password')
+			->type($password, 'password_confirmation')
+			->press('Register')
+			->seePageIs('/')
+			->dontSee('Login')
+			->see('Logout');
+
+		// test that the user was created in the database
+		// and that it is not an admin
+		$role_id = Role::where('name', 'user')->first()->id;
+		$this->seeInDatabase('users', [
+			'name' => $User->name,
+			'email' => $User->email,
+			'role_id' => $role_id
+		]);
+	}
 
 	/**
 	 * Test the login and logout screens.
@@ -18,6 +53,12 @@ class AuthControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testLoginLogout() {
+		// make new user and save it to the database
+		$password = 'password';
+		$User = factory(User::class)->create([
+			'password' => bcrypt($password)
+		]);
+
 		// test login page 200 response code
 		$this->visit('/login')
 			->assertResponseOk();
@@ -30,8 +71,8 @@ class AuthControllerTest extends TestCase {
 		$this->visit('/')
 			->click('#login-button')
 			->seePageIs('/login')
-			->type('user@example.com', 'email')
-			->type('user4user', 'password')
+			->type($User->email, 'email')
+			->type($password, 'password')
 			->press('Login')
 			->seePageIs('/')
 			->dontSee('Login')
@@ -51,12 +92,15 @@ class AuthControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testAdminLoginLogout() {
+		// get the random admin from the database
+		$Admin = User::where('role_id', Role::where('name', 'admin')->first()->id)->first();
+
 		// test admin login
 		$this->visit('/')
 			->click('#login-button')
 			->seePageIs('/login')
-			->type('admin@example.com', 'email')
-			->type('admin4admin', 'password')
+			->type($Admin->email, 'email')
+			->type($Admin->email, 'password')
 			->press('Login')
 			->seePageIs('/')
 			->dontSee('Login')
@@ -91,44 +135,5 @@ class AuthControllerTest extends TestCase {
 			// ->type('user@example.com', 'email')
 			// ->click('Send Password Reset Link')
 			// ->seePageIs('/');
-	}
-
-	/**
-	 * Test the register screen.
-	 *
-	 * @return void
-	 */
-	public function testRegister() {
-		// create random name, email and password
-		$faker = Faker::create();
-		$name = $faker->name;
-		$email = $faker->safeemail;
-		$password = Helper::generateHash();
-
-		// test register page 200 response code
-		$this->visit('/register')
-			->assertResponseOk();
-
-		// test the registration process
-		$this->visit('/')
-			->click('#register-button')
-			->seePageIs('/register')
-			->type($name, 'name')
-			->type($email, 'email')
-			->type($password, 'password')
-			->type($password, 'password_confirmation')
-			->press('Register')
-			->seePageIs('/')
-			->dontSee('Login')
-			->see('Logout');
-
-		// test that the user was created in the database
-		// and that it is not an admin
-		$Role = Role::where('name', 'user')->first();
-		$this->seeInDatabase('users', [
-			'name' => $name,
-			'email' => $email,
-			'role_id' => $Role->id
-		]);
 	}
 }

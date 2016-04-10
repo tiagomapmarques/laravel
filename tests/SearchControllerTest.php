@@ -4,6 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+use App\User;
+
 class SearchControllerTest extends TestCase {
 	/**
 	 * Test the search functionality
@@ -13,12 +15,18 @@ class SearchControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testSearch($query, $result) {
+		if(is_null($result)) {
+			$User = User::all()->first();
+			$query = explode('@', $User->email)[0];
+			$result .= $User->email;
+		}
+
 		// test search page 200 response code
 		$this->visit('/search')
 			->assertResponseOk();
 
 		// create the search url
-		$url = '/search'.(strlen($query)>0? '?q='.str_replace(' ', '+', $query) : '');
+		$url = '/search'.(strlen($query)>0? '?q='.urlencode(str_replace(' ', '+', $query)) : '');
 
 		// test if the search is performed correctly
 		$this->visit($url)
@@ -27,11 +35,18 @@ class SearchControllerTest extends TestCase {
 			->see($result);
 	}
 
+	public function setUp() {
+		parent::setUp();
+		$User = factory(User::class)->create();
+	}
+
 	// function to provide data for the tests
 	public function searchData() {
 		return array(
-			array('user', 'user@example.com'),
-			array('user2', '0 results'),
+			array('', null),
+			array(Helper::generateRandomString(), '0 results'),
+			array(Helper::generateRandomString().' ', null),
+			array('*', '0 results'),
 			array('', '0 results'),
 		);
 	}
