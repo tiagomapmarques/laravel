@@ -8,11 +8,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
-
 use Helper;
 use Image;
 
-class Controller extends BaseController {
+abstract class Controller extends BaseController {
 
 	use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 

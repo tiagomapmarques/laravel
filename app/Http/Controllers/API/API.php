@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use Helper;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-
-use Helper;
 
 abstract class API extends BaseController {
 	/**
