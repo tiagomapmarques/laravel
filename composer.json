@@ -14,7 +14,8 @@
         "laravelcollective/html": "5.2.*",
         "intervention/image": "2.3.*",
         "ext-fileinfo": "*",
-        "ext-imagick": "*"
+        "ext-imagick": "*",
+        "laravelrus/sleepingowl": "4.*@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
