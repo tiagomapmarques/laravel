@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tiagomapmarques/lurk.svg?branch=lurk)](https://travis-ci.org/tiagomapmarques/lurk)
 
-LURK is a Laravel fork that includes a bunch of useful dependencies, functions and settings.
+LURK is a Laravel fork that includes a bunch of useful dependencies, utilities and tune-ups.
 
 It is built for PHP developers who want a starting point for their applications (one that actually works
 out-of-the-box) and are tired of managing composer dependencies, creating templates, folder structures,
@@ -10,7 +10,7 @@ authentication, administration pages and all kinds of utilities and shenanigans 
 
 ## Features
 
-Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk implements:
+Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk brings you:
 
 - **File processing** - All controllers inherit standardised file, image and zip processing functions
 - **API requests** - Handling of API requests (e.g. lazy loading) is made simpler, safer and modular
@@ -18,20 +18,42 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk im
 - **Search** - Searching mechanism for models is versatile and effortless
 - **Blade/Bootstrap/Sass** - Templates and basic structure for quick deployment
 - **Authentication** - Fully scaffolded, tweaked and tuned-up
-- **SleepingOwl** - _coming soon_
-- **Demo** - _coming not so soon_
+- **SleepingOwl** - Admin pages, routing and user roles are configured and tweaked to be ready to go
+- **Demo** - _coming June 2016_
 - **Stable** - Production-oriented versioning (composer.lock) and fully e2e tested
-- **Also linting** - Beautiful code needs beautiful standards for programming
+- **Also linting** - _Beautiful code_ needs beautiful standards for programming
 
 ## Quick start
 
-- Clone the repo
+- Clone the repo:
+	```
+	git clone [repo-url] [local-folder]
+	```
 - Make sure composer and npm are installed and available from the root folder of your repo
-- Install dependencies with "composer setup"
-- Compile assets with "composer compile"
-- Create a local environment with "composer set-local"
-- Run the tests with "composer test", to make sure nothing is broken
-- Run it with pride with "php artisan serve"
+- Clean any remaining local dependencies:
+	```
+	composer clean
+	```
+- Install dependencies:
+	```
+	composer setup
+	```
+- Compile assets:
+	```
+	composer compile
+	```
+- Create a local environment:
+	```
+	composer set-local
+	```
+- Run the tests to make sure nothing is broken:
+	```
+	composer test
+	```
+- Run it with pride:
+	```
+	php artisan serve
+	```
 
 ## Laravel
 
