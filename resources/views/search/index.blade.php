@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div class="row">
-			@foreach($_seacrh_results as $class => $all)
+			@foreach($_search_results as $class => $all)
 				<?php
 					$class_name = ucfirst($class);
 					$class_path = '\\App\\'.$class_name;
@@ -34,11 +34,11 @@
 								<p>0 {{ strtolower(Helper::trans('common.result',2)) }}</p>
 							@else
 								@foreach($all as $item)
-									<p>
+									<a href="/{{ $class }}/{{ $item->hash }}"><p>
 										@foreach($class_path::$searchable as $attribute)
 											{{ $item->$attribute }}
 										@endforeach
-									</p>
+									</p></a>
 								@endforeach
 							@endif
 						</div>
