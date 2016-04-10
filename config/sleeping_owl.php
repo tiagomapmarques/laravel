@@ -37,7 +37,7 @@ return [
 	 * Default middleware to be used in the admin pages.
 	 *
 	 */
-	'middleware' => ['web'],
+	'middleware' => ['web', 'admin'],
 
 	/* --------------------------------------------------------------------------
 	 *  Path to admin bootstrap
