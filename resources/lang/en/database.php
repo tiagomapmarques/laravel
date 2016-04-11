@@ -12,6 +12,7 @@ return [
 	 */
 
 	// Roles
+	'role'       => 'Role|Roles',
 	'role-user'  => 'User|Users',
 	'role-admin' => 'Administrator|Administrators',
 
