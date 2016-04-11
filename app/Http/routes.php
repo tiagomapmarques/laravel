@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
 	// User routes
 	Route::get('user/update', ['as' => 'user.update', 'uses' => 'UserController@update']);
 	Route::post('user/update', ['uses' => 'UserController@postUpdate']);
+	Route::get('user/password', ['as' => 'user.password', 'uses' => 'UserController@password']);
+	Route::post('user/password', ['uses' => 'UserController@postPassword']);
 	Route::get('home', ['as' => 'home', 'uses' => 'UserController@index']);
 
 	// Auth routes

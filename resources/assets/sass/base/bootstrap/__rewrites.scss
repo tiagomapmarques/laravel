@@ -15,6 +15,13 @@ body {
 	@include max-width-and-center($max-body-width);
 }
 
+#message {
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	margin-left: 15px;
+}
+
 // make navbar only have a bottom border
 .navbar {
 	border: 0px none;
