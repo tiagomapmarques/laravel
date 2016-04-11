@@ -7,8 +7,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title" style="text-align: center;">
-							<span>User details</span>
-							<a href="{{ route('user.update') }}"><span class="fa fa-pencil"></span></a>
+							<span>{{ Helper::trans('user.details') }}</span>
+							<a href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
 						</h3>
 
 					</div>
@@ -20,11 +20,11 @@
 								</p>
 							</div>
 							<div class="col-md-6">
-								<label>Name:</label>
+								<label>{{ Helper::trans('auth.name') }}:</label>
 								<p>{{ $_user_User->name }}</p>
-								<label>Email:</label>
+								<label>{{ Helper::trans('auth.email') }}:</label>
 								<p>{{ $_user_User->email }}</p>
-								<label>Role:</label>
+								<label>{{ Helper::trans('database.role') }}:</label>
 								<p>{{ $_user_User->role->name }}</p>
 							</div>
 						</div>
