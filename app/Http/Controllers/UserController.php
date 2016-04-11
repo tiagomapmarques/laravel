@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Http\Requests\UserPasswordRequest as PasswordRequest;
 use App\Http\Requests\UserUpdateRequest as UpdateRequest;
 use App\User;
 use File;
+use Hash;
 use Helper;
+use Session;
 
 class UserController extends Controller {
 
@@ -60,6 +63,30 @@ class UserController extends Controller {
 		}
 
 		$User->save();
+		return redirect()->route('home');
+	}
+
+	public function password() {
+		return view('user.password', [
+			'_navigation_selected' => 'home',
+			'_user_User' => Auth::user()
+		]);
+	}
+
+	public function postPassword(PasswordRequest $request) {
+		$User = Auth::user();
+		if(!Hash::check($request->old_password, $User->password)) {
+			Session::flash('error', Helper::trans('auth.error-old-password'));
+			return redirect()->back();
+		}
+		if($request->password!==$request->password_confirmation) {
+			Session::flash('error', Helper::trans('auth.error-password-match'));
+			return redirect()->back();
+		}
+
+		$User->password = bcrypt($request->password);
+		$User->save();
+		Session::flash('message', Helper::trans('auth.message-password-change'));
 		return redirect()->route('home');
 	}
 }
