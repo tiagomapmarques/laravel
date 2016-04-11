@@ -8,7 +8,7 @@
 					<div class="panel-heading">
 						<h3 class="panel-title" style="text-align: center;">
 							<span>{{ Helper::trans('user.details') }}</span>
-							<a href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
+							<a id="user-update-button" href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
 						</h3>
 
 					</div>

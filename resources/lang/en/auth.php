@@ -34,7 +34,7 @@ return [
 	'reset-send' => 'Send Password Reset Link',
 	'reset-text' => 'Click here to reset your password',
 
-	'message-password-change' => 'Your password was changes successfully!',
+	'message-password-change' => 'Your password was changed successfully!',
 	'error-old-password'      => 'Your old password is not correct. Please try again.',
 	'error-password-match'    => 'Passwords don\'t match. Please try again',
 ];
