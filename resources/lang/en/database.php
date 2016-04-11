@@ -19,4 +19,11 @@ return [
 	// Tables
 	'user'  => 'User|Users',
 	'admin' => 'Administrator|Administrators',
+
+	//Columns
+	'user-id' => 'ID|IDs',
+	'user-name' => 'Name|Names',
+	'user-email' => 'Email|Emails',
+	'user-hash' => 'Hash|Hashes',
+	'user-image' => 'Image|Images',
 ];
