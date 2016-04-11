@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Traits\ImagePathing as ImagePathing;
-use Helper;
-use Config;
-
 use App\Role;
+use App\Traits\ImagePathing as ImagePathing;
+use Config;
+use Helper;
 
 class User extends Authenticatable {
 
@@ -29,7 +28,7 @@ class User extends Authenticatable {
 	 * @var array
 	 */
 	protected $fillable = [
-		'hash', 'name', 'email', 'image', 'password',
+		'hash', 'name', 'email', 'password',
 	];
 
 	/**
@@ -76,5 +75,17 @@ class User extends Authenticatable {
 	 */
 	public function isAdmin() {
 		return strpos($this->role->name, Config::get('auth.admin_role_prefix'))===0;
+	}
+
+	/**
+	 * Function to return either the default image or the User image
+	 *
+	 * @return boolean
+	 */
+	public function image() {
+		if($this->image==='' || !file_exists($this->image)) {
+			return self::default_image();
+		}
+		return $this->image;
 	}
 }

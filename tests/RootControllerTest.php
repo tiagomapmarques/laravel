@@ -4,7 +4,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class DefaultControllerTest extends TestCase {
+class RootControllerTest extends TestCase {
 	/**
 	 * Test the reponse of the home page
 	 *
@@ -18,7 +18,6 @@ class DefaultControllerTest extends TestCase {
 
 	/**
 	 * Test main content of the home page.
-	 * TODO: make sure "Home" is the "active" button on nav
 	 *
 	 * @return void
 	 */
@@ -29,8 +28,8 @@ class DefaultControllerTest extends TestCase {
 
 		// test home button functionality
 		$this->visit('/')
-			->see('li class="active"')
-			->click('Home')
-			->seePageIs('/');
+			->see('Home')
+			->see('Login')
+			->see('Register');
 	}
 }

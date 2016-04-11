@@ -13,6 +13,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) use ($factor
 		'name' => $faker->name,
 		'email' => $faker->safeEmail,
 		'password' => bcrypt(str_random(10)),
+		'image' => '',
 		'role_id' => App\Role::where('name', 'user')->first()->id,
 		'remember_token' => str_random(10),
 	];

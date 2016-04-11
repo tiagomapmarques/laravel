@@ -26,8 +26,7 @@
 			<div class="collapse navbar-collapse" id="collapsable-nav-1">
 
 				<ul class="nav navbar-nav">
-					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="{{ route('root') }}">{{ Helper::trans('common.home') }}</a></li>
-					<li class=""><a href="#">{{ Helper::trans('common.link') }}</a></li>
+					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="{{ route('home') }}">{{ Helper::trans('common.home') }}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

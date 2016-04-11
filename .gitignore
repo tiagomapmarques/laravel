@@ -8,6 +8,7 @@ Homestead.json
 .env
 
 # Generated files
+/tests/public
 /public/js/*
 /public/js/*.js.map
 /public/css/*
@@ -17,3 +18,4 @@ Homestead.json
 
 # User space
 /public/storage
+/public/images

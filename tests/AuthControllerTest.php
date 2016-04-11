@@ -33,7 +33,7 @@ class AuthControllerTest extends TestCase {
 			->type($password, 'password')
 			->type($password, 'password_confirmation')
 			->press('Register')
-			->seePageIs('/')
+			->seePageIs('/home')
 			->dontSee('Login')
 			->see('Logout');
 
@@ -74,8 +74,9 @@ class AuthControllerTest extends TestCase {
 			->type($User->email, 'email')
 			->type($password, 'password')
 			->press('Login')
-			->seePageIs('/')
+			->seePageIs('/home')
 			->dontSee('Login')
+			->dontSee('Admin')
 			->see('Logout');
 
 		// test the logout
@@ -102,13 +103,16 @@ class AuthControllerTest extends TestCase {
 			->type($Admin->email, 'email')
 			->type($Admin->email, 'password')
 			->press('Login')
-			->seePageIs('/')
+			->seePageIs('/home')
 			->dontSee('Login')
+			->see('Admin')
 			->see('Logout');
 
 		// test that the admin can access an admin only area
 		$this->visit('/admin')
-			->see('Lurk Admin');
+			->see('Lurk Admin')
+			->see('Home')
+			->see('Logout');
 
 		// test admin logout
 		$this->visit('/')

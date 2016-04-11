@@ -12,7 +12,7 @@
  * no group. Making it explicit will break error messages in authentication.
  *
  */
-Route::get('/', ['as' => 'root', 'uses' => 'DefaultController@index']);
+Route::get('/', ['as' => 'root', 'uses' => 'RootController@index']);
 
 Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
@@ -23,11 +23,18 @@ Route::get('/locale/{locale?}', ['as' => 'locale', 'uses' => function($locale = 
 
 // Routes for logged users only
 Route::group(['middleware' => ['auth']], function () {
+	// User routes
+	Route::get('user/update', ['as' => 'user.update', 'uses' => 'UserController@update']);
+	Route::post('user/update', ['uses' => 'UserController@postUpdate']);
+	Route::get('user/password', ['as' => 'user.password', 'uses' => 'UserController@password']);
+	Route::post('user/password', ['uses' => 'UserController@postPassword']);
+	Route::get('home', ['as' => 'home', 'uses' => 'UserController@index']);
+
 	// Auth routes
 	Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']); //getLogout does not work
 });
 
-	// Routes for guests only
+// Routes for guests only
 Route::group(['middleware' => ['guest']], function () {
 	// Auth routes
 	Route::get('register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
@@ -38,6 +45,11 @@ Route::group(['middleware' => ['guest']], function () {
 	Route::post('password/email', ['as' => 'password_email_post', 'uses' => 'Auth\PasswordController@postEmail']);
 	Route::post('password/reset', ['as' => 'password_reset_post', 'uses' => 'Auth\PasswordController@postReset']);
 });
+
+// Routes for all users
+
+// User routes
+Route::get('user/{hash?}', ['as' => 'user', 'uses' => 'UserController@index']);
 
 /* --------------------------------------------------------------------------
  *  API Routes
