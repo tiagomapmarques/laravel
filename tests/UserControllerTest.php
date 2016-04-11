@@ -53,7 +53,7 @@ class UserControllerTest extends TestCase {
 		$User = factory(User::class)->create([
 			'password' => bcrypt($password)
 		]);
-		$old_image = $User->image();
+		$old_image = $User->getImage();
 		$new_name = Helper::generateRandomString();
 		$Role = Role::where('name', 'user')->first();
 
@@ -76,10 +76,9 @@ class UserControllerTest extends TestCase {
 		// check the details have been updated
 		$this->seeInDatabase('users', [
 			'email' => $User->email,
-			'name' => $new_name,
-			'image' => $User->image
+			'name' => $new_name
 		]);
-		if($old_image===$User->image) {
+		if($old_image===$User->getImage()) {
 			$this->fail('Image was not updated!');
 		}
 	}
