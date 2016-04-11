@@ -79,7 +79,7 @@
             "php artisan db:seed"
         ],
         "test": [
-            "vendor/bin/phpunit"
+            "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c ../.."
         ]
     },
     "config": {
