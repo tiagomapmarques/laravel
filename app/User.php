@@ -82,8 +82,8 @@ class User extends Authenticatable {
 	 *
 	 * @return boolean
 	 */
-	public function image() {
-		if($this->image==='' || !file_exists($this->image)) {
+	public function getImage() {
+		if(!$this->image || $this->image==='' || !file_exists($this->image)) {
 			return self::default_image();
 		}
 		return $this->image;
