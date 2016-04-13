@@ -69,7 +69,7 @@ Route::get('user/{hash?}', ['as' => 'user', 'uses' => 'UserController@index']);
  */
 Route::group(['namespace' => 'API', 'prefix' => Config::get('app.api_prefix'), 'middleware' => ['api']], function() {
 
-	Route::any('echo', 'DefaultAction@run');
+	Route::any('eco', 'DefaultAction@run');
 
 	Route::group(['middleware' => ['auth']], function() {
 		// API available for logged users only

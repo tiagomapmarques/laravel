@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Role;
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder {
 	/**
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder {
 
 		// create an initial administrator
 		$admin_email = 'admin@example.com';
-		$Admin = factory(App\User::class, 'admin')->create([
+		$Admin = factory(App\Models\User::class, 'admin')->create([
 			'name' => 'Administrator',
 			'email' => $admin_email,
 			'password' => bcrypt($admin_email),
