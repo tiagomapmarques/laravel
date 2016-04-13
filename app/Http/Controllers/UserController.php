@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Http\Requests\UserPasswordRequest as PasswordRequest;
 use App\Http\Requests\UserUpdateRequest as UpdateRequest;
-use App\User;
+use App\Models\User;
 use File;
 use Hash;
 use Helper;
 use Session;
 
+/**
+ * Class to implement the User controller.
+ */
 class UserController extends Controller {
-
+	/**
+	 * Function to get the view for the index action.
+	 *
+	 * @param  string $hash
+	 * @return Illuminate\View\View
+	 */
 	public function index($hash = null) {
-		// if(is_null($hash) && !Auth::user()) {
-		// 	return redirect()->route('root');
-		// }
-		// else if(is_null($hash)) {
 		if(is_null($hash)) {
 			$hash = Auth::user()->hash;
 		}
@@ -33,6 +37,11 @@ class UserController extends Controller {
 		]);
 	}
 
+	/**
+	 * Function to get the view for the update action.
+	 *
+	 * @return Illuminate\View\View
+	 */
 	public function update() {
 		return view('user.update', [
 			'_navigation_selected' => 'home',
@@ -40,6 +49,12 @@ class UserController extends Controller {
 		]);
 	}
 
+	/**
+	 * Function to update the User (except its' password) through a POST request.
+	 *
+	 * @param  App\Http\Requests\UserUpdateRequest $request
+	 * @return Illuminate\Http\RedirectResponse
+	 */
 	public function postUpdate(UpdateRequest $request) {
 		$User = Auth::user();
 		// rewrite all "fillable" properties of the User model
@@ -66,6 +81,11 @@ class UserController extends Controller {
 		return redirect()->route('home');
 	}
 
+	/**
+	 * Function to get the view for the password action.
+	 *
+	 * @return Illuminate\View\View
+	 */
 	public function password() {
 		return view('user.password', [
 			'_navigation_selected' => 'home',
@@ -73,6 +93,12 @@ class UserController extends Controller {
 		]);
 	}
 
+	/**
+	 * Function to update the User's password through a POST request.
+	 *
+	 * @param  App\Http\Requests\UserPasswordRequest $request
+	 * @return Illuminate\Http\RedirectResponse
+	 */
 	public function postPassword(PasswordRequest $request) {
 		$User = Auth::user();
 		if(!Hash::check($request->old_password, $User->password)) {
