@@ -2,7 +2,7 @@
 
 use SleepingOwl\Admin\Model\ModelConfiguration;
 
-use App\User;
+use App\Models\User;
 
 AdminSection::registerModel(User::class, function (ModelConfiguration $model) {
 	$model->setTitle(Helper::trans('database.user',2));
@@ -10,21 +10,12 @@ AdminSection::registerModel(User::class, function (ModelConfiguration $model) {
 	// Display
 	$model->onDisplay(function () {
 		$display = AdminDisplay::table()->setColumns([
-			AdminColumn::text('name')->setLabel(Helper::trans('database.user-name')),
-			AdminColumn::text('email')->setLabel(Helper::trans('database.user-email')),
-			AdminColumn::custom()->setLabel(Helper::trans('database.user-id'))
-				->setCallback(function ($instance) {
-					return implode('<br />',str_split($instance->hash, 32));
-				}),
-			AdminColumn::custom()->setLabel(Helper::trans('database.user-image'))
-			->setCallback(function ($instance) {
-				return $instance->image===''?
-					'<i class="fa fa-minus"></i>':
-					'<img height="50" src="/'.$instance->image.'" />';
-			})
+			AdminColumn::text('name', Helper::trans('database.user-name')),
+			AdminColumn::text('email', Helper::trans('database.user-email')),
+			AdminColumn::hash('hash', Helper::trans('database.user-id')),
+			AdminColumn::image('image', Helper::trans('database.user-image'))
 		]);
 		$display->paginate(15);
-
 		return $display;
 	});
 
@@ -36,11 +27,9 @@ AdminSection::registerModel(User::class, function (ModelConfiguration $model) {
 			AdminFormElement::text('email', Helper::trans('database.user-name'))
 				->required(),
 			AdminFormElement::image('image', Helper::trans('database.user-image'))
-				->required()
 		);
-
 		return $form;
 	});
 })
-	->addMenuPage(User::class, 0)
+	->addMenuPage(User::class, 100)
 	->setIcon('fa fa-users');

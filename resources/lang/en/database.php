@@ -10,6 +10,7 @@ return [
 	 * to your application's database.
 	 *
 	 */
+	'dashboard' => 'Dashboard',
 
 	// Roles
 	'role'       => 'Role|Roles',
