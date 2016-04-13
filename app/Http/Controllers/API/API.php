@@ -6,6 +6,9 @@ use Helper;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
+/**
+ * Class to extend in order to implement an API command.
+ */
 abstract class API extends BaseController {
 	/**
 	 * A copy of the full request for later access.
@@ -22,6 +25,13 @@ abstract class API extends BaseController {
 	protected $parameters = Array();
 
 	/**
+	 * The default error to be returned when request is not POST.
+	 *
+	 * @var string
+	 */
+	protected $default_error = 404;
+
+	/**
 	 * Constructor for all API classes.
 	 *
 	 * Function to create an API instance. Also sets the locale in order
@@ -29,7 +39,7 @@ abstract class API extends BaseController {
 	 */
 	public function __construct() {
 		Helper::applyLocale();
-		//parent::__construct();
+		//parent::__construct(); // BaseController has no construct
 	}
 
 	/**
@@ -40,7 +50,7 @@ abstract class API extends BaseController {
 	 * should always receive all requests as to standardise the response.
 	 * This method is final and should not be overwritten.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return string
 	 */
 	public final function run(Request $request) {
@@ -55,7 +65,7 @@ abstract class API extends BaseController {
 			return $this->execute();
 		}
 		else {
-			abort(404);
+			abort($this->$default_error);
 		}
 	}
 
