@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Role;
+use App\Models\Role;
 use App\Traits\ImagePathing as ImagePathing;
 use Config;
+use File;
 use Helper;
 
 class User extends Authenticatable {
@@ -53,6 +54,20 @@ class User extends Authenticatable {
 				$Role_user = Role::where('name', 'user')->first();
 				$User->role()->associate($Role_user);
 			}
+			if(is_null($User->image)) {
+				$User->image = '';
+			}
+			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
+				$User->moveImage(null, true);
+			}
+		});
+		static::updating(function($User) {
+			if(is_null($User->image)) {
+				$User->image = '';
+			}
+			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
+				$User->moveImage(null, true);
+			}
 		});
 	}
 
@@ -60,7 +75,7 @@ class User extends Authenticatable {
 	 * Function to return the User's role as an Eloquent relationship.
 	 *
 	 * This function returns the actual Role of the user.
-	 * It will also return an App\Role if it is used as a class property.
+	 * It will also return an App\Models\Role if it is used as a class property.
 	 *
 	 * @return Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
@@ -87,5 +102,38 @@ class User extends Authenticatable {
 			return self::default_image();
 		}
 		return $this->image;
+	}
+
+	/**
+	 * Function to re-locate the User image.
+	 *
+	 * Function to re-locate the User image to a specified location. If none
+	 * is provided, the file will just be moved to the default image location
+	 * for the User class. This function just updates the User model and does
+	 * not update the database. Manual saving is required.
+	 *
+	 * @param  string   $location
+	 * @param  string   $filename
+	 * @return boolean
+	 */
+	public function moveImage($location = null, $filename = false) {
+		if(is_null($this->image) || $this->image==='') {
+			return false;
+		}
+		if(is_null($location)) {
+			$location = self::images_path();
+		}
+		if($filename) {
+			$path = explode('.', $this->image);
+			$filename = Helper::generateRandomFilename().'.'.$path[count($path)-1];
+		}
+		else {
+			$path = explode(DIRECTORY_SEPARATOR, $this->image);
+			$filename = $path[count($path)-1];
+		}
+
+		$destination = $location.DIRECTORY_SEPARATOR.$filename;
+		File::move($this->image, $destination);
+		$this->image = $destination;
 	}
 }
