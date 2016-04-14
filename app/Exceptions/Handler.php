@@ -11,6 +11,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 use Config;
 
+/**
+ * Exception handler class
+ */
 class Handler extends ExceptionHandler {
 	/**
 	 * A list of the exception types that should not be reported.

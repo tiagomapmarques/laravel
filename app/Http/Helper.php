@@ -4,6 +4,12 @@ use App as App;
 use Config as Config;
 use Session as Session;
 
+/**
+ * LURK helper class
+ *
+ * This class is autoloaded in the composer in order to make general purpose
+ * functions available to throughout all the application.
+ */
 class Helper {
 	/**
 	 * Function to retrieve the version of LURK.
@@ -17,17 +23,31 @@ class Helper {
 	/**
 	 * Function to translate single or multiple phrases.
 	 *
-	 * @return void
+	 * This function can be seen as an alias for the "trans" and "trans_choice"
+	 * functions of Laravel. However, it will translate to the singular form
+	 * by default, providing a singular way of getting the translation you want,
+	 * without breaking your code if you update the translations.
+	 *
+	 * @param  string   $identifier
+	 * @param  integer  $choice
+	 * @return string
 	 */
-	public static function trans($id, $choice = 1) {
-		$phrase = explode('|', trans($id));
+	public static function trans($identifier, $choice = 1) {
+		$original_translation = trans($identifier);
+		$phrase = explode('|', $original_translation);
+		if(count($phrase)<$choice) {
+			$choice = count($phrase);
+		}
+		if($choice<1) {
+			return $original_translation;
+		}
 		return $phrase[$choice-1];
 	}
 
 	/**
 	 * Function to get the locale from Session data.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public static function getLocale() {
 		Helper::applyLocale();
@@ -35,8 +55,9 @@ class Helper {
 	}
 
 	/**
-	 * Function to set and apply the locale from Session data.
+	 * Function to set and apply a locale from Session data or a parameter.
 	 *
+	 * @param  string|null  $locale
 	 * @return void
 	 */
 	public static function applyLocale($locale = null) {
@@ -50,7 +71,7 @@ class Helper {
 	}
 
 	/**
-	 * Function check if the current route is an admin route
+	 * Function check if the current route is an admin route.
 	 *
 	 * @return boolean
 	 */
@@ -81,6 +102,7 @@ class Helper {
 	 *
 	 * @param  integer  $length
 	 * @param  boolean  $case_sensitive
+	 * @param  boolean  $additional_chars
 	 * @return string
 	 */
 	public static function generateRandomString($length = 32, $case_sensitive = false, $additional_chars = false) {
@@ -118,8 +140,11 @@ class Helper {
 	}
 
 	/**
-	 * Function to predict the maximum upload limit in butes, KB or MB.
-	 * The default return value is in KB.
+	 * Function to predict the maximum upload limit in bytes, KB or MB.
+	 *
+	 * This function will get the lowest value from three locations:
+	 * upload_max_filesize, post_max_size and memory_limit. The lowest value
+	 * will be the reliable upload limit of the application.
 	 *
 	 * @param  string  $magnitude
 	 * @return integer
@@ -148,6 +173,12 @@ class Helper {
 		return floor(min($max_upload, $max_post, $memory_limit) * $multiplier);
 	}
 
+	/**
+	 * Function to retrieve the number of bytes from a configuration.
+	 *
+	 * @param  string  $val
+	 * @return integer
+	 */
 	private static function bytesFromConfig($val) {
 		$val = trim($val);
 		$last = strtolower($val[strlen($val)-1]);

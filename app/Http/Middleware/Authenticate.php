@@ -5,6 +5,12 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * User authentication middleware
+ *
+ * This middleware makes sure that only Users are allowed through the
+ * routes that are grouped under this class.
+ */
 class Authenticate {
 	/**
 	 * Handle an incoming request.

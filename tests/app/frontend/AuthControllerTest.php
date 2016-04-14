@@ -4,9 +4,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\User;
-use App\Role;
+use App\Models\User;
+use App\Models\Role;
 
+/**
+ * AuthController test class
+ */
 class AuthControllerTest extends TestCase {
 	/**
 	 * Test the register screen.
@@ -34,8 +37,10 @@ class AuthControllerTest extends TestCase {
 			->type($password, 'password_confirmation')
 			->press('Register')
 			->seePageIs('/home')
-			->dontSee('Login')
-			->see('Logout');
+			->within('#nav', function() {
+				$this->dontSee('Login')
+					->see('Logout');
+			});
 
 		// test that the user was created in the database
 		// and that it is not an admin
@@ -75,16 +80,21 @@ class AuthControllerTest extends TestCase {
 			->type($password, 'password')
 			->press('Login')
 			->seePageIs('/home')
-			->dontSee('Login')
-			->dontSee('Admin')
-			->see('Logout');
+			->within('#nav', function() {
+				$this->see('Logout')
+					->dontSee('Login')
+					->dontSee('Admin');
+			});
 
 		// test the logout
 		$this->visit('/')
 			->click('#logout-button')
 			->seePageIs('/')
-			->dontSee('Logout')
-			->see('Login');
+			->within('#nav', function() {
+				$this->see('Login')
+					->dontSee('Logout');
+			});
+
 	}
 
 	/**
@@ -104,22 +114,24 @@ class AuthControllerTest extends TestCase {
 			->type($Admin->email, 'password')
 			->press('Login')
 			->seePageIs('/home')
-			->dontSee('Login')
-			->see('Admin')
-			->see('Logout');
+			->within('#nav', function() {
+				$this->dontSee('Login')
+					->see('Admin')
+					->see('Logout');
+			});
 
 		// test that the admin can access an admin only area
 		$this->visit('/admin')
-			->see('Lurk Admin')
-			->see('Home')
-			->see('Logout');
+			->seePageIs('/admin');
 
 		// test admin logout
 		$this->visit('/')
 			->click('#logout-button')
 			->seePageIs('/')
-			->dontSee('Logout')
-			->see('Login');
+			->within('#nav', function() {
+				$this->see('Login')
+					->dontSee('Logout');
+			});;
 	}
 
 	/**

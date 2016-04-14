@@ -2,6 +2,13 @@
 
 namespace App\Traits;
 
+/**
+ * Automated model search
+ *
+ * Trait that can be used to extend a class' ability to search through another
+ * class' objects, provided the class has a static "all" method that returns
+ * an array.
+ */
 trait AutoModelSearch {
 	/**
 	 * Function to get all search results from models.
@@ -16,7 +23,7 @@ trait AutoModelSearch {
 	 * @param  string  $class_path
 	 * @return string
 	 */
-	protected function get_search_results($query, $class_path = '\\App\\') {
+	protected function get_search_results($query, $class_path = '\\App\\Models\\') {
 		$results = [];
 		$targets = [];
 		if(isset($this->search_targets) && is_array($this->search_targets)) {

@@ -4,21 +4,28 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use App\User;
+use App\Models\User;
 
+/**
+ * SearchController test class
+ */
 class SearchControllerTest extends TestCase {
+
+	protected $User = null;
+
 	/**
-	 * Test the search functionality
+	 * Test the search functionality.
 	 * TODO: perform a search inside the page
 	 *
 	 * @dataProvider searchData
+	 * @param  string      $query
+	 * @param  string|null $result
 	 * @return void
 	 */
 	public function testSearch($query, $result) {
 		if(is_null($result)) {
-			$User = User::all()->first();
-			$query = explode('@', $User->email)[0];
-			$result .= $User->email;
+			$query = explode('@', $this->User->email)[0];
+			$result .= $this->User->email;
 		}
 
 		// test search page 200 response code
@@ -31,22 +38,14 @@ class SearchControllerTest extends TestCase {
 		// test if the search is performed correctly
 		$this->visit($url)
 			->seePageIs($url)
-			->seeElement('#search-bar input', ['value' => $query])
-			->see($result);
+			->within('.body-content', function() use($result, $query) {
+				$this->see($result)
+					->seeElement('#search-bar input', ['value' => $query]);
+			});
 	}
 
 	/**
-	 * Function to set up the test environment for each test
-	 *
-	 * @return void
-	 */
-	public function setUp() {
-		parent::setUp();
-		$User = factory(User::class)->create();
-	}
-
-	/**
-	 * Function to provide data for the tests
+	 * Function to provide search data for the tests.
 	 *
 	 * @return array(array)
 	 */
@@ -58,5 +57,26 @@ class SearchControllerTest extends TestCase {
 			array('*', '0 results'),
 			array('', '0 results'),
 		);
+	}
+
+	/**
+	 * Function to set up the test environment for each test function.
+	 *
+	 * @return void
+	 */
+	public function setUp() {
+		parent::setUp();
+		$this->User = factory(User::class)->create();
+	}
+
+	/**
+	 * Function to tear down the test environment for each test function.
+	 *
+	 * @return void
+	 */
+	public function tearDown() {
+		User::destroy($this->User->id);
+		$this->User = null;
+		parent::tearDown();
 	}
 }

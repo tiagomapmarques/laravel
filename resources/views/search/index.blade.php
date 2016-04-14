@@ -22,7 +22,7 @@
 			@foreach($_search_results as $class => $all)
 				<?php
 					$class_name = ucfirst($class);
-					$class_path = '\\App\\'.$class_name;
+					$class_path = '\\App\\Models\\'.$class_name;
 				?>
 				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-default">

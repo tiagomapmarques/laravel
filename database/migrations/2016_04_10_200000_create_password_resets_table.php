@@ -3,6 +3,9 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Creates password reset table
+ */
 class CreatePasswordResetsTable extends Migration {
 	/**
 	 * Run the migrations.

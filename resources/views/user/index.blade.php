@@ -16,7 +16,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<p style="text-align: center;">
-									<img width="50%" src="/{{ $_user_User->image() }}" alt="{{ $_user_User->name }} image" />
+									<img width="50%" src="/{{ $_user_User->getImage() }}" alt="{{ $_user_User->name }} image" />
 								</p>
 							</div>
 							<div class="col-md-6">

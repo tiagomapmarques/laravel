@@ -5,6 +5,12 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Guest authentication middleware
+ *
+ * This middleware makes sure that only guests are allowed through the
+ * routes that are grouped under this class.
+ */
 class RedirectIfAuthenticated {
 	/**
 	 * Handle an incoming request.

@@ -1,9 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Role model
+ *
+ * This class provides an interface for the database table "roles".
+ */
 class Role extends Model {
 	/**
 	 * The attributes that are searchable.

@@ -5,6 +5,12 @@ namespace App\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
+/**
+ * Route service provider
+ *
+ * Class where you can bootstrap or register your own modules on the route
+ * service provider.
+ */
 class RouteServiceProvider extends ServiceProvider {
 	/**
 	 * This namespace is applied to your controller routes.

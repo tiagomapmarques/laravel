@@ -1,10 +1,10 @@
 <?php
 /**
- * Laravel - A PHP Framework For Web Artisans
+ * LURK - Laravel Up and Running Kit
  *
- * @package  Laravel
- * @author   Taylor Otwell <taylorotwell@gmail.com>
+ * @author Tiago Marques <tsukinushi@gmail.com>
  */
+$__private_path = __DIR__.'/..';
 
 /* --------------------------------------------------------------------------
  *  Register The Auto Loader
@@ -16,7 +16,7 @@
  * loading any of our classes later on. It feels nice to relax.
  *
  */
-require __DIR__.'/../bootstrap/autoload.php';
+require $__private_path.'/bootstrap/autoload.php';
 
 /* --------------------------------------------------------------------------
  *  Turn On The Lights
@@ -28,7 +28,7 @@ require __DIR__.'/../bootstrap/autoload.php';
  * the responses back to the browser and delight our users.
  *
  */
-$app = require_once __DIR__.'/../bootstrap/app.php';
+$app = require_once $__private_path.'/bootstrap/app.php';
 
 /* --------------------------------------------------------------------------
  *  Run The Application
