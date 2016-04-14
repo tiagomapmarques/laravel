@@ -55,7 +55,7 @@ return [
 	 * Image upload folder, relative to the public folder.
 	 *
 	 */
-	'imagesUploadDirectory' => 'images/uploads',
+	'imagesUploadDirectory' => 'images/admin/uploads',
 
 	/* --------------------------------------------------------------------------
 	 *  Template
