@@ -47,8 +47,10 @@
 	<div class="form-group">
 		<div class="col-md-6 col-md-offset-4">
 			{{ Form::submit(Helper::trans('auth.'.$_user_button_text), ['class' => 'submit btn btn-primary']) }}
-			<a href="{{ route('home') }}" class="submit btn btn-danger">{{ Helper::trans('auth.cancel') }}</a>
-			<a href="{{ route('user.password') }}" class="btn btn-link">{{ Helper::trans('auth.password-change') }}</a>
+			@if(!$_user_registration)
+				<a href="{{ route('home') }}" class="submit btn btn-danger">{{ Helper::trans('auth.cancel') }}</a>
+				<a href="{{ route('user.password') }}" class="btn btn-link">{{ Helper::trans('auth.password-change') }}</a>
+			@endif
 		</div>
 	</div>
 
