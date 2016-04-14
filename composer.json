@@ -79,8 +79,14 @@
             "php artisan migrate",
             "php artisan db:seed"
         ],
+        "test-frontend": [
+            "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c .. --testsuite frontend && cd ../.."
+        ],
+        "test-backend": [
+            "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c .. --testsuite backend && cd ../.."
+        ],
         "test": [
-            "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c ../.."
+            "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c .. && cd ../.."
         ]
     },
     "config": {
