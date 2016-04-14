@@ -4,6 +4,9 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Role;
 
+/**
+ * Seeds the database
+ */
 class DatabaseSeeder extends Seeder {
 	/**
 	 * Run the database seeds.

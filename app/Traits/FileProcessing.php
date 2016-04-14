@@ -5,7 +5,7 @@ namespace App\Traits;
 use Image;
 
 /**
- * File processer
+ * File processing
  *
  * Trait that can be used to extend a class' ability process files in general.
  * It incorporates zip creation, general file and image file processing.
