@@ -5,6 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 
+/**
+ * Inspire message class
+ */
 class Inspire extends Command {
 	/**
 	 * The name and signature of the console command.

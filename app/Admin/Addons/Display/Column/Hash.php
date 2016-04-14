@@ -12,21 +12,21 @@ use SleepingOwl\Admin\Display\Column\Text as Text;
 if(!class_exists(\App\Admin\Addons\Display\Column\Hash::class)) {
 
 /**
- * Column for displaying hash values on Sleeping Owl.
+ * Column for displaying hash values on Sleeping Owl
  */
 class Hash extends Text {
 	/**
 	 * Number of characters in which the hash will be divided.
 	 *
-	 * @var string
+	 * @var integer
 	 */
 	protected $divider = 32;
 
 	/**
 	 * Function to set the number of characters that divide the hash value.
 	 *
-	 * @param  integer
-	 * @return App\Admin\Addons\Display\Column\Hash
+	 * @param  integer  $divider
+	 * @return \App\Admin\Addons\Display\Column\Hash
 	 */
 	public function setDivider($divider) {
 		$this->divider = $divider;
@@ -36,7 +36,7 @@ class Hash extends Text {
 	/**
 	 * Function to retrieve the rendered html.
 	 *
-	 * @return Illuminate\View\View
+	 * @return \Illuminate\View\View
 	 */
 	public function render() {
 		$params = array_merge($this->toArray(), ['divider' => $this->divider]);

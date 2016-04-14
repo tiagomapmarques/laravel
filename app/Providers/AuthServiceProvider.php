@@ -7,6 +7,12 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 
 use AdminTemplate;
 
+/**
+ * Authentication service provider
+ *
+ * Class where you can bootstrap or register your own modules on the auth
+ * service provider.
+ */
 class AuthServiceProvider extends ServiceProvider {
 	/**
 	 * The policy mappings for the application.
@@ -26,6 +32,7 @@ class AuthServiceProvider extends ServiceProvider {
 	public function boot(GateContract $gate) {
 		$this->registerPolicies($gate);
 
+		// add the navbar for the admin section
 		view()->composer(AdminTemplate::getTemplateViewPath('_partials.header'), function($view) {
 			$view->getFactory()->inject(
 				'navbar.right', view('auth.__nav', ['_nav_style' => 'margin-right: 15px;'])

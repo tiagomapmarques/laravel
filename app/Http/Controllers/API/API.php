@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
 /**
- * Class to extend in order to implement an API command.
+ * Base class for API commands
  */
 abstract class API extends BaseController {
 	/**
@@ -50,7 +50,8 @@ abstract class API extends BaseController {
 	 * should always receive all requests as to standardise the response.
 	 * This method is final and should not be overwritten.
 	 *
-	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Illuminate\Http\Request  $request
+	 * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException|\Symfony\Component\HttpKernel\Exception\HttpException
 	 * @return string
 	 */
 	public final function run(Request $request) {

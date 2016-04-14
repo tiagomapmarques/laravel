@@ -13,7 +13,7 @@ use Helper;
 use Image;
 
 /**
- * Abstract class for controllers.
+ * Base class for controllers
  *
  * This class implements basic controller functionality and should be the
  * base class for all controllers in your application.

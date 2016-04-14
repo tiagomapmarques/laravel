@@ -10,6 +10,11 @@ use Config;
 use File;
 use Helper;
 
+/**
+ * User model
+ *
+ * This class provides an interface for the database table "users".
+ */
 class User extends Authenticatable {
 
 	use ImagePathing;
@@ -48,6 +53,7 @@ class User extends Authenticatable {
 	 */
 	protected static function boot() {
 		parent::boot();
+		// before saving a new user to the database
 		static::creating(function($User) {
 			$User->hash = Helper::generateHash();
 			if(is_null($User->role_id)) {
@@ -61,6 +67,7 @@ class User extends Authenticatable {
 				$User->moveImage(null, true);
 			}
 		});
+		// before updating a new user in the database
 		static::updating(function($User) {
 			if(is_null($User->image)) {
 				$User->image = '';
@@ -75,9 +82,9 @@ class User extends Authenticatable {
 	 * Function to return the User's role as an Eloquent relationship.
 	 *
 	 * This function returns the actual Role of the user.
-	 * It will also return an App\Models\Role if it is used as a class property.
+	 * It will also return an \App\Models\Role if it is used as a class property.
 	 *
-	 * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function role() {
 		return $this->belongsTo(Role::class);
@@ -93,7 +100,10 @@ class User extends Authenticatable {
 	}
 
 	/**
-	 * Function to return either the default image or the User image
+	 * Function to return a valid image for the User.
+	 *
+	 * This function will either return the User image or, if there is none,
+	 * the default image for the User class.
 	 *
 	 * @return boolean
 	 */
@@ -112,8 +122,8 @@ class User extends Authenticatable {
 	 * for the User class. This function just updates the User model and does
 	 * not update the database. Manual saving is required.
 	 *
-	 * @param  string   $location
-	 * @param  string   $filename
+	 * @param  string|null   $location
+	 * @param  string|null   $filename
 	 * @return boolean
 	 */
 	public function moveImage($location = null, $filename = false) {

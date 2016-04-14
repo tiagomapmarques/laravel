@@ -5,6 +5,12 @@ namespace App\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+/**
+ * Event service provider
+ *
+ * Class where you can bootstrap or register your own modules on the event
+ * service provider.
+ */
 class EventServiceProvider extends ServiceProvider {
 	/**
 	 * The event listener mappings for the application.

@@ -2,6 +2,12 @@
 
 namespace App\Traits;
 
+/**
+ * File processer
+ *
+ * Trait that can be used to extend a class' ability process files in general.
+ * It incorporates zip creation, general file and image file processing.
+ */
 trait FileProcesser {
 	/**
 	 * Function to zip a list of files to to a specified folder.

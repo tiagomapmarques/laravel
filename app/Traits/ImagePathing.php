@@ -2,6 +2,12 @@
 
 namespace App\Traits;
 
+/**
+ * Image pathing
+ *
+ * Trait that can be used to implement a base (and standerdised) path for
+ * images. It will also provide you with a default image.
+ */
 trait ImagePathing {
 
 	protected static $base_image_path = 'images';

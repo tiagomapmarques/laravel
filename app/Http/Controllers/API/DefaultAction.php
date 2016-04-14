@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 /**
- * Class to implement an echo function on the API.
+ * Class to implement an echo function on the API
  */
 class DefaultAction extends API {
 	/**

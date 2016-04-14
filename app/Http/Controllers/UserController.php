@@ -12,14 +12,14 @@ use Helper;
 use Session;
 
 /**
- * Class to implement the User controller.
+ * Class to implement the User controller
  */
 class UserController extends Controller {
 	/**
 	 * Function to get the view for the index action.
 	 *
-	 * @param  string $hash
-	 * @return Illuminate\View\View
+	 * @param  string|null  $hash
+	 * @return \Illuminate\View\View|Illuminate\Http\RedirectResponse
 	 */
 	public function index($hash = null) {
 		if(is_null($hash)) {
@@ -40,7 +40,7 @@ class UserController extends Controller {
 	/**
 	 * Function to get the view for the update action.
 	 *
-	 * @return Illuminate\View\View
+	 * @return \Illuminate\View\View
 	 */
 	public function update() {
 		return view('user.update', [
@@ -52,8 +52,8 @@ class UserController extends Controller {
 	/**
 	 * Function to update the User (except its' password) through a POST request.
 	 *
-	 * @param  App\Http\Requests\UserUpdateRequest $request
-	 * @return Illuminate\Http\RedirectResponse
+	 * @param  \App\Http\Requests\UserUpdateRequest  $request
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function postUpdate(UpdateRequest $request) {
 		$User = Auth::user();
@@ -84,7 +84,7 @@ class UserController extends Controller {
 	/**
 	 * Function to get the view for the password action.
 	 *
-	 * @return Illuminate\View\View
+	 * @return \Illuminate\View\View
 	 */
 	public function password() {
 		return view('user.password', [
@@ -96,8 +96,8 @@ class UserController extends Controller {
 	/**
 	 * Function to update the User's password through a POST request.
 	 *
-	 * @param  App\Http\Requests\UserPasswordRequest $request
-	 * @return Illuminate\Http\RedirectResponse
+	 * @param  \App\Http\Requests\UserPasswordRequest  $request
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function postPassword(PasswordRequest $request) {
 		$User = Auth::user();

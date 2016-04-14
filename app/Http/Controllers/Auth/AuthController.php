@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 /**
- * Class responsible for the authorisation process.
+ * Class responsible for the authorisation process
  *
  * This controller handles the registration of new users, as well as the
  * authentication of existing users. By default, this controller uses
@@ -36,7 +36,7 @@ class AuthController extends Controller {
 	/**
 	 * Get a validator for an incoming registration request.
 	 *
-	 * @param  array $data
+	 * @param  array  $data
 	 * @return \Illuminate\Contracts\Validation\Validator
 	 */
 	protected function validator(array $data) {
@@ -50,8 +50,8 @@ class AuthController extends Controller {
 	/**
 	 * Create a new user instance after a valid registration.
 	 *
-	 * @param  array $data
-	 * @return App\Models\User
+	 * @param  array  $data
+	 * @return \App\Models\User
 	 */
 	protected function create(array $data) {
 		return User::create([

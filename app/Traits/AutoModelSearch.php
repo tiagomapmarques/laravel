@@ -2,6 +2,13 @@
 
 namespace App\Traits;
 
+/**
+ * Automated model search
+ *
+ * Trait that can be used to extend a class' ability to search through another
+ * class' objects, provided the class has a static "all" method that returns
+ * an array.
+ */
 trait AutoModelSearch {
 	/**
 	 * Function to get all search results from models.

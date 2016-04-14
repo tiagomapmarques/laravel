@@ -12,14 +12,6 @@
  * no group. Making it explicit will break error messages in authentication.
  *
  */
-Route::get('/', ['as' => 'root', 'uses' => 'RootController@index']);
-
-Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@index']);
-
-Route::get('/locale/{locale?}', ['as' => 'locale', 'uses' => function($locale = null) {
-	Helper::applyLocale($locale);
-	return redirect()->back();
-}]);
 
 // Routes for logged users only
 Route::group(['middleware' => ['auth']], function () {
@@ -48,7 +40,15 @@ Route::group(['middleware' => ['guest']], function () {
 
 // Routes for all users
 
-// User routes
+Route::get('/', ['as' => 'root', 'uses' => 'RootController@index']);
+
+Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
+
+Route::get('locale/{locale?}', ['as' => 'locale', 'uses' => function($locale = null) {
+	Helper::applyLocale($locale);
+	return redirect()->back();
+}]);
+
 Route::get('user/{hash?}', ['as' => 'user', 'uses' => 'UserController@index']);
 
 /* --------------------------------------------------------------------------
