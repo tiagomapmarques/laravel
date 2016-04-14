@@ -4,9 +4,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+/**
+ * RootController test class
+ */
 class RootControllerTest extends TestCase {
 	/**
-	 * Test the reponse of the home page
+	 * Test the reponse of the home page.
 	 *
 	 * @return void
 	 */
@@ -24,10 +27,7 @@ class RootControllerTest extends TestCase {
 	public function testContent() {
 		// test root page's content
 		$this->visit('/')
-			->see('Laravel Up and Running Kit');
-
-		// test home button functionality
-		$this->visit('/')
+			->see('Laravel Up and Running Kit')
 			->see('Home')
 			->see('Login')
 			->see('Register');

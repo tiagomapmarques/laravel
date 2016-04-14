@@ -7,6 +7,9 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Models\User;
 use App\Models\Role;
 
+/**
+ * AuthController test class
+ */
 class AuthControllerTest extends TestCase {
 	/**
 	 * Test the register screen.
