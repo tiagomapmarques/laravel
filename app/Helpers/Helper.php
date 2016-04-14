@@ -17,7 +17,7 @@ class Helper {
 	 * @return string
 	 */
 	public static function version() {
-		return '0.3-beta1';
+		return '0.4-beta2';
 	}
 
 	/**
