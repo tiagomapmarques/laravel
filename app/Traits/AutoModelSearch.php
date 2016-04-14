@@ -23,7 +23,7 @@ trait AutoModelSearch {
 	 * @param  string  $class_path
 	 * @return string
 	 */
-	protected function get_search_results($query, $class_path = '\\App\\') {
+	protected function get_search_results($query, $class_path = '\\App\\Models\\') {
 		$results = [];
 		$targets = [];
 		if(isset($this->search_targets) && is_array($this->search_targets)) {

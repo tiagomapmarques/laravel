@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
 use App\Traits\FileProcessing as FileProcessing;
 use Helper;
-use Image;
 
 /**
  * Base class for controllers
