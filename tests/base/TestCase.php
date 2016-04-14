@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Artisan;
 
+/**
+ * Base class for test cases
+ */
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	/**
 	 * The base URL to use while testing the application.
@@ -18,7 +21,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	public function createApplication() {
 		putenv('DB_CONNECTION=testing');
 
-		$app = require __DIR__.'/../bootstrap/app.php';
+		$app = require __DIR__.'/../../bootstrap/app.php';
 
 		$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
@@ -26,7 +29,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	}
 
 	/**
-	 * Function to set up the test environment for each test function
+	 * Function to set up the test environment for each test function.
 	 *
 	 * @return void
 	 */
@@ -38,7 +41,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	}
 
 	/**
-	 * Function to tear down the test environment after each test function
+	 * Function to tear down the test environment after each test function.
 	 *
 	 * @return void
 	 */
