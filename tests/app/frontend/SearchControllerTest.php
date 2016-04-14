@@ -18,6 +18,8 @@ class SearchControllerTest extends TestCase {
 	 * TODO: perform a search inside the page
 	 *
 	 * @dataProvider searchData
+	 * @param  string      $query
+	 * @param  string|null $result
 	 * @return void
 	 */
 	public function testSearch($query, $result) {
@@ -36,8 +38,10 @@ class SearchControllerTest extends TestCase {
 		// test if the search is performed correctly
 		$this->visit($url)
 			->seePageIs($url)
-			->seeElement('#search-bar input', ['value' => $query])
-			->see($result);
+			->within('.body-content', function() use($result, $query) {
+				$this->see($result)
+					->seeElement('#search-bar input', ['value' => $query]);
+			});
 	}
 
 	/**

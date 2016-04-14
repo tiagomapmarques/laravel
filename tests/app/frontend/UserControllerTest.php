@@ -34,21 +34,17 @@ class UserControllerTest extends TestCase {
 		// make new user and save it to the database
 		$Role = Role::where('name', 'user')->first();
 
-		// test home page redirect and 200 response code
+		// test home page 200 response code
 		$this->visit('/home')
-			->seePageIs('/login')
+			->seePageIs('/home')
 			->assertResponseOk();
 
 		// check that User details are being displayed
-		$this->visit('/home')
-			->seePageIs('/login')
-			->type($this->User->email, 'email')
-			->type($this->password, 'password')
-			->press('Login')
-			->seePageIs('/home')
-			->see($this->User->name)
-			->see($this->User->email)
-			->see($Role->class);
+		$this->visit('/home')->within('.body-content', function() use($Role) {
+			$this->see($this->User->name)
+				->see($this->User->email)
+				->see($Role->class);
+		});
 	}
 
 	/**
@@ -67,26 +63,24 @@ class UserControllerTest extends TestCase {
 		$Role = Role::where('name', 'user')->first();
 
 		// navigate to and submit new User details
-		$this->visit('/login')
-			->type($this->User->email, 'email')
-			->type($this->password, 'password')
-			->press('Login')
-			->seePageIs('/home')
-			->see('/'.$old_image)
+		$this->visit('/home')->within('.body-content', function() use($old_image) {
+			$this->see('/'.$old_image);
+		});
+		$this->visit('/home')
 			->click('#user-update-button')
 			->seePageIs('/user/update')
 			->type($new_name, 'name')
 			->attach($upload_test_file, 'image')
 			->press('Save');
 
-		// update our User object
-		$this->User = User::find($this->User->id);
-
 		// check the details have been updated
 		$this->seeInDatabase('users', [
 			'email' => $this->User->email,
 			'name' => $new_name
 		]);
+
+		// update our User object and check the image name has changed
+		$this->User = User::find($this->User->id);
 		if($old_image===$this->User->getImage()) {
 			$this->fail('Image was not updated!');
 		}
@@ -102,11 +96,7 @@ class UserControllerTest extends TestCase {
 		$new_password = Helper::generateHash();
 
 		// change the User password
-		$this->visit('/login')
-			->type($this->User->email, 'email')
-			->type($this->password, 'password')
-			->press('Login')
-			->seePageIs('/home')
+		$this->visit('/home')
 			->click('#user-update-button')
 			->seePageIs('/user/update')
 			->click('Change Password')
@@ -129,9 +119,11 @@ class UserControllerTest extends TestCase {
 			->type($new_password, 'password')
 			->press('Login')
 			->seePageIs('/home')
-			->dontSee('Login')
-			->dontSee('Admin')
-			->see('Logout');
+			->within('#nav', function() {
+				$this->see('Logout')
+					->dontSee('Login')
+					->dontSee('Admin');
+			});
 	}
 
 	/**
@@ -145,6 +137,7 @@ class UserControllerTest extends TestCase {
 		$this->User = factory(User::class)->create([
 			'password' => bcrypt($this->password)
 		]);
+		$this->actingAs($this->User);
 	}
 
 	/**

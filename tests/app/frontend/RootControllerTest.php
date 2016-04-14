@@ -26,10 +26,14 @@ class RootControllerTest extends TestCase {
 	 */
 	public function testContent() {
 		// test root page's content
-		$this->visit('/')
-			->see('Laravel Up and Running Kit')
-			->see('Home')
-			->see('Login')
-			->see('Register');
+		$this->visit('/')->within('#nav', function() {
+			$this->see('Home')
+				->see('Login')
+				->see('Register');
+		});
+
+		$this->visit('/')->within('.body-content', function() {
+			$this->see('Laravel Up and Running Kit');
+		});
 	}
 }
