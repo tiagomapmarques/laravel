@@ -24,7 +24,7 @@ AdminSection::registerModel(User::class, function (ModelConfiguration $model) {
 		return $form = AdminForm::panel()->addBody(
 			AdminFormElement::text('name', Helper::trans('database.user-name'))
 				->required(),
-			AdminFormElement::text('email', Helper::trans('database.user-name'))
+			AdminFormElement::text('email', Helper::trans('database.user-email'))
 				->required(),
 			AdminFormElement::image('image', Helper::trans('database.user-image'))
 		);

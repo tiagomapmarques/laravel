@@ -56,6 +56,9 @@ class User extends Authenticatable {
 		// before saving a new user to the database
 		static::creating(function($User) {
 			$User->hash = Helper::generateHash();
+			if(is_null($User->password)) {
+				$User->password = bcrypt($User->email);
+			}
 			if(is_null($User->role_id)) {
 				$Role_user = Role::where('name', 'user')->first();
 				$User->role()->associate($Role_user);
