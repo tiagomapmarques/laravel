@@ -12,5 +12,5 @@ return [
 	 */
 	'language-name' => 'English',
 	'description'   => 'Description of your webpage',
-	'title'         => 'LURK',
+	'title'         => 'Lurk',
 ];

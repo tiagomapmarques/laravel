@@ -41,7 +41,7 @@ return [
 	// 			->setPriority(100)
 	// 			->setIcon('fa fa-user')
 	// 			->setUrl('users')
-	// 			->setAccessLogic(function (Page $page) {
+	// 			->setAccessLogic(function(Page $page) {
 	// 				return auth()->user()->isSuperAdmin();
 	// 		}),
 	// 		// or
@@ -51,7 +51,7 @@ return [
 	// 			'model'	=> \App\News::class
 	// 		]),
 	// 		// or
-	// 		(new Page(/* ... */))->setPages(function (Page $page) {
+	// 		(new Page(/* ... */))->setPages(function(Page $page) {
 	// 			$page->addPage([
 	// 				'title'	=> 'Blog',
 	// 				'priority' => 100,
@@ -64,7 +64,7 @@ return [
 	// 	// or
 	// 	'title'	   => 'News',
 	// 	'priority'	=> 300,
-	// 	'accessLogic' => function ($page) {
+	// 	'accessLogic' => function($page) {
 	// 		return $page->isActive();
 	// 	},
 	// 	'pages'	   => [

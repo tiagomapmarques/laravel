@@ -14,7 +14,7 @@
  */
 
 // Routes for logged users only
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function() {
 	// User routes
 	Route::get('user/update', ['as' => 'user.update', 'uses' => 'UserController@update']);
 	Route::post('user/update', ['uses' => 'UserController@postUpdate']);
@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // Routes for guests only
-Route::group(['middleware' => ['guest']], function () {
+Route::group(['middleware' => ['guest']], function() {
 	// Auth routes
 	Route::get('register', ['as' => 'register', 'uses' => 'Auth\AuthController@getRegister']);
 	Route::post('register', ['as' => 'register_post', 'uses' => 'Auth\AuthController@postRegister']);

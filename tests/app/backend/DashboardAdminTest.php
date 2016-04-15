@@ -28,7 +28,7 @@ class DashboardAdminTest extends AdminTestCase {
 		// test dashboard page's content
 		$this->visit('/')->within('.content-wrapper', function() {
 			$this->see('Dashboard')
-				->see('This is the LURK Admin section.');
+				->see('This is the Lurk administration section.');
 		});
 	}
 }
