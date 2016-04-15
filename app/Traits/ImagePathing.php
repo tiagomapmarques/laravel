@@ -19,7 +19,7 @@ trait ImagePathing {
 	/**
 	 * Base image path under public folder.
 	 *
-	 * @var boolean|false
+	 * @var string|boolean
 	 */
 	protected static $class_image_folder = false;
 
