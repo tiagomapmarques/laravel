@@ -54,7 +54,7 @@ class Translatable extends Text {
 				$model_name.$this->divider .
 				$this->name.$this->divider .
 				$this->getModelValue(),
-			$coice
+			$this->choice
 		);
 		return view(
 			'admin::addons.display.column.translatable',

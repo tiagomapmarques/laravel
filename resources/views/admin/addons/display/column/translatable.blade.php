@@ -1,1 +1,1 @@
-{{ Helper::trans($prefix.$value, $choice) }} {!! $append !!}
+{{ $translation }} {!! $append !!}
