@@ -20,12 +20,12 @@
 								</p>
 							</div>
 							<div class="col-md-6">
-								<label>{{ Helper::trans('auth.name') }}:</label>
+								<label>{{ Helper::trans('database.users-name') }}:</label>
 								<p>{{ $_user_User->name }}</p>
-								<label>{{ Helper::trans('auth.email') }}:</label>
+								<label>{{ Helper::trans('database.users-email') }}:</label>
 								<p>{{ $_user_User->email }}</p>
-								<label>{{ Helper::trans('database.role') }}:</label>
-								<p>{{ $_user_User->role->name }}</p>
+								<label>{{ Helper::trans('database.roles') }}:</label>
+								<p>{{ Helper::trans('database.role-name-'.$_user_User->role->name) }}</p>
 							</div>
 						</div>
 					</div>
