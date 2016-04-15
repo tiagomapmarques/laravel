@@ -10,21 +10,26 @@ return [
 	 * to your application's database.
 	 *
 	 */
+
+	// Dashboard title
 	'dashboard' => 'Dashboard',
 
-	// Roles
-	'role'       => 'Role|Roles',
-	'role-user'  => 'User|Users',
-	'role-admin' => 'Administrator|Administrators',
-
 	// Tables
-	'user'  => 'User|Users',
-	'admin' => 'Administrator|Administrators',
+	'users' => 'User|Users',
+	'roles' => 'Role|Roles',
 
 	//Columns
-	'user-id' => 'ID|IDs',
-	'user-name' => 'Name|Names',
-	'user-email' => 'Email|Emails',
-	'user-hash' => 'Hash|Hashes',
-	'user-image' => 'Image|Images',
+	'users-id'    => 'ID|IDs',
+	'users-name'  => 'Name|Names',
+	'users-email' => 'Email|Emails',
+	'users-hash'  => 'Hash|Hashes',
+	'users-image' => 'Image|Images',
+
+	'roles-id'    => 'ID|IDs',
+	'roles-name'  => 'Available Role|Available Roles',
+	'roles-class' => 'Class|Classes',
+
+	// Translatable
+	'role-name-user'  => 'User|Users',
+	'role-name-admin' => 'Administrator|Administrators',
 ];
