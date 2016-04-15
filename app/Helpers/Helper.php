@@ -5,14 +5,14 @@ use Config as Config;
 use Session as Session;
 
 /**
- * LURK helper class
+ * Lurk helper class
  *
  * This class is autoloaded in the composer in order to make general purpose
  * functions available to throughout all the application.
  */
 class Helper {
 	/**
-	 * Function to retrieve the version of LURK.
+	 * Function to retrieve the version of Lurk.
 	 *
 	 * @return string
 	 */
@@ -95,6 +95,21 @@ class Helper {
 			}
 		}
 		return $folders;
+	}
+
+	/**
+	 * Turns an array of objects to a regular array from the attribute given.
+	 *
+	 * @param  array   $array
+	 * @param  string  $attribute
+	 * @return array
+	 */
+	public static function toSimpleArray($array, $attribute) {
+		$final_array = [];
+		foreach($array as $key => $value) {
+			$final_array[] = $value->$attribute;
+		}
+		return $final_array;
 	}
 
 	/**
