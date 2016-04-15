@@ -125,8 +125,8 @@ class User extends Authenticatable {
 	 * for the User class. This function just updates the User model and does
 	 * not update the database. Manual saving is required.
 	 *
-	 * @param  string|null   $location
-	 * @param  string|null   $filename
+	 * @param  string|null  $location
+	 * @param  boolean      $filename
 	 * @return boolean
 	 */
 	public function moveImage($location = null, $filename = false) {
@@ -148,5 +148,32 @@ class User extends Authenticatable {
 		$destination = $location.DIRECTORY_SEPARATOR.$filename;
 		File::move($this->image, $destination);
 		$this->image = $destination;
+	}
+
+	/**
+	 * Function to return all Users from the database.
+	 *
+	 * @param  array    $columns
+	 * @param  boolean  $users
+	 * @param  boolean  $admins
+	 * @return array
+	 */
+	public static function all($columns = ['*'], $users = true, $admins = false) {
+		$function = '';
+		if($users && $admins) {
+			$function = 'all';
+		}
+		else if($users && !$admins) {
+			$function = 'allUser';
+		}
+		else if(!$users && $admins) {
+			$function = 'allAdmin';
+		}
+		else {
+			return [];
+		}
+		$Roles = Role::$function(['id']);
+		$role_ids = Helper::toSimpleArray($Roles, 'id');
+		return parent::all($columns)->whereIn('role_id', $role_ids);
 	}
 }
