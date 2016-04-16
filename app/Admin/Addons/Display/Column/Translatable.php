@@ -2,6 +2,7 @@
 
 namespace App\Admin\Addons\Display\Column;
 
+use Helper;
 use SleepingOwl\Admin\Display\Column\Text as Text;
 
 // TODO: check if bug is gone...

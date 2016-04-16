@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Administrator;
 use App\Models\Role;
 use App\Traits\ImagePathing as ImagePathing;
 use Config;
@@ -60,24 +61,21 @@ class User extends Authenticatable {
 				$User->password = bcrypt($User->email);
 			}
 			if(is_null($User->role_id)) {
-				$Role_user = Role::where('name', 'user')->first();
-				$User->role()->associate($Role_user);
-			}
-			if(is_null($User->image)) {
-				$User->image = '';
+				$User->role()->associate(Role::where('model', 'User')->first());
 			}
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
 				$User->moveImage(null, true);
 			}
 		});
-		// before updating a new user in the database
+		// before updating a user in the database
 		static::updating(function($User) {
-			if(is_null($User->image)) {
-				$User->image = '';
-			}
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
 				$User->moveImage(null, true);
 			}
+		});
+		// before deleting a user from the database
+		static::deleting(function($User) {
+			File::delete($User->image);
 		});
 	}
 
@@ -103,76 +101,13 @@ class User extends Authenticatable {
 	}
 
 	/**
-	 * Function to return a valid image for the User.
-	 *
-	 * This function will either return the User image or, if there is none,
-	 * the default image for the User class.
-	 *
-	 * @return boolean
-	 */
-	public function getImage() {
-		if(!$this->image || $this->image==='' || !file_exists($this->image)) {
-			return self::default_image();
-		}
-		return $this->image;
-	}
-
-	/**
-	 * Function to re-locate the User image.
-	 *
-	 * Function to re-locate the User image to a specified location. If none
-	 * is provided, the file will just be moved to the default image location
-	 * for the User class. This function just updates the User model and does
-	 * not update the database. Manual saving is required.
-	 *
-	 * @param  string|null  $location
-	 * @param  boolean      $filename
-	 * @return boolean
-	 */
-	public function moveImage($location = null, $filename = false) {
-		if(is_null($this->image) || $this->image==='') {
-			return false;
-		}
-		if(is_null($location)) {
-			$location = self::images_path();
-		}
-		if($filename) {
-			$path = explode('.', $this->image);
-			$filename = Helper::generateRandomFilename().'.'.$path[count($path)-1];
-		}
-		else {
-			$path = explode(DIRECTORY_SEPARATOR, $this->image);
-			$filename = $path[count($path)-1];
-		}
-
-		$destination = $location.DIRECTORY_SEPARATOR.$filename;
-		File::move($this->image, $destination);
-		$this->image = $destination;
-	}
-
-	/**
 	 * Function to return all Users from the database.
 	 *
-	 * @param  array    $columns
-	 * @param  boolean  $users
-	 * @param  boolean  $admins
+	 * @param  array  $columns
 	 * @return array
 	 */
-	public static function all($columns = ['*'], $users = true, $admins = false) {
-		$function = '';
-		if($users && $admins) {
-			$function = 'all';
-		}
-		else if($users && !$admins) {
-			$function = 'allUser';
-		}
-		else if(!$users && $admins) {
-			$function = 'allAdmin';
-		}
-		else {
-			return [];
-		}
-		$Roles = Role::$function(['id']);
+	public static function all($columns = ['*']) {
+		$Roles = Role::allUser(['id']);
 		$role_ids = Helper::toSimpleArray($Roles, 'id');
 		return parent::all($columns)->whereIn('role_id', $role_ids);
 	}

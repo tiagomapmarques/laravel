@@ -105,14 +105,9 @@ trait FileProcessing {
 			$width = $img->width();
 		}
 
-		if(!is_null($width) && !is_null($height)) {
-			$img->fit($width, $height, function($constraint) {
-				$constraint->upsize();
-			});
-		}
-		else {
-			$img->resize($width, $height);
-		}
+		$img->fit($width, $height, function($constraint) {
+			$constraint->upsize();
+		});
 
 		$img->encode($extension, $quality);
 		$img->save($path.DIRECTORY_SEPARATOR.$filename);

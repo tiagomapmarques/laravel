@@ -35,8 +35,7 @@ class Administrator extends User {
 		// before saving a new administrator to the database
 		static::creating(function($User) {
 			if(is_null($User->role_id)) {
-				$Role_user = Role::where('name', 'admin')->first();
-				$User->role()->associate($Role_user);
+				$User->role()->associate(Role::where('model', 'Administrator')->first());
 			}
 		});
 		// only launch the user boot function after
@@ -50,6 +49,8 @@ class Administrator extends User {
 	 * @return array
 	 */
 	public static function all($columns = ['*']) {
-		return parent::all($columns, false, true);
+		$Roles = Role::allAdmin(['id']);
+		$role_ids = Helper::toSimpleArray($Roles, 'id');
+		return parent::all($columns)->whereIn('role_id', $role_ids);
 	}
 }

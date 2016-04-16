@@ -36,7 +36,6 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 			AdminFormElement::select('role_id', Helper::trans('database.roles'))
 				->setModelForOptions(new Role)
 				->setDisplay('name')
-				->required()
 		);
 		return $form;
 	});
