@@ -8,7 +8,9 @@
 					<div class="panel-heading">
 						<h3 class="panel-title" style="text-align: center;">
 							<span>{{ Helper::trans('user.details') }}</span>
-							<a id="user-update-button" href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
+							@if(Auth::user() && Auth::user()->id===$_user_User->id)
+								<a id="user-update-button" href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
+							@endif
 						</h3>
 
 					</div>

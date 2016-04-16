@@ -62,6 +62,8 @@ function search_cancel_bar_click() {
 function search_bar_show() {
 	var bar = $('#search-bar');
 	search_bar_animate('+', bar.outerHeight());
+	// focus the search input
+	$('#search-input-bar form input').focus();
 }
 function search_bar_hide() {
 	var bar = $('#search-bar');

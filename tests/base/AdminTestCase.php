@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\User;
-use App\Models\Role;
+use App\Models\Administrator;
 
 /**
  * Base class for admin tests
@@ -15,11 +14,11 @@ abstract class AdminTestCase extends TestCase {
 	protected $adminPrefix = 'admin';
 
 	/**
-	 * User with admin Role already created in the database.
+	 * Administrator created in the database to be impersonated.
 	 *
 	 * @var \App\Models\User|null
 	 */
-	protected $User = null;
+	protected $Admin = null;
 
 	/**
 	 * User password.
@@ -46,13 +45,11 @@ abstract class AdminTestCase extends TestCase {
 	public function setUp() {
 		parent::setUp();
 		// create an administrator
-		$Role = Role::where('name', 'admin')->first();
 		$this->password = 'password';
-		$this->User = factory(User::class)->create([
-			'password' => bcrypt($this->password),
-			'role_id' => $Role->id
+		$this->Admin = factory(Administrator::class)->create([
+			'password' => bcrypt($this->password)
 		]);
-		$this->actingAs($this->User);
+		$this->actingAs($this->Admin);
 	}
 
 	/**
@@ -62,8 +59,8 @@ abstract class AdminTestCase extends TestCase {
 	 */
 	public function tearDown() {
 		// destroy the administrator
-		User::destroy($this->User->id);
-		$this->User = null;
+		Administrator::destroy($this->Admin->id);
+		$this->Admin = null;
 		$this->password = null;
 		parent::tearDown();
 	}

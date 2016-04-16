@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase {
 		$this->visit('/home')->within('.body-content', function() use($Role) {
 			$this->see($this->User->name)
 				->see($this->User->email)
-				->see($Role->class);
+				->see(Helper::trans('database.role-name-'.$Role->name));
 		});
 	}
 
