@@ -10,18 +10,36 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 
 	// Display
 	$model->onDisplay(function() {
-		$display = AdminDisplay::table()->setColumns([
-			AdminColumn::text('name', Helper::trans('database.users-name')),
-			AdminColumn::text('email', Helper::trans('database.users-email')),
-			AdminColumn::hash('hash', Helper::trans('database.users-id')),
-			AdminColumn::image('image', Helper::trans('database.users-image')),
-			AdminColumn::custom()->setLabel('Role')
-				->setCallback(function($instance) {
-					return Helper::trans('database.role-name-'.$instance->role->name);
-				}),
-			AdminColumn::boolfunction('isAdmin', 'Admin')
-		]);
-		$display->paginate(15);
+		$display = AdminDisplay::tabbed();
+
+		$display->setTabs(function() {
+			$tabs = [];
+			$columns = [
+				AdminColumn::text('name', Helper::trans('database.users-name')),
+				AdminColumn::text('email', Helper::trans('database.users-email')),
+				AdminColumn::hash('hash', Helper::trans('database.users-id')),
+				AdminColumn::image('image', Helper::trans('database.users-image')),
+				AdminColumn::custom()->setLabel('Role')
+					->setCallback(function($instance) {
+						return Helper::trans('database.role-name-'.$instance->role->name);
+					}),
+				AdminColumn::boolfunction('isAdmin', 'Admin')
+			];
+
+			$all_table = AdminDisplay::table()->paginate(15);
+			$all_table->setColumns($columns);
+			$tabs[] = AdminDisplay::tab($all_table)->setLabel('All')->setActive();
+
+			$Roles = Role::all();
+			foreach($Roles as $Role) {
+				$role_table = AdminDisplay::table()->paginate(15);
+				$role_table->getScopes()->push($Role->name);
+				$role_table->setColumns($columns);
+				$tabs[] = AdminDisplay::tab($role_table)
+					->setLabel(Helper::trans('database.role-name-'.$Role->name));
+			}
+			return $tabs;
+		});
 		return $display;
 	});
 

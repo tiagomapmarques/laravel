@@ -26,14 +26,24 @@ class Helper {
 	 * This function can be seen as an alias for the "trans" and "trans_choice"
 	 * functions of Laravel. However, it will translate to the singular form
 	 * by default, providing a singular way of getting the translation you want,
-	 * without breaking your code if you update the translations.
+	 * without breaking your code if you update the translations. If you want,
+	 * you can also specify a locale (regardless of what locale is applied).
 	 *
-	 * @param  string   $identifier
-	 * @param  integer  $choice
+	 * @param  string       $identifier
+	 * @param  integer      $choice
+	 * @param  string|null  $locale
 	 * @return string
 	 */
-	public static function trans($identifier, $choice = 1) {
+	public static function trans($identifier, $choice = 1, $locale = null) {
+		$locale_is_available = in_array($locale, Helper::getAllLocales());
+		if($locale_is_available) {
+			$previous_locale = Helper::getLocale();
+			Helper::applyLocale($locale);
+		}
 		$original_translation = trans($identifier);
+		if($locale_is_available) {
+			Helper::applyLocale($previous_locale);
+		}
 		$phrase = explode('|', $original_translation);
 		if(count($phrase)<$choice) {
 			$choice = count($phrase);

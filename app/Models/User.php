@@ -111,4 +111,12 @@ class User extends Authenticatable {
 		$role_ids = Helper::toSimpleArray($Roles, 'id');
 		return parent::all($columns)->whereIn('role_id', $role_ids);
 	}
+
+	public function scopeUser($query) {
+		$query->where('role_id', Helper::toSimpleArray(Role::allUser('id'),'id'));
+	}
+
+	public function scopeAdmin($query) {
+		$query->where('role_id', Helper::toSimpleArray(Role::allAdmin('id'),'id'));
+	}
 }
