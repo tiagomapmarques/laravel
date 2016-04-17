@@ -17,8 +17,8 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk br
 - **Localisation** - Just works out-of-the-box, with no setup whatsoever (provided you translate from english)
 - **Search** - Searching mechanism for models is versatile and effortless
 - **Blade/Bootstrap/Sass** - Templates and basic structure for quick deployment
-- **Authentication** - Fully scaffolded, tweaked and tuned-up
-- **SleepingOwl** - Admin pages, routing and user roles are configured and tweaked to be ready to go
+- **Authentication** - User roles implemented and extensible, with fully scaffolded and tweaked authentication
+- **SleepingOwl** - Admin pages, routing and useful addons are configured and tuned-up to be ready to go
 - **Demo** - _coming June 2016_
 - **Stable** - Production-oriented versioning (composer.lock) and fully e2e tested
 - **Also linting** - _Beautiful code_ needs beautiful standards for programming
