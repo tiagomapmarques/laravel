@@ -19,11 +19,9 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::text('email', Helper::trans('database.users-email')),
 				AdminColumn::hash('hash', Helper::trans('database.users-id')),
 				AdminColumn::image('image', Helper::trans('database.users-image')),
-				AdminColumn::custom()->setLabel('Role')
-					->setCallback(function($instance) {
-						return Helper::trans('database.role-name-'.$instance->role->name);
-					}),
-				AdminColumn::boolfunction('isAdmin', 'Admin')
+				AdminColumn::translatable('role_id', 'Role')
+					->setReference(Role::class, 'id', 'name'),
+				AdminColumn::boolfunction('isAdmin', 'is Admin?')
 			];
 
 			$all_table = AdminDisplay::table()->paginate(15);
@@ -36,7 +34,7 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				$role_table->getScopes()->push($Role->name);
 				$role_table->setColumns($columns);
 				$tabs[] = AdminDisplay::tab($role_table)
-					->setLabel(Helper::trans('database.role-name-'.$Role->name));
+					->setLabel(Helper::trans('database.role-name-'.$Role->name, 2));
 			}
 			return $tabs;
 		});
