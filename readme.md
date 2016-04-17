@@ -55,6 +55,10 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk br
 	php artisan serve
 	```
 
+## Documentation
+
+You can find LURK-specific documentation [here](docs/index.md) regarding implementation decisions.
+
 ## Laravel
 
 For Laravel specific documentation, please refer to the [Laravel website](http://laravel.com/docs) or their [Github page](https://github.com/laravel/laravel).
