@@ -23,6 +23,13 @@ class Hash extends Text {
 	protected $chars_per_line = 32;
 
 	/**
+	 * Main output variable from this class.
+	 *
+	 * @var string
+	 */
+	protected $result = '';
+
+	/**
 	 * Function to set the number of characters that divide the hash value.
 	 *
 	 * @param  integer  $chars_per_line
@@ -34,18 +41,34 @@ class Hash extends Text {
 	}
 
 	/**
+	 * Function to return this object as an array.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		return parent::toArray() + [
+			'result' => $this->result,
+		];
+	}
+
+	/**
+	 * Function to perform this class' main action.
+	 *
+	 * @return void
+	 */
+	private function process() {
+		$hash_lines = str_split($this->getModelValue(), $this->chars_per_line);
+		$this->result = implode('<br />', $hash_lines);
+	}
+
+	/**
 	 * Function to retrieve the rendered html.
 	 *
 	 * @return \Illuminate\View\View
 	 */
 	public function render() {
-		$hash_lines = str_split($this->getModelValue(), $this->chars_per_line);
-		$result = implode('<br />', $hash_lines);
-		return view(
-			'admin::addons.display.column.hash',
-			$this->toArray() + ['result' => $result],
-			[]
-		);
+		$this->process();
+		return view('admin::addons.display.column.hash', $this->toArray(), []);
 	}
 }
 

@@ -1,1 +1,1 @@
-{{ $translation }} {!! $append !!}
+{{ $result }} {!! $append !!}
