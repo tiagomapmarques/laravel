@@ -3,15 +3,11 @@
 This is the Lurk documentation. These files are intended to provide explanations
 on how to extend Lurk's functionalities.
 
-## Admin module
-The administration module is based off SleepingOwl. Check out documentation on Lurk's
-SleepingOwl [here](admin.md).
+## [Admin module](admin.md)
 
-## Roles and Models
-Lurk's implementation of Roles is extensible. Check out its documentation [here](roles.md).
+## [Roles and Models](roles.md)
 
-## File uploads and processing
-For file/image upload/procesing documentation, click [here](files.md).
+## [File uploads and processing](files.md).
 
 ## Search
 - Searchable attributes
