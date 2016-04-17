@@ -161,7 +161,7 @@ class Helper {
 	 * @return string
 	 */
 	public static function generateHash() {
-		return Helper::generateRandomString(64, true, true);
+		return Helper::generateRandomString(32, true, true);
 	}
 
 	/**
