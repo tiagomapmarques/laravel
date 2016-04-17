@@ -133,7 +133,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->password = 'password';
+		$this->password = Helper::generateRandomString();
 		$this->User = factory(User::class)->create([
 			'password' => bcrypt($this->password)
 		]);

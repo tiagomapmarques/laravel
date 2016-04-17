@@ -45,7 +45,7 @@ abstract class AdminTestCase extends TestCase {
 	public function setUp() {
 		parent::setUp();
 		// create an administrator
-		$this->password = 'password';
+		$this->password = Helper::generateRandomString();
 		$this->Admin = factory(Administrator::class)->create([
 			'password' => bcrypt($this->password)
 		]);
