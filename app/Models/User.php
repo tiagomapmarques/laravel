@@ -101,6 +101,17 @@ class User extends Authenticatable {
 	}
 
 	/**
+	 * Function to help querying the database for users.
+	 *
+	 * @param  array  $columns
+	 * @param  array  $role_ids
+	 * @return array
+	 */
+	protected static function _all($columns = ['*'], $role_ids) {
+		return parent::all($columns)->whereIn('role_id', $role_ids);
+	}
+
+	/**
 	 * Function to return all Users from the database.
 	 *
 	 * @param  array  $columns
@@ -109,13 +120,35 @@ class User extends Authenticatable {
 	public static function all($columns = ['*']) {
 		$Roles = Role::allUser(['id']);
 		$role_ids = Helper::toSimpleArray($Roles, 'id');
-		return parent::all($columns)->whereIn('role_id', $role_ids);
+		return self::_all($columns, $role_ids);
 	}
 
+	/**
+	 * Function to return all Users from the database, regardless of their role.
+	 *
+	 * @param  array  $columns
+	 * @return array
+	 */
+	public static function allRaw($columns = ['*']) {
+		return parent::all($columns);
+	}
+
+	/**
+	 * Function to restrict the scope of User's admin page to Users only.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @return void
+	 */
 	public function scopeUser($query) {
 		$query->where('role_id', Helper::toSimpleArray(Role::allUser('id'),'id'));
 	}
 
+	/**
+	 * Function to restrict the scope of User's admin page to Administrators only.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @return void
+	 */
 	public function scopeAdmin($query) {
 		$query->where('role_id', Helper::toSimpleArray(Role::allAdmin('id'),'id'));
 	}

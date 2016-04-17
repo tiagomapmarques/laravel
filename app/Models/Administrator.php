@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Role;
 use App\Models\User;
+use Helper;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Administrator model
@@ -51,6 +53,6 @@ class Administrator extends User {
 	public static function all($columns = ['*']) {
 		$Roles = Role::allAdmin(['id']);
 		$role_ids = Helper::toSimpleArray($Roles, 'id');
-		return parent::all($columns)->whereIn('role_id', $role_ids);
+		return parent::_all($columns, $role_ids);
 	}
 }
