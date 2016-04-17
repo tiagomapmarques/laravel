@@ -11,8 +11,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 /**
  * Class responsible for the authorisation process
  *
- * This controller handles the registration of new users, as well as the
- * authentication of existing users. By default, this controller uses
+ * This controller handles the registration of new Users, as well as the
+ * authentication of existing Users. By default, this controller uses
  * a simple trait to add these behaviors.
  */
 class AuthController extends Controller {
@@ -20,7 +20,7 @@ class AuthController extends Controller {
 	use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
 	/**
-	 * Where to redirect users after login/registration.
+	 * Where to redirect Users after login/registration.
 	 *
 	 * @var string
 	 */
@@ -48,7 +48,7 @@ class AuthController extends Controller {
 	}
 
 	/**
-	 * Create a new user instance after a valid registration.
+	 * Create a new User instance after a valid registration.
 	 *
 	 * @param  array  $data
 	 * @return \App\Models\User

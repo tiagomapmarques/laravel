@@ -40,7 +40,7 @@ class Administrator extends User {
 				$User->role()->associate(Role::where('model', 'Administrator')->first());
 			}
 		});
-		// only launch the user boot function after
+		// only launch the User boot function after
 		parent::boot();
 	}
 

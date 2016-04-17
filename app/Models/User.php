@@ -54,7 +54,7 @@ class User extends Authenticatable {
 	 */
 	protected static function boot() {
 		parent::boot();
-		// before saving a new user to the database
+		// before saving a new User to the database
 		static::creating(function($User) {
 			$User->hash = Helper::generateHash();
 			if(is_null($User->password)) {
@@ -67,13 +67,13 @@ class User extends Authenticatable {
 				$User->moveImage(null, true);
 			}
 		});
-		// before updating a user in the database
+		// before updating a User in the database
 		static::updating(function($User) {
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
 				$User->moveImage(null, true);
 			}
 		});
-		// before deleting a user from the database
+		// before deleting a User from the database
 		static::deleting(function($User) {
 			File::delete($User->image);
 		});
@@ -82,7 +82,7 @@ class User extends Authenticatable {
 	/**
 	 * Function to return the User's role as an Eloquent relationship.
 	 *
-	 * This function returns the actual Role of the user.
+	 * This function returns the actual Role of the User.
 	 * It will also return an \App\Models\Role if it is used as a class property.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -101,7 +101,7 @@ class User extends Authenticatable {
 	}
 
 	/**
-	 * Function to help querying the database for users.
+	 * Function to help querying the database for Users.
 	 *
 	 * @param  array  $columns
 	 * @param  array  $role_ids

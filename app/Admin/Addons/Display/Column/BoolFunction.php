@@ -39,7 +39,7 @@ class BoolFunction extends Text {
 	/**
 	 * Function to set the font-awesome class for "true".
 	 *
-	 * @return array
+	 * @return \App\Admin\Addons\Display\Column\BoolFunction
 	 */
 	public function setTrueClass($class) {
 		$this->fa_true = $class;
@@ -49,7 +49,7 @@ class BoolFunction extends Text {
 	/**
 	 * Function to set the font-awesome class for "false".
 	 *
-	 * @return array
+	 * @return \App\Admin\Addons\Display\Column\BoolFunction
 	 */
 	public function setFalseClass($class) {
 		$this->fa_false = $class;

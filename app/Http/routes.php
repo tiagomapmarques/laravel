@@ -13,7 +13,7 @@
  *
  */
 
-// Routes for logged users only
+// Routes for logged Users only
 Route::group(['middleware' => ['auth']], function() {
 	// User routes
 	Route::get('user/update', ['as' => 'user.update', 'uses' => 'UserController@update']);
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['guest']], function() {
 	Route::post('password/reset', ['as' => 'password_reset_post', 'uses' => 'Auth\PasswordController@postReset']);
 });
 
-// Routes for all users
+// Routes for all (Admins, Users and guests)
 
 Route::get('/', ['as' => 'root', 'uses' => 'RootController@index']);
 
@@ -72,6 +72,6 @@ Route::group(['namespace' => 'API', 'prefix' => Config::get('app.api_prefix'), '
 	Route::any('eco', 'DefaultAction@run');
 
 	Route::group(['middleware' => ['auth']], function() {
-		// API available for logged users only
+		// API available for logged Users only
 	});
 });

@@ -148,7 +148,7 @@ class UsersAdminTest extends AdminTestCase {
 		// TODO: perform the actual deletion instead of this hack
 		User::destroy($User->id);
 
-		// check the user was created
+		// check the User was created
 		// $this->dontSeeInDatabase('users', [
 		// 	'email' => $User->email,
 		// ]);

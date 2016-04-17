@@ -31,7 +31,7 @@ class UserControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testUserDetails() {
-		// make new user and save it to the database
+		// make new User and save it to the database
 		$Role = Role::where('name', 'user')->first();
 
 		// test home page 200 response code
