@@ -47,7 +47,8 @@ class RootAdminTest extends AdminTestCase {
 		// test admin page's content
 		$this->visit('/')->within('.main-sidebar', function() {
 			$this->see('Dashboard')
-				->see('Users');
+				->see('Users')
+				->see('Roles');
 		});
 	}
 

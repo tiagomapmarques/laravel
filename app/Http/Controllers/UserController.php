@@ -65,15 +65,15 @@ class UserController extends Controller {
 		if(!is_null($file) && $file->isValid()) {
 			$filename = Helper::generateRandomFilename().'.jpg';
 			$file_was_written = $this->processImage(
-				$file, User::images_path(), $filename,
-				'jpg', $width = 500
+				$file, User::imagesPath(), $filename,
+				'jpg', 640, 640
 			);
 			if($file_was_written) {
 				if(file_exists($User->image)) {
 					// remove old image file to save disk space
 					File::delete($User->image);
 				}
-				$User->image = User::images_path().DIRECTORY_SEPARATOR.$filename;
+				$User->image = User::imagesPath().DIRECTORY_SEPARATOR.$filename;
 			}
 		}
 

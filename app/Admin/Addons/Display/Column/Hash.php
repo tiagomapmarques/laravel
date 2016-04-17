@@ -20,17 +20,45 @@ class Hash extends Text {
 	 *
 	 * @var integer
 	 */
-	protected $divider = 32;
+	protected $chars_per_line = 32;
+
+	/**
+	 * Main output variable from this class.
+	 *
+	 * @var string
+	 */
+	protected $result = '';
 
 	/**
 	 * Function to set the number of characters that divide the hash value.
 	 *
-	 * @param  integer  $divider
+	 * @param  integer  $chars_per_line
 	 * @return \App\Admin\Addons\Display\Column\Hash
 	 */
-	public function setDivider($divider) {
-		$this->divider = $divider;
+	public function setMaxCharactersPerLine($chars) {
+		$this->chars_per_line = $chars;
 		return $this;
+	}
+
+	/**
+	 * Function to return this object as an array.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		return parent::toArray() + [
+			'result' => $this->result,
+		];
+	}
+
+	/**
+	 * Function to perform this class' main action.
+	 *
+	 * @return void
+	 */
+	private function process() {
+		$hash_lines = str_split($this->getModelValue(), $this->chars_per_line);
+		$this->result = implode('<br />', $hash_lines);
 	}
 
 	/**
@@ -39,8 +67,8 @@ class Hash extends Text {
 	 * @return \Illuminate\View\View
 	 */
 	public function render() {
-		$params = array_merge($this->toArray(), ['divider' => $this->divider]);
-		return view('admin::addons.display.column.hash', $params, []);
+		$this->process();
+		return view('admin::addons.display.column.hash', $this->toArray(), []);
 	}
 }
 

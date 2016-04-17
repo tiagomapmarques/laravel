@@ -31,7 +31,7 @@ class UserControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testUserDetails() {
-		// make new user and save it to the database
+		// make new User and save it to the database
 		$Role = Role::where('name', 'user')->first();
 
 		// test home page 200 response code
@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase {
 		$this->visit('/home')->within('.body-content', function() use($Role) {
 			$this->see($this->User->name)
 				->see($this->User->email)
-				->see($Role->class);
+				->see(Helper::trans('database.role-name-'.$Role->name));
 		});
 	}
 
@@ -133,7 +133,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->password = 'password';
+		$this->password = Helper::generateRandomString();
 		$this->User = factory(User::class)->create([
 			'password' => bcrypt($this->password)
 		]);

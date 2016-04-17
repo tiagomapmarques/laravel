@@ -8,7 +8,9 @@
 					<div class="panel-heading">
 						<h3 class="panel-title" style="text-align: center;">
 							<span>{{ Helper::trans('user.details') }}</span>
-							<a id="user-update-button" href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
+							@if(Auth::user() && Auth::user()->id===$_user_User->id)
+								<a id="user-update-button" href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
+							@endif
 						</h3>
 
 					</div>
@@ -20,12 +22,12 @@
 								</p>
 							</div>
 							<div class="col-md-6">
-								<label>{{ Helper::trans('auth.name') }}:</label>
+								<label>{{ Helper::trans('database.users-name') }}:</label>
 								<p>{{ $_user_User->name }}</p>
-								<label>{{ Helper::trans('auth.email') }}:</label>
+								<label>{{ Helper::trans('database.users-email') }}:</label>
 								<p>{{ $_user_User->email }}</p>
-								<label>{{ Helper::trans('database.role') }}:</label>
-								<p>{{ $_user_User->role->name }}</p>
+								<label>{{ Helper::trans('database.roles') }}:</label>
+								<p>{{ Helper::trans('database.role-name-'.$_user_User->role->name) }}</p>
 							</div>
 						</div>
 					</div>

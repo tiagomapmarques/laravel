@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Administrator;
 use App\Models\Role;
 use App\Traits\ImagePathing as ImagePathing;
 use Config;
@@ -53,38 +54,35 @@ class User extends Authenticatable {
 	 */
 	protected static function boot() {
 		parent::boot();
-		// before saving a new user to the database
+		// before saving a new User to the database
 		static::creating(function($User) {
 			$User->hash = Helper::generateHash();
 			if(is_null($User->password)) {
 				$User->password = bcrypt($User->email);
 			}
 			if(is_null($User->role_id)) {
-				$Role_user = Role::where('name', 'user')->first();
-				$User->role()->associate($Role_user);
-			}
-			if(is_null($User->image)) {
-				$User->image = '';
+				$User->role()->associate(Role::where('model', 'User')->first());
 			}
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
 				$User->moveImage(null, true);
 			}
 		});
-		// before updating a new user in the database
+		// before updating a User in the database
 		static::updating(function($User) {
-			if(is_null($User->image)) {
-				$User->image = '';
-			}
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
 				$User->moveImage(null, true);
 			}
+		});
+		// before deleting a User from the database
+		static::deleting(function($User) {
+			File::delete($User->image);
 		});
 	}
 
 	/**
 	 * Function to return the User's role as an Eloquent relationship.
 	 *
-	 * This function returns the actual Role of the user.
+	 * This function returns the actual Role of the User.
 	 * It will also return an \App\Models\Role if it is used as a class property.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -103,50 +101,55 @@ class User extends Authenticatable {
 	}
 
 	/**
-	 * Function to return a valid image for the User.
+	 * Function to help querying the database for Users.
 	 *
-	 * This function will either return the User image or, if there is none,
-	 * the default image for the User class.
-	 *
-	 * @return boolean
+	 * @param  array  $columns
+	 * @param  array  $role_ids
+	 * @return array
 	 */
-	public function getImage() {
-		if(!$this->image || $this->image==='' || !file_exists($this->image)) {
-			return self::default_image();
-		}
-		return $this->image;
+	protected static function _all($columns = ['*'], $role_ids) {
+		return parent::all($columns)->whereIn('role_id', $role_ids);
 	}
 
 	/**
-	 * Function to re-locate the User image.
+	 * Function to return all Users from the database.
 	 *
-	 * Function to re-locate the User image to a specified location. If none
-	 * is provided, the file will just be moved to the default image location
-	 * for the User class. This function just updates the User model and does
-	 * not update the database. Manual saving is required.
-	 *
-	 * @param  string|null   $location
-	 * @param  string|null   $filename
-	 * @return boolean
+	 * @param  array  $columns
+	 * @return array
 	 */
-	public function moveImage($location = null, $filename = false) {
-		if(is_null($this->image) || $this->image==='') {
-			return false;
-		}
-		if(is_null($location)) {
-			$location = self::images_path();
-		}
-		if($filename) {
-			$path = explode('.', $this->image);
-			$filename = Helper::generateRandomFilename().'.'.$path[count($path)-1];
-		}
-		else {
-			$path = explode(DIRECTORY_SEPARATOR, $this->image);
-			$filename = $path[count($path)-1];
-		}
+	public static function all($columns = ['*']) {
+		$Roles = Role::allUser(['id']);
+		$role_ids = Helper::toSimpleArray($Roles, 'id');
+		return self::_all($columns, $role_ids);
+	}
 
-		$destination = $location.DIRECTORY_SEPARATOR.$filename;
-		File::move($this->image, $destination);
-		$this->image = $destination;
+	/**
+	 * Function to return all Users from the database, regardless of their role.
+	 *
+	 * @param  array  $columns
+	 * @return array
+	 */
+	public static function allRaw($columns = ['*']) {
+		return parent::all($columns);
+	}
+
+	/**
+	 * Function to restrict the scope of User's admin page to Users only.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @return void
+	 */
+	public function scopeUser($query) {
+		$query->where('role_id', Helper::toSimpleArray(Role::allUser('id'),'id'));
+	}
+
+	/**
+	 * Function to restrict the scope of User's admin page to Administrators only.
+	 *
+	 * @param  \Illuminate\Database\Eloquent\Builder  $query
+	 * @return void
+	 */
+	public function scopeAdmin($query) {
+		$query->where('role_id', Helper::toSimpleArray(Role::allAdmin('id'),'id'));
 	}
 }

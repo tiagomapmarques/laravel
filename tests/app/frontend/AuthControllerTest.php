@@ -17,8 +17,8 @@ class AuthControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testRegister() {
-		// just make new user and dont save it to the database
-		$password = 'password';
+		// just make new User and dont save it to the database
+		$password = Helper::generateRandomString();
 		$User = factory(User::class)->make([
 			'password' => bcrypt($password)
 		]);
@@ -42,13 +42,12 @@ class AuthControllerTest extends TestCase {
 					->see('Logout');
 			});
 
-		// test that the user was created in the database
+		// test that the User was created in the database
 		// and that it is not an admin
-		$role_id = Role::where('name', 'user')->first()->id;
 		$this->seeInDatabase('users', [
 			'name' => $User->name,
 			'email' => $User->email,
-			'role_id' => $role_id
+			'role_id' => Role::where('name', 'user')->first()->id
 		]);
 	}
 
@@ -58,8 +57,8 @@ class AuthControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testLoginLogout() {
-		// make new user and save it to the database
-		$password = 'password';
+		// make new User and save it to the database
+		$password = Helper::generateRandomString();
 		$User = factory(User::class)->create([
 			'password' => bcrypt($password)
 		]);
@@ -72,7 +71,7 @@ class AuthControllerTest extends TestCase {
 		$this->visit('/logout')
 			->assertResponseOk();
 
-		// test a regular user's login
+		// test a regular User's login
 		$this->visit('/')
 			->click('#login-button')
 			->seePageIs('/login')

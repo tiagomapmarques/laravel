@@ -2,6 +2,9 @@
 
 namespace App\Traits;
 
+use File;
+use Helper;
+
 /**
  * Image pathing
  *
@@ -17,7 +20,7 @@ trait ImagePathing {
 	protected static $base_image_path = 'images';
 
 	/**
-	 * Base image path under public folder.
+	 * Class image path under base image path.
 	 *
 	 * @var string|boolean
 	 */
@@ -31,6 +34,13 @@ trait ImagePathing {
 	protected static $default_image_name = 'default.jpg';
 
 	/**
+	 * Default class attribute to be called to get the image file location.
+	 *
+	 * @var string
+	 */
+	protected static $class_image_attribute = 'image';
+
+	/**
 	 * Function to retrieve the image path the class.
 	 *
 	 * This function retrieves the specific path for the images of this class.
@@ -38,7 +48,7 @@ trait ImagePathing {
 	 *
 	 * @return string
 	 */
-	public static function images_path() {
+	public static function imagesPath() {
 		if(self::$class_image_folder===false || !is_string(self::$class_image_folder) || strlen(self::$class_image_folder)<1) {
 			$child_class_array = explode('\\', get_called_class());
 			$class_folder = strtolower($child_class_array[count($child_class_array)-1]);
@@ -54,7 +64,59 @@ trait ImagePathing {
 	 *
 	 * @return string
 	 */
-	public static function default_image() {
-		return self::images_path().DIRECTORY_SEPARATOR.self::$default_image_name;
+	public static function defaultImage() {
+		return self::imagesPath().DIRECTORY_SEPARATOR.self::$default_image_name;
+	}
+
+	/**
+	 * Function to return a valid image for the User.
+	 *
+	 * This function will either return the User image or, if there is none,
+	 * the default image for the User class.
+	 *
+	 * @return boolean
+	 */
+	public function getImage() {
+		$image_attribute = self::$class_image_attribute;
+		$image = $this->$image_attribute;
+		if(!$image || $image==='' || !file_exists($image)) {
+			return self::defaultImage();
+		}
+		return $image;
+	}
+
+	/**
+	 * Function to re-locate the User image.
+	 *
+	 * Function to re-locate the User image to a specified location. If none
+	 * is provided, the file will just be moved to the default image location
+	 * for the User class. This function just updates the User model and does
+	 * not update the database. Manual saving is required.
+	 *
+	 * @param  string|null  $location
+	 * @param  boolean      $filename
+	 * @return boolean
+	 */
+	public function moveImage($location = null, $filename = false) {
+		$image_attribute = self::$class_image_attribute;
+		$image = $this->$image_attribute;
+		if(is_null($image) || $image==='') {
+			return false;
+		}
+		if(is_null($location)) {
+			$location = self::imagesPath();
+		}
+		if($filename) {
+			$path = explode('.', $image);
+			$filename = Helper::generateRandomFilename().'.'.$path[count($path)-1];
+		}
+		else {
+			$path = explode(DIRECTORY_SEPARATOR, $image);
+			$filename = $path[count($path)-1];
+		}
+
+		$destination = $location.DIRECTORY_SEPARATOR.$filename;
+		File::move($image, $destination);
+		$this->$image_attribute = $destination;
 	}
 }

@@ -4,6 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+use App\Models\Administrator;
+use App\Models\Role;
 use App\Models\User;
 
 /**
@@ -34,19 +36,44 @@ class UsersAdminTest extends AdminTestCase {
 	 * @return void
 	 */
 	public function testContent() {
-		// test dashboard page's content
+		// test Users page's content (the default one only)
 		$this->visit('/users')->within('.content-wrapper', function() {
-			$Users = User::all()->take(15);
-			$this->see('Users');
+			$Users = User::allRaw()->take(15);
+			$this->see('All');
 			foreach($Users as $User) {
 				$tmp = str_split($User->hash, 32);
 				$this->see($User->name)
 					->see($tmp[0])
 					->see($tmp[1])
 					->see($User->email)
-					->see($User->image);
+					->see($User->image)
+					->see(Helper::trans('database.role-name-'.$User->role->name))
+					->see('fa '.($User->isAdmin()?'fa-check':'fa-minus'));
 			}
 		});
+
+		// test that tabs have the right content
+		$Roles = Role::all();
+		foreach($Roles as $Role) {
+			$model = 'App\\Models\\'.$Role->model;
+			$Users = $model::all()->take(15);
+			$model_title = Helper::trans('database.role-name-'.$Role->name ,2);
+			$this->visit('/users')
+				->see($model_title)
+				->click($model_title)
+				->within('.content-wrapper', function() use ($Users) {
+					foreach($Users as $User) {
+						$tmp = str_split($User->hash, 32);
+						$this->see($User->name)
+							->see($tmp[0])
+							->see($tmp[1])
+							->see($User->email)
+							->see($User->image)
+							->see(Helper::trans('database.role-name-'.$User->role->name))
+							->see('fa '.($User->isAdmin()?'fa-check':'fa-minus'));
+					}
+				});
+		}
 	}
 
 	/**
@@ -56,24 +83,31 @@ class UsersAdminTest extends AdminTestCase {
 	 * @return void
 	 */
 	public function testCreateUser() {
-		$User = factory(User::class)->make();
+		$Roles = Role::all();
+		foreach($Roles as $Role) {
+			$User = factory(User::class)->make([
+				'role_id' => $Role->id
+			]);
 
-		// test creation
-		$this->visit('/users')->within('.content-wrapper', function() {
-			$this->click('New');
-		});
-		$this->type($User->name, 'name')
-			->type($User->email, 'email')
-			->press('Save');
+			// test creation of a User with a specific Role
+			$this->visit('/users')->within('.content-wrapper', function() {
+				$this->click('New');
+			});
+			$this->type($User->name, 'name')
+				->type($User->email, 'email')
+				->select($User->role_id, 'role_id')
+				->press('Save');
 
-		// check the user was created
-		$this->seeInDatabase('users', [
-			'name' => $User->name,
-			'email' => $User->email,
-			'image' => ''
-		]);
+			// check the User was created
+			$this->seeInDatabase('users', [
+				'name' => $User->name,
+				'email' => $User->email,
+				'image' => '',
+				'role_id' => $User->role_id
+			]);
 
-		User::destroy($User->id);
+			User::destroy($User->id);
+		}
 	}
 
 	/**
@@ -92,7 +126,7 @@ class UsersAdminTest extends AdminTestCase {
 			->type($User2->email, 'email')
 			->press('Save');
 
-		// check the user was created
+		// check the User was created
 		$this->seeInDatabase('users', [
 			'name' => $User2->name,
 			'email' => $User2->email,
@@ -111,14 +145,18 @@ class UsersAdminTest extends AdminTestCase {
 		$User = factory(User::class)->create();
 
 		// test the delete process
-		// TODO: perform the actual deletion
+		// TODO: perform the actual deletion instead of this hack
+		User::destroy($User->id);
 
-		// check the user was created
+		// check the User was created
 		// $this->dontSeeInDatabase('users', [
 		// 	'email' => $User->email,
 		// ]);
 
-		User::destroy($User->id);
+		// check the User was created
+		$this->notSeeInDatabase('users', [
+			'email' => $User->email
+		]);
 	}
 
 	/**

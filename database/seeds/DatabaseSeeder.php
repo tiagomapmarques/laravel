@@ -23,18 +23,18 @@ class DatabaseSeeder extends Seeder {
 		// - admin
 		$Admin_role = new Role();
 		$Admin_role->name = Config::get('auth.admin_role_prefix');
-		$Admin_role->class = 'Administrator';
+		$Admin_role->model = 'Administrator';
 		$Admin_role->save();
 		// - user
 		$User_role = new Role();
 		$User_role->name = 'user';
-		$User_role->class = 'User';
+		$User_role->model = 'User';
 		$User_role->save();
 
 		// create an initial administrator
 		$admin_email = 'admin@example.com';
-		$Admin = factory(App\Models\User::class, 'admin')->create([
-			'name' => 'Administrator',
+		$Admin = factory(App\Models\Administrator::class)->create([
+			'name' => 'Admin',
 			'email' => $admin_email,
 			'password' => bcrypt($admin_email),
 		]);
