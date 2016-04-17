@@ -1,4 +1,4 @@
-# Admin module
+# Roles and Models
 
 ## Roles
 Roles in Lurk have a name and a model. Name is the identifier of the Role and model

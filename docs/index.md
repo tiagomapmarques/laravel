@@ -11,10 +11,7 @@ SleepingOwl [here](admin.md).
 Lurk's implementation of Roles is extensible. Check out its documentation [here](roles.md).
 
 ## File uploads and processing
-- processFile/Image functions
-- Default folders (imagepathing)
-- Default images for classes (default.jpg)
-- Interaction with Admin module
+For file/image upload/procesing documentation, click [here](files.md).
 
 ## Search
 - Searchable attributes
