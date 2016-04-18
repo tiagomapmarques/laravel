@@ -1,8 +1,7 @@
 <?php
 
-use App as App;
 use Config as Config;
-use Session as Session;
+use Request as Request;
 
 /**
  * Lurk helper class
@@ -21,66 +20,6 @@ class Helper {
 	}
 
 	/**
-	 * Function to translate single or multiple phrases.
-	 *
-	 * This function can be seen as an alias for the "trans" and "trans_choice"
-	 * functions of Laravel. However, it will translate to the singular form
-	 * by default, providing a singular way of getting the translation you want,
-	 * without breaking your code if you update the translations. If you want,
-	 * you can also specify a locale (regardless of what locale is applied).
-	 *
-	 * @param  string       $identifier
-	 * @param  integer      $choice
-	 * @param  string|null  $locale
-	 * @return string
-	 */
-	public static function trans($identifier, $choice = 1, $locale = null) {
-		$locale_is_available = in_array($locale, Helper::getAllLocales());
-		if($locale_is_available) {
-			$previous_locale = Helper::getLocale();
-			Helper::applyLocale($locale);
-		}
-		$original_translation = trans($identifier);
-		if($locale_is_available) {
-			Helper::applyLocale($previous_locale);
-		}
-		$phrase = explode('|', $original_translation);
-		if(count($phrase)<$choice) {
-			$choice = count($phrase);
-		}
-		if($choice<1) {
-			return $original_translation;
-		}
-		return $phrase[$choice-1];
-	}
-
-	/**
-	 * Function to get the locale from Session data.
-	 *
-	 * @return string
-	 */
-	public static function getLocale() {
-		Helper::applyLocale();
-		return Session::get('locale');
-	}
-
-	/**
-	 * Function to set and apply a locale from Session data or a parameter.
-	 *
-	 * @param  string|null  $locale
-	 * @return void
-	 */
-	public static function applyLocale($locale = null) {
-		if(!is_null($locale) && is_string($locale) && strlen($locale)>0) {
-			Session::put('locale', $locale);
-		}
-		if(!Session::has('locale')) {
-			Session::put('locale', Config::get('app.fallback_locale'));
-		}
-		App::setLocale(Session::get('locale'));
-	}
-
-	/**
 	 * Function check if the current route is an admin route.
 	 *
 	 * @return boolean
@@ -88,23 +27,6 @@ class Helper {
 	public static function routeIsAdmin() {
 		$prefix = Config::get('sleeping_owl.url_prefix');
 		return Request::is($prefix) || Request::is($prefix.'/*');
-	}
-
-	/**
-	 * Function to return all available traslations (locales).
-	 *
-	 * @return array
-	 */
-	public static function getAllLocales() {
-		$path = base_path().DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'lang';
-		$items = scandir($path);
-		$folders = Array();
-		foreach ($items as $item) {
-			if(is_dir($path.DIRECTORY_SEPARATOR.$item) && $item!=='.' && $item!=='..') {
-				$folders[] = $item;
-			}
-		}
-		return $folders;
 	}
 
 	/**
@@ -120,48 +42,6 @@ class Helper {
 			$final_array[] = $value->$attribute;
 		}
 		return $final_array;
-	}
-
-	/**
-	 * Function to generate a random string.
-	 *
-	 * @param  integer  $length
-	 * @param  boolean  $case_sensitive
-	 * @param  boolean  $additional_chars
-	 * @return string
-	 */
-	public static function generateRandomString($length = 32, $case_sensitive = false, $additional_chars = false) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-		if($case_sensitive) {
-			$characters .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		}
-		if($additional_chars) {
-			$characters .= '-_';
-		}
-		$characters_length = strlen($characters);
-		$random_string = '';
-		for ($i = 0; $i < $length; $i++) {
-			$random_string .= $characters[rand(0, $characters_length - 1)];
-		}
-		return $random_string;
-	}
-
-	/**
-	 * Function to generate a random filename with a datetime stamp prefix.
-	 *
-	 * @return string
-	 */
-	public static function generateRandomFilename() {
-		return date('YmdHis').'_'.Helper::generateRandomString();
-	}
-
-	/**
-	 * Function to generate a hash.
-	 *
-	 * @return string
-	 */
-	public static function generateHash() {
-		return Helper::generateRandomString(64, true, true);
 	}
 
 	/**
