@@ -2,7 +2,7 @@
 
 namespace App\Admin\Addons\Display\Column;
 
-use Helper;
+use Language;
 use SleepingOwl\Admin\Display\Column\Text as Text;
 
 // TODO: check if bug is gone...
@@ -127,7 +127,7 @@ class Translatable extends Text {
 			$value;
 
 		// preform the translation
-		$this->result = Helper::trans(
+		$this->result = Language::trans(
 			$this->prefix.'.'.$translation_string,
 			$this->choice
 		);

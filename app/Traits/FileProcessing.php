@@ -35,7 +35,7 @@ trait FileProcessing {
 					$valid_files[] = [ $file, $file ];
 				}
 				else {
-					$split = explode(DIRECTORY_SEPARATOR, $file);
+					$split = explode(DS, $file);
 					$value = array_splice($split, count($split)-1, 1);
 					$valid_files[] = [ $file, $value[0] ];
 				}
@@ -46,7 +46,7 @@ trait FileProcessing {
 		}
 
 		$zip = new \ZipArchive();
-		if($zip->open($path.DIRECTORY_SEPARATOR.$filename, $overwrite? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true) {
+		if($zip->open($path.DS.$filename, $overwrite? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true) {
 			return false;
 		}
 		foreach($valid_files as $file) {
@@ -54,7 +54,7 @@ trait FileProcessing {
 		}
 
 		$zip->close();
-		return file_exists($path.DIRECTORY_SEPARATOR.$filename);
+		return file_exists($path.DS.$filename);
 	}
 
 	/**
@@ -100,7 +100,7 @@ trait FileProcessing {
 			return false;
 		}
 
-		$img = Image::make($path.DIRECTORY_SEPARATOR.$filename);
+		$img = Image::make($path.DS.$filename);
 		if(is_null($width) && is_null($height)) {
 			$width = $img->width();
 		}
@@ -110,7 +110,7 @@ trait FileProcessing {
 		});
 
 		$img->encode($extension, $quality);
-		$img->save($path.DIRECTORY_SEPARATOR.$filename);
+		$img->save($path.DS.$filename);
 		return true;
 	}
 }

@@ -43,7 +43,7 @@ class UserControllerTest extends TestCase {
 		$this->visit('/home')->within('.body-content', function() use($Role) {
 			$this->see($this->User->name)
 				->see($this->User->email)
-				->see(Helper::trans('database.role-name-'.$Role->name));
+				->see(Language::trans('database.role-name-'.$Role->name));
 		});
 	}
 
@@ -59,7 +59,7 @@ class UserControllerTest extends TestCase {
 			$this->fail('Upload test file is missing!');
 		}
 		$old_image = $this->User->getImage();
-		$new_name = Helper::generateRandomString();
+		$new_name = Generate::string();
 		$Role = Role::where('name', 'user')->first();
 
 		// navigate to and submit new User details
@@ -93,7 +93,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testUserPassword() {
 		// make new User and save it to the database
-		$new_password = Helper::generateHash();
+		$new_password = Generate::hash();
 
 		// change the User password
 		$this->visit('/home')
@@ -133,7 +133,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->password = Helper::generateRandomString();
+		$this->password = Generate::string();
 		$this->User = factory(User::class)->create([
 			'password' => bcrypt($this->password)
 		]);

@@ -6,7 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 
 AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
-	$model->setTitle(Helper::trans('database.users',2));
+	$model->setTitle(Language::trans('database.users',2));
 
 	// Display
 	$model->onDisplay(function() {
@@ -15,10 +15,10 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 		$display->setTabs(function() {
 			$tabs = [];
 			$columns = [
-				AdminColumn::text('name', Helper::trans('database.users-name')),
-				AdminColumn::text('email', Helper::trans('database.users-email')),
-				AdminColumn::hash('hash', Helper::trans('database.users-id')),
-				AdminColumn::image('image', Helper::trans('database.users-image')),
+				AdminColumn::text('name', Language::trans('database.users-name')),
+				AdminColumn::text('email', Language::trans('database.users-email')),
+				AdminColumn::hash('hash', Language::trans('database.users-id')),
+				AdminColumn::image('image', Language::trans('database.users-image')),
 				AdminColumn::translatable('role_id', 'Role')
 					->setReference(Role::class, 'id', 'name'),
 				AdminColumn::boolfunction('isAdmin', 'is Admin?')
@@ -34,7 +34,7 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				$role_table->getScopes()->push($Role->name);
 				$role_table->setColumns($columns);
 				$tabs[] = AdminDisplay::tab($role_table)
-					->setLabel(Helper::trans('database.role-name-'.$Role->name, 2));
+					->setLabel(Language::trans('database.role-name-'.$Role->name, 2));
 			}
 			return $tabs;
 		});
@@ -44,12 +44,12 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 	// Create And Edit
 	$model->onCreateAndEdit(function() {
 		return $form = AdminForm::panel()->addBody(
-			AdminFormElement::text('name', Helper::trans('database.users-name'))
+			AdminFormElement::text('name', Language::trans('database.users-name'))
 				->required(),
-			AdminFormElement::text('email', Helper::trans('database.users-email'))
+			AdminFormElement::text('email', Language::trans('database.users-email'))
 				->required(),
-			AdminFormElement::image('image', Helper::trans('database.users-image')),
-			AdminFormElement::select('role_id', Helper::trans('database.roles'))
+			AdminFormElement::image('image', Language::trans('database.users-image')),
+			AdminFormElement::select('role_id', Language::trans('database.roles'))
 				->setModelForOptions(new Role)
 				->setDisplay('name')
 		);

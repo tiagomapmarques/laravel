@@ -11,9 +11,9 @@
 ?>
 {!! Form::open(['method' => 'GET', 'url' => route('search'), 'class' => $_search_class, 'style' => $_search_style]) !!}
 	<div class="form-group">
-		{{ Form::text('q', $_search_text, ['class' => 'form-control', 'placeholder' => Helper::trans('common.search')]) }}
+		{{ Form::text('q', $_search_text, ['class' => 'form-control', 'placeholder' => Language::trans('common.search')]) }}
 	</div>
-	{{-- Form::submit(Helper::trans('common.search'), array('class' => 'btn btn-primary')) --}}
+	{{-- Form::submit(Language::trans('common.search'), array('class' => 'btn btn-primary')) --}}
 {!! Form::close() !!}
 <?php
 	unset($_search_class);

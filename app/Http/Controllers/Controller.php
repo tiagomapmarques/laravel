@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
 use App\Traits\FileProcessing as FileProcessing;
-use Helper;
+use Language;
 
 /**
  * Base class for controllers
@@ -30,7 +30,7 @@ abstract class Controller extends BaseController {
 	 * page in order for it not to be ambiguous during page processing.
 	 */
 	public function __construct() {
-		Helper::applyLocale();
+		Language::apply();
 		//parent::__construct(); // BaseController has no construct
 	}
 }

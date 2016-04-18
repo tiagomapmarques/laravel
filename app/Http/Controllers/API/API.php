@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Helper;
+use Language;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -38,7 +38,7 @@ abstract class API extends BaseController {
 	 * for it not to be ambiguous during processing.
 	 */
 	public function __construct() {
-		Helper::applyLocale();
+		Language::apply();
 		//parent::__construct(); // BaseController has no construct
 	}
 

@@ -15,7 +15,7 @@
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav-1" aria-expanded="false">
-					<span class="sr-only">{{ Helper::trans('common.toggle').' '.Helper::trans('common.navigation') }}</span>
+					<span class="sr-only">{{ Language::trans('common.toggle').' '.Language::trans('common.navigation') }}</span>
 					<span id="navbar-toggle-icon-1" class="icon-bar"></span>
 					<span id="navbar-toggle-icon-2" class="icon-bar"></span>
 					<span id="navbar-toggle-icon-3" class="icon-bar"></span>
@@ -26,7 +26,7 @@
 			<div class="collapse navbar-collapse" id="collapsable-nav-1">
 
 				<ul class="nav navbar-nav">
-					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="{{ route('home') }}">{{ Helper::trans('common.home') }}</a></li>
+					<li class="{{ $_navigation_selected==='home'?'active':'' }}"><a href="{{ route('home') }}">{{ Language::trans('common.home') }}</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -40,7 +40,7 @@
 
 					@if($_navigation_search)
 						<li class="hidden-sm hidden-md hidden-lg">
-							<a href="{{ route('search') }}">{{ Helper::trans('common.search') }}</a>
+							<a href="{{ route('search') }}">{{ Language::trans('common.search') }}</a>
 						<li>
 					@endif
 				</ul>

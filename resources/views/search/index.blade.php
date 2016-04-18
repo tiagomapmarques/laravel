@@ -27,11 +27,11 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title" style="text-align: center;">{{ $class_name }} {{ Helper::trans('common.result',2) }}</h3>
+							<h3 class="panel-title" style="text-align: center;">{{ $class_name }} {{ Language::trans('common.result',2) }}</h3>
 						</div>
 						<div class="panel-body" style="text-align: center;">
 							@if(count($all)<=0)
-								<p>0 {{ strtolower(Helper::trans('common.result',2)) }}</p>
+								<p>0 {{ strtolower(Language::trans('common.result',2)) }}</p>
 							@else
 								@foreach($all as $item)
 									<a href="/{{ $class }}/{{ $item->hash }}"><p>
