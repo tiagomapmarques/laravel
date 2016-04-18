@@ -20,7 +20,7 @@ class Hash extends Text {
 	 *
 	 * @var integer
 	 */
-	protected $chars_per_line = 32;
+	protected $chars_per_line = 16;
 
 	/**
 	 * Main output variable from this class.

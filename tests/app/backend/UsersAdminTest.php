@@ -41,13 +41,13 @@ class UsersAdminTest extends AdminTestCase {
 			$Users = User::allRaw()->take(15);
 			$this->see('All');
 			foreach($Users as $User) {
-				$tmp = str_split($User->hash, 32);
+				$tmp = str_split($User->hash, 16);
 				$this->see($User->name)
 					->see($tmp[0])
 					->see($tmp[1])
 					->see($User->email)
 					->see($User->image)
-					->see(Helper::trans('database.role-name-'.$User->role->name))
+					->see(Language::trans('database.role-name-'.$User->role->name))
 					->see('fa '.($User->isAdmin()?'fa-check':'fa-minus'));
 			}
 		});
@@ -57,19 +57,19 @@ class UsersAdminTest extends AdminTestCase {
 		foreach($Roles as $Role) {
 			$model = 'App\\Models\\'.$Role->model;
 			$Users = $model::all()->take(15);
-			$model_title = Helper::trans('database.role-name-'.$Role->name ,2);
+			$model_title = Language::trans('database.role-name-'.$Role->name ,2);
 			$this->visit('/users')
 				->see($model_title)
 				->click($model_title)
 				->within('.content-wrapper', function() use ($Users) {
 					foreach($Users as $User) {
-						$tmp = str_split($User->hash, 32);
+						$tmp = str_split($User->hash, 16);
 						$this->see($User->name)
 							->see($tmp[0])
 							->see($tmp[1])
 							->see($User->email)
 							->see($User->image)
-							->see(Helper::trans('database.role-name-'.$User->role->name))
+							->see(Language::trans('database.role-name-'.$User->role->name))
 							->see('fa '.($User->isAdmin()?'fa-check':'fa-minus'));
 					}
 				});

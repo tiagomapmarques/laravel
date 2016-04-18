@@ -2,6 +2,8 @@
 
 define('LARAVEL_START', microtime(true));
 
+define('DS', DIRECTORY_SEPARATOR);
+
 /* --------------------------------------------------------------------------
  *  Register The Composer Auto Loader
  * --------------------------------------------------------------------------

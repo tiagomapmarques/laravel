@@ -45,7 +45,7 @@ Route::get('/', ['as' => 'root', 'uses' => 'RootController@index']);
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
 Route::get('locale/{locale?}', ['as' => 'locale', 'uses' => function($locale = null) {
-	Helper::applyLocale($locale);
+	Language::apply($locale);
 	return redirect()->back();
 }]);
 

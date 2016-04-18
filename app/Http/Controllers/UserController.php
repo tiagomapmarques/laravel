@@ -7,8 +7,9 @@ use App\Http\Requests\UserPasswordRequest as PasswordRequest;
 use App\Http\Requests\UserUpdateRequest as UpdateRequest;
 use App\Models\User;
 use File;
+use Generate;
 use Hash;
-use Helper;
+use Language;
 use Session;
 
 /**
@@ -63,7 +64,7 @@ class UserController extends Controller {
 		// process image file, if there is one
 		$file = $request->file('image');
 		if(!is_null($file) && $file->isValid()) {
-			$filename = Helper::generateRandomFilename().'.jpg';
+			$filename = Generate::filename().'.jpg';
 			$file_was_written = $this->processImage(
 				$file, User::imagesPath(), $filename,
 				'jpg', 640, 640
@@ -73,7 +74,7 @@ class UserController extends Controller {
 					// remove old image file to save disk space
 					File::delete($User->image);
 				}
-				$User->image = User::imagesPath().DIRECTORY_SEPARATOR.$filename;
+				$User->image = User::imagesPath().DS.$filename;
 			}
 		}
 
@@ -102,17 +103,17 @@ class UserController extends Controller {
 	public function postPassword(PasswordRequest $request) {
 		$User = Auth::user();
 		if(!Hash::check($request->old_password, $User->password)) {
-			Session::flash('error', Helper::trans('auth.error-old-password'));
+			Session::flash('error', Language::trans('auth.error-old-password'));
 			return redirect()->back();
 		}
 		if($request->password!==$request->password_confirmation) {
-			Session::flash('error', Helper::trans('auth.error-password-match'));
+			Session::flash('error', Language::trans('auth.error-password-match'));
 			return redirect()->back();
 		}
 
 		$User->password = bcrypt($request->password);
 		$User->save();
-		Session::flash('message', Helper::trans('auth.message-password-change'));
+		Session::flash('message', Language::trans('auth.message-password-change'));
 		return redirect()->route('home');
 	}
 }

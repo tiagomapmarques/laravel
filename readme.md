@@ -20,7 +20,7 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk br
 - **Authentication** - User roles implemented and extensible, with fully scaffolded and tweaked authentication
 - **SleepingOwl** - Admin pages, routing and useful addons are configured and tuned-up to be ready to go
 - **Demo** - _coming June 2016_
-- **Stable** - Production-oriented versioning (composer.lock) and fully e2e tested
+- **Stability** - Production-oriented versioning (composer.lock) and fully e2e tested
 - **Also linting** - _Beautiful code_ needs beautiful standards for programming
 
 ## Quick start

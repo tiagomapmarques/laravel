@@ -18,7 +18,7 @@ class AuthControllerTest extends TestCase {
 	 */
 	public function testRegister() {
 		// just make new User and dont save it to the database
-		$password = Helper::generateRandomString();
+		$password = Generate::string();
 		$User = factory(User::class)->make([
 			'password' => bcrypt($password)
 		]);
@@ -58,7 +58,7 @@ class AuthControllerTest extends TestCase {
 	 */
 	public function testLoginLogout() {
 		// make new User and save it to the database
-		$password = Helper::generateRandomString();
+		$password = Generate::string();
 		$User = factory(User::class)->create([
 			'password' => bcrypt($password)
 		]);

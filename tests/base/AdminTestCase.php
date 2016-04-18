@@ -33,7 +33,7 @@ abstract class AdminTestCase extends TestCase {
 	 * @return \Illuminate\Foundation\Application
 	 */
 	public function createApplication() {
-		$this->baseUrl .= DIRECTORY_SEPARATOR.$this->adminPrefix;
+		$this->baseUrl .= DS.$this->adminPrefix;
 		return parent::createApplication();
 	}
 
@@ -45,7 +45,7 @@ abstract class AdminTestCase extends TestCase {
 	public function setUp() {
 		parent::setUp();
 		// create an administrator
-		$this->password = Helper::generateRandomString();
+		$this->password = Generate::string();
 		$this->Admin = factory(Administrator::class)->create([
 			'password' => bcrypt($this->password)
 		]);

@@ -10,7 +10,7 @@
 @else
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 @endif
-<html lang="{{ App::getLocale() }}">
+<html lang="{{ Language::get() }}">
 <head>
 	@if($_app_html5)
 		<meta charset="utf-8">
@@ -21,8 +21,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<meta name="description" content="{{ Helper::trans('web.description') }}" />
-	<meta name="keywords" content="{{ Helper::trans('web.keywords') }}">
+	<meta name="description" content="{{ Language::trans('web.description') }}" />
+	<meta name="keywords" content="{{ Language::trans('web.keywords') }}">
 	<meta name="author" content="Legendary Coders">
 
 	<!-- Web-crawlers -->
@@ -42,7 +42,7 @@
 	}
 	</script>
 
-	<title>{{ Helper::trans('web.title') }}</title>
+	<title>{{ Language::trans('web.title') }}</title>
 
 	<!-- Fonts -->
 	@include('layouts._fonts')

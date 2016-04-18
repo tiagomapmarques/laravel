@@ -10,6 +10,7 @@ use App\Traits\ImagePathing as ImagePathing;
 use Config;
 use File;
 use Helper;
+use Generate;
 
 /**
  * User model
@@ -56,7 +57,7 @@ class User extends Authenticatable {
 		parent::boot();
 		// before saving a new User to the database
 		static::creating(function($User) {
-			$User->hash = Helper::generateHash();
+			$User->hash = Generate::hash();
 			if(is_null($User->password)) {
 				$User->password = bcrypt($User->email);
 			}

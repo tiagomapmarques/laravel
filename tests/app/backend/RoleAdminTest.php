@@ -33,7 +33,7 @@ class RoleAdminTest extends AdminTestCase {
 			$Roles = Role::all();
 			foreach($Roles as $Role) {
 				$this->see($Role->name)
-					->see(Helper::trans('database.role-name-'.$Role->name));
+					->see(Language::trans('database.role-name-'.$Role->name));
 			}
 		});
 	}

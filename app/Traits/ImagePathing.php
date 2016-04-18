@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use File;
-use Helper;
+use Generate;
 
 /**
  * Image pathing
@@ -56,7 +56,7 @@ trait ImagePathing {
 		else {
 			$class_folder = self::$class_image_folder;
 		}
-		return self::$base_image_path.DIRECTORY_SEPARATOR.$class_folder;
+		return self::$base_image_path.DS.$class_folder;
 	}
 
 	/**
@@ -65,7 +65,7 @@ trait ImagePathing {
 	 * @return string
 	 */
 	public static function defaultImage() {
-		return self::imagesPath().DIRECTORY_SEPARATOR.self::$default_image_name;
+		return self::imagesPath().DS.self::$default_image_name;
 	}
 
 	/**
@@ -108,14 +108,14 @@ trait ImagePathing {
 		}
 		if($filename) {
 			$path = explode('.', $image);
-			$filename = Helper::generateRandomFilename().'.'.$path[count($path)-1];
+			$filename = Generate::filename().'.'.$path[count($path)-1];
 		}
 		else {
-			$path = explode(DIRECTORY_SEPARATOR, $image);
+			$path = explode(DS, $image);
 			$filename = $path[count($path)-1];
 		}
 
-		$destination = $location.DIRECTORY_SEPARATOR.$filename;
+		$destination = $location.DS.$filename;
 		File::move($image, $destination);
 		$this->$image_attribute = $destination;
 	}

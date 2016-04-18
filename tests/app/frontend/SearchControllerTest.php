@@ -52,8 +52,8 @@ class SearchControllerTest extends TestCase {
 	public function searchData() {
 		return array(
 			array('', null),
-			array(Helper::generateRandomString(), '0 results'),
-			array(Helper::generateRandomString().' ', null),
+			array(Generate::string(), '0 results'),
+			array(Generate::string().' ', null),
 			array('*', '0 results'),
 			array('', '0 results'),
 		);

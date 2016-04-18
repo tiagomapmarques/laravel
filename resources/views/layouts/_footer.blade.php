@@ -6,17 +6,17 @@
 		<div class="container-fluid">
 
 				<ul class="nav navbar-nav navbar-left">
-					<?php $_navigation_locales = Helper::getAllLocales(); ?>
+					<?php $_navigation_locales = Language::getAll(); ?>
 					@if(count($_navigation_locales)>1)
 						<li class="dropup">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{-- Helper::trans('common.language',1) --}} <span class="fa fa-globe"></span> <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{-- Language::trans('common.language',1) --}} <span class="fa fa-globe"></span> <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<?php $_navigation_original_locale = Helper::getLocale(); ?>
+								<?php $_navigation_original_locale = Language::get(); ?>
 								@foreach($_navigation_locales as $locale)
-									<?php Helper::applyLocale($locale); ?>
-									<li><a href="/locale/{{ $locale }}">{{ Helper::trans('web.language-name') }}</a></li>
+									<?php Language::apply($locale); ?>
+									<li><a href="/locale/{{ $locale }}">{{ Language::trans('web.language-name') }}</a></li>
 								@endforeach
-								<?php Helper::applyLocale($_navigation_original_locale); ?>
+								<?php Language::apply($_navigation_original_locale); ?>
 							</ul>
 						</li>
 					@endif

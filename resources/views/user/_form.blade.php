@@ -15,7 +15,7 @@
 {!! Form::open(['url' => route($_user_route), 'class' => 'form-horizontal', 'files' => $_user_image]) !!}
 
 	<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-		{{ Form::label('name', Helper::trans('auth.name'), ['for' => 'name', 'class' => 'col-md-4 control-label']) }}
+		{{ Form::label('name', Language::trans('auth.name'), ['for' => 'name', 'class' => 'col-md-4 control-label']) }}
 		<div class="col-md-6">
 			{{ Form::text('name', isset($_user_User)? $_user_User->name : old('name'), ['class' => 'form-control']) }}
 			@if ($errors->has('name'))
@@ -32,7 +32,7 @@
 
 	@if($_user_image)
 		<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-			{{ Form::label('image', Helper::trans('auth.image').' (Max:'.Helper::getUploadLimit('mb').'MB)', ['for' => 'image', 'class' => 'col-md-4 control-label']) }}
+			{{ Form::label('image', Language::trans('auth.image').' (Max:'.Helper::getUploadLimit('mb').'MB)', ['for' => 'image', 'class' => 'col-md-4 control-label']) }}
 			<div class="col-md-6">
 				{{ Form::file('image') }}
 				@if ($errors->has('image'))
@@ -46,10 +46,10 @@
 
 	<div class="form-group">
 		<div class="col-md-6 col-md-offset-4">
-			{{ Form::submit(Helper::trans('auth.'.$_user_button_text), ['class' => 'submit btn btn-primary']) }}
+			{{ Form::submit(Language::trans('auth.'.$_user_button_text), ['class' => 'submit btn btn-primary']) }}
 			@if(!$_user_registration)
-				<a href="{{ route('home') }}" class="submit btn btn-danger">{{ Helper::trans('auth.cancel') }}</a>
-				<a href="{{ route('user.password') }}" class="btn btn-link">{{ Helper::trans('auth.password-change') }}</a>
+				<a href="{{ route('home') }}" class="submit btn btn-danger">{{ Language::trans('auth.cancel') }}</a>
+				<a href="{{ route('user.password') }}" class="btn btn-link">{{ Language::trans('auth.password-change') }}</a>
 			@endif
 		</div>
 	</div>

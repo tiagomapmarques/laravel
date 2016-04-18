@@ -32,7 +32,9 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/Helper.php"
+            "app/Helpers/Helper.php",
+            "app/Helpers/Generate.php",
+            "app/Helpers/Language.php"
         ]
     },
     "autoload-dev": {

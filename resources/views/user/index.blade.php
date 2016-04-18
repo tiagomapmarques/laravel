@@ -7,7 +7,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title" style="text-align: center;">
-							<span>{{ Helper::trans('user.details') }}</span>
+							<span>{{ Language::trans('user.details') }}</span>
 							@if(Auth::user() && Auth::user()->id===$_user_User->id)
 								<a id="user-update-button" href="{{ route('user.update') }}"><span class="fa fa-pencil" style="float: right;"></span></a>
 							@endif
@@ -22,12 +22,12 @@
 								</p>
 							</div>
 							<div class="col-md-6">
-								<label>{{ Helper::trans('database.users-name') }}:</label>
+								<label>{{ Language::trans('database.users-name') }}:</label>
 								<p>{{ $_user_User->name }}</p>
-								<label>{{ Helper::trans('database.users-email') }}:</label>
+								<label>{{ Language::trans('database.users-email') }}:</label>
 								<p>{{ $_user_User->email }}</p>
-								<label>{{ Helper::trans('database.roles') }}:</label>
-								<p>{{ Helper::trans('database.role-name-'.$_user_User->role->name) }}</p>
+								<label>{{ Language::trans('database.roles') }}:</label>
+								<p>{{ Language::trans('database.role-name-'.$_user_User->role->name) }}</p>
 							</div>
 						</div>
 					</div>
