@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": "^5.5.9 || ^7.0",
-        "laravel/framework": "5.2.*",
+        "laravel/framework": "5.2.31",
         "ext-openssl": "*",
         "ext-mbstring": "*",
         "ext-pdo_sqlite": "*",
@@ -15,7 +15,7 @@
         "intervention/image": "2.3.*",
         "ext-fileinfo": "*",
         "ext-imagick": "*",
-        "laravelrus/sleepingowl": "4.*@dev"
+        "laravelrus/sleepingowl": "4.41.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
