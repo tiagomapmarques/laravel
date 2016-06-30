@@ -40,6 +40,15 @@ return [
 	'middleware' => ['web', 'admin'],
 
 	/* --------------------------------------------------------------------------
+	 *  Authentication default provider
+	 * --------------------------------------------------------------------------
+	 *
+	 * Table to be used for the authentication
+	 *
+	 */
+	'auth_provider' => 'users',
+
+	/* --------------------------------------------------------------------------
 	 *  Admin Path
 	 * --------------------------------------------------------------------------
 	 *
@@ -58,6 +67,15 @@ return [
 	'imagesUploadDirectory' => 'images/admin/uploads',
 
 	/* --------------------------------------------------------------------------
+	 *  Files Upload Folder
+	 * --------------------------------------------------------------------------
+	 *
+	 * File upload folder, relative to the public folder.
+	 *
+	 */
+	'filesUploadDirectory' => 'images/admin/uploads',
+
+	/* --------------------------------------------------------------------------
 	 *  Template
 	 * --------------------------------------------------------------------------
 	 *
@@ -74,8 +92,8 @@ return [
 	 *
 	 */
 	'datetimeFormat' => 'd.m.Y H:i',
-	'dateFormat'	 => 'd.m.Y',
-	'timeFormat'	 => 'H:i',
+	'dateFormat'     => 'd.m.Y',
+	'timeFormat'     => 'H:i',
 
 	/* --------------------------------------------------------------------------
 	 *  Wysiwyg
@@ -101,6 +119,22 @@ return [
 	],
 
 	/* --------------------------------------------------------------------------
+	 *  DataTables
+	 * --------------------------------------------------------------------------
+	 *
+	 * Default settings for the database
+	 *
+	 */
+	'datatables' => [],
+
+	/* --------------------------------------------------------------------------
+	 *  Breadcrumbs
+	 * --------------------------------------------------------------------------
+	 *
+	 */
+	'breadcrumbs' => true,
+
+	/* --------------------------------------------------------------------------
 	 *  Autoloaded Service Providers
 	 * --------------------------------------------------------------------------
 	 *
@@ -114,6 +148,7 @@ return [
 		KodiCMS\Assets\AssetsServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
 		SleepingOwl\Admin\Providers\AdminServiceProvider::class,
+		DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 	],
 
 	/* --------------------------------------------------------------------------
@@ -126,10 +161,11 @@ return [
 	 */
 	'aliases' => [
 		'Assets'         => KodiCMS\Assets\Facades\Assets::class,
-		'PackageManager' => KodiCMS\Assets\Facades\PackageManager::class,
-		'Meta'           => KodiCMS\Assets\Facades\Meta::class,
+		'Breadcrumbs'    => DaveJamesMiller\Breadcrumbs\Facade::class,
 		'Form'           => Collective\Html\FormFacade::class,
 		'HTML'           => Collective\Html\HtmlFacade::class,
+		'Meta'           => KodiCMS\Assets\Facades\Meta::class,
+		'PackageManager' => KodiCMS\Assets\Facades\PackageManager::class,
 		'WysiwygManager' => SleepingOwl\Admin\Facades\WysiwygManager::class,
 
 		'AdminSection'        => SleepingOwl\Admin\Facades\Admin::class,
