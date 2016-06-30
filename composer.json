@@ -52,15 +52,18 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "php artisan optimize",
+            "mkdir -p public/packages/sleepingowl && cp -rf vendor/laravelrus/sleepingowl/public/* ./public/packages/sleepingowl"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "mkdir -p public/packages/sleepingowl && cp -rf vendor/laravelrus/sleepingowl/public/* ./public/packages/sleepingowl"
         ],
         "clean": [
             "rm -rf vendor",
-            "rm -rf node_modules"
+            "rm -rf node_modules",
+            "rm -rf public/packages/sleepingowl"
         ],
         "setup": [
             "composer install",
