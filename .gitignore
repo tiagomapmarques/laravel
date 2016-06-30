@@ -15,6 +15,7 @@ Homestead.json
 /public/css/*.css.map
 /public/build/*
 /public/build/css/*.css.map
+/public/packages/*
 
 # User space
 /public/storage
