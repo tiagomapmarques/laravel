@@ -47,6 +47,7 @@ class UsersAdminTest extends AdminTestCase {
 					->see($tmp[1])
 					->see($User->email)
 					->see($User->image)
+					->see($User->role->id)
 					->see(Language::trans('database.role-name-'.$User->role->name))
 					->see('fa '.($User->isAdmin()?'fa-check':'fa-minus'));
 			}
@@ -69,6 +70,7 @@ class UsersAdminTest extends AdminTestCase {
 							->see($tmp[1])
 							->see($User->email)
 							->see($User->image)
+							->see($User->role->id)
 							->see(Language::trans('database.role-name-'.$User->role->name))
 							->see('fa '.($User->isAdmin()?'fa-check':'fa-minus'));
 					}

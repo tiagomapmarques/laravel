@@ -19,9 +19,11 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::text('email', Language::trans('database.users-email')),
 				AdminColumn::hash('hash', Language::trans('database.users-id')),
 				AdminColumn::image('image', Language::trans('database.users-image')),
+				AdminColumn::reference('role_id', Role::class, 'Role ID')
+					->setReference('id'),
 				AdminColumn::translatable('role_id', 'Role')
 					->setReference(Role::class, 'id', 'name'),
-				AdminColumn::boolfunction('isAdmin', 'is Admin?')
+				AdminColumn::boolean('isAdmin', 'is Admin?')
 			];
 
 			$all_table = AdminDisplay::table()->paginate(15);
