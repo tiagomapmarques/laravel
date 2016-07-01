@@ -19,10 +19,8 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::text('email', Language::trans('database.users-email')),
 				AdminColumn::hash('hash', Language::trans('database.users-id')),
 				AdminColumn::image('image', Language::trans('database.users-image')),
-				AdminColumn::reference('role_id', Role::class, 'Role ID')
-					->setReference('id'),
-				AdminColumn::translatable('role_id', 'Role')
-					->setReference(Role::class, 'id', 'name'),
+				AdminColumn::reference('role_id', 'Role ID'),
+				AdminColumn::translatable('role_id', 'name', 'Role'),
 				AdminColumn::boolean('isAdmin', 'is Admin?')
 			];
 

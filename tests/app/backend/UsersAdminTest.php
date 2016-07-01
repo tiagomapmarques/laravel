@@ -41,10 +41,10 @@ class UsersAdminTest extends AdminTestCase {
 			$Users = User::allRaw()->take(15);
 			$this->see('All');
 			foreach($Users as $User) {
-				$tmp = str_split($User->hash, 16);
+				$hash_split = str_split($User->hash, 16);
 				$this->see($User->name)
-					->see($tmp[0])
-					->see($tmp[1])
+					->see($hash_split[0])
+					->see($hash_split[1])
 					->see($User->email)
 					->see($User->image)
 					->see($User->role->id)
@@ -64,10 +64,10 @@ class UsersAdminTest extends AdminTestCase {
 				->click($model_title)
 				->within('.content-wrapper', function() use ($Users) {
 					foreach($Users as $User) {
-						$tmp = str_split($User->hash, 16);
+						$hash_split = str_split($User->hash, 16);
 						$this->see($User->name)
-							->see($tmp[0])
-							->see($tmp[1])
+							->see($hash_split[0])
+							->see($hash_split[1])
 							->see($User->email)
 							->see($User->image)
 							->see($User->role->id)
