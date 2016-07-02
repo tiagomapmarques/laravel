@@ -34,6 +34,10 @@ class Download extends Custom {
 
 	/**
 	 * Class constructor.
+	 *
+	 * @param  string $attribute
+	 * @param  string $text
+	 * @param  string|null $label
 	 */
 	public function __construct($attribute, $text, $label = null) {
 		parent::__construct($label);
