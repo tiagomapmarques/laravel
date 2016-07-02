@@ -10,6 +10,7 @@ View::addNamespace('admin', resource_path().'/views/admin/');
 // Register custom columns
 AdminColumn::register([
 	'boolean'      => \App\Admin\Addons\Display\Column\Boolean::class,
+	'download'     => \App\Admin\Addons\Display\Column\Download::class,
 	'hash'         => \App\Admin\Addons\Display\Column\Hash::class,
 	'reference'    => \App\Admin\Addons\Display\Column\Reference::class,
 	'translatable' => \App\Admin\Addons\Display\Column\Translatable::class,

@@ -19,9 +19,13 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::text('email', Language::trans('database.users-email')),
 				AdminColumn::hash('hash', Language::trans('database.users-id')),
 				AdminColumn::image('image', Language::trans('database.users-image')),
-				AdminColumn::reference('role_id', 'Role ID'),
-				AdminColumn::translatable('role_id', 'name', 'Role'),
-				AdminColumn::boolean('isAdmin', 'is Admin?')
+				AdminColumn::download(
+					'getImage',
+					Language::trans('common.download').' '.Language::trans('database.users-image'),
+					Language::trans('common.download', 2)),
+				AdminColumn::reference('role_id', Language::trans('database.roles').' '.Language::trans('database.roles-id')),
+				AdminColumn::translatable('role_id', 'name', Language::trans('database.roles')),
+				AdminColumn::boolean('isAdmin', Language::trans('database.role-name-admin').'?')
 			];
 
 			$all_table = AdminDisplay::table()->paginate(15);

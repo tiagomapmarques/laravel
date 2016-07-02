@@ -17,6 +17,7 @@ return [
 	 */
 	'home'       => 'Home',
 	'link'       => 'Link|Links',
+	'download'   => 'Download|Downloads',
 	'menu'       => 'Menu|Menus',
 	'search'     => 'Search|Searches',
 	'result'     => 'Result|Results',

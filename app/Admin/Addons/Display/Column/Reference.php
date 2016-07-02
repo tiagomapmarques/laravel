@@ -64,7 +64,8 @@ class Reference extends LurkBase {
 			return false;
 		}
 
-		if(class_exists($model) && Schema::hasColumn($name_split[0].'s', $attr)) {
+		$model_plural = str_plural($name_split[0]);
+		if(class_exists($model) && Schema::hasColumn($model_plural, $attr)) {
 			$this->setReference($model, $attr);
 			return true;
 		}
