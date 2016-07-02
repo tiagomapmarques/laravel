@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\Administrator;
 use App\Models\Role;
-use App\Traits\ImagePathing as ImagePathing;
+use App\Traits\FilePathing as FilePathing;
 use Config;
 use File;
 use Helper;
@@ -19,7 +19,7 @@ use Generate;
  */
 class User extends Authenticatable {
 
-	use ImagePathing;
+	use FilePathing;
 
 	/**
 	 * The attributes that are searchable.
@@ -55,6 +55,9 @@ class User extends Authenticatable {
 	 */
 	protected static function boot() {
 		parent::boot();
+		// define FilePathing variables for User image
+		self::$base_file_path = 'images';
+		self::$child_class_file_attribute = 'image';
 		// before saving a new User to the database
 		static::creating(function($User) {
 			$User->hash = Generate::hash();
@@ -65,13 +68,13 @@ class User extends Authenticatable {
 				$User->role()->associate(Role::where('model', 'User')->first());
 			}
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
-				$User->moveImage(null, true);
+				$User->moveFile(null, true);
 			}
 		});
 		// before updating a User in the database
 		static::updating(function($User) {
 			if(strpos($User->image, Config::get('sleeping_owl.imagesUploadDirectory'))>=0) {
-				$User->moveImage(null, true);
+				$User->moveFile(null, true);
 			}
 		});
 		// before deleting a User from the database
@@ -99,6 +102,24 @@ class User extends Authenticatable {
 	 */
 	public function isAdmin() {
 		return strpos($this->role->name, Config::get('auth.admin_role_prefix'))===0;
+	}
+
+	/**
+	 * Function to get the images files path.
+	 *
+	 * @return string
+	 */
+	public static function imagesPath() {
+		return self::filesPath();
+	}
+
+	/**
+	 * Function to the image file for the User.
+	 *
+	 * @return string
+	 */
+	public function getImage() {
+		return $this->getFile();
 	}
 
 	/**
