@@ -3,9 +3,12 @@
 namespace App\Admin\Addons\Display\Column;
 
 use Language;
-use SleepingOwl\Admin\Display\Column\Text as Text;
+use App\Admin\Addons\Display\Column\Reference as Reference;
 
-// TODO: check if bug is gone...
+// TODO: get updates on the following github threads
+//       - https://github.com/LaravelRUS/SleepingOwlAdmin/pull/85
+//       - https://github.com/LaravelRUS/SleepingOwlAdmin/issues/131
+//
 // AdminServiceProvider from SlpeeingOwl includes files by using "require"
 // instead of "require_once", so it basically loads any custom class twice,
 // which is a major bug. To counter this, we must check if our class exists
@@ -15,7 +18,7 @@ if(!class_exists(\App\Admin\Addons\Display\Column\Translatable::class)) {
 /**
  * Column for displaying a translation of a value on Sleeping Owl
  */
-class Translatable extends Text {
+class Translatable extends Reference {
 	/**
 	 * Name of translation file to be used.
 	 *
@@ -29,20 +32,6 @@ class Translatable extends Text {
 	 * @var string
 	 */
 	protected $divider = '-';
-
-	/**
-	 * Class that is referenced by the $name attribute.
-	 *
-	 * @var string|null
-	 */
-	protected $reference_class = null;
-
-	/**
-	 * Attribute of the class that is referenced by the $name attribute.
-	 *
-	 * @var string|null
-	 */
-	protected $reference_class_attribute = null;
 
 	/**
 	 * Attribute inside the referenced class that should be translated.
@@ -59,27 +48,20 @@ class Translatable extends Text {
 	protected $choice = 1;
 
 	/**
-	 * Main output variable from this class.
+	 * Class constructor.
 	 *
-	 * @var string
+	 * @param  string  $name
+	 * @param  string|null  $label
 	 */
-	protected $result = '';
-
-	/**
-	 * Function to set an outside reference for the translation.
-	 *
-	 * @return \App\Admin\Addons\Display\Column\Translatable
-	 */
-	public function setReference($class, $attribute, $translatable) {
-		$this->reference_class = $class;
-		$this->reference_class_attribute = $attribute;
+	public function __construct($name, $translatable, $label = null) {
+		parent::__construct($name, $label);
 		$this->reference_class_translatable = $translatable;
-		return $this;
 	}
 
 	/**
 	 * Function to set the quantity of the translation.
 	 *
+	 * @param  integer  $number
 	 * @return \App\Admin\Addons\Display\Column\Translatable
 	 */
 	public function setChoice($number) {
@@ -88,22 +70,11 @@ class Translatable extends Text {
 	}
 
 	/**
-	 * Function to return this object as an array.
-	 *
-	 * @return array
-	 */
-	public function toArray() {
-		return parent::toArray() + [
-			'result' => $this->result,
-		];
-	}
-
-	/**
 	 * Function to perform this class' main action.
 	 *
 	 * @return void
 	 */
-	private function process() {
+	protected function process() {
 		// set model and attributes as if there was no reference class
 		$model = get_class($this->model);
 		$translatable = $this->name;
@@ -131,16 +102,6 @@ class Translatable extends Text {
 			$this->prefix.'.'.$translation_string,
 			$this->choice
 		);
-	}
-
-	/**
-	 * Function to retrieve the rendered html.
-	 *
-	 * @return \Illuminate\View\View
-	 */
-	public function render() {
-		$this->process();
-		return view('admin::addons.display.column.translatable', $this->toArray(), []);
 	}
 }
 

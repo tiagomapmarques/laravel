@@ -2,9 +2,12 @@
 
 namespace App\Admin\Addons\Display\Column;
 
-use SleepingOwl\Admin\Display\Column\Text as Text;
+use \App\Admin\Addons\Display\Column\LurkBase as LurkBase;
 
-// TODO: check if bug is gone...
+// TODO: get updates on the following github threads
+//       - https://github.com/LaravelRUS/SleepingOwlAdmin/pull/85
+//       - https://github.com/LaravelRUS/SleepingOwlAdmin/issues/131
+//
 // AdminServiceProvider from SlpeeingOwl includes files by using "require"
 // instead of "require_once", so it basically loads any custom class twice,
 // which is a major bug. To counter this, we must check if our class exists
@@ -14,7 +17,7 @@ if(!class_exists(\App\Admin\Addons\Display\Column\Hash::class)) {
 /**
  * Column for displaying hash values on Sleeping Owl
  */
-class Hash extends Text {
+class Hash extends LurkBase {
 	/**
 	 * Number of characters in which the hash will be divided.
 	 *
@@ -23,16 +26,9 @@ class Hash extends Text {
 	protected $chars_per_line = 16;
 
 	/**
-	 * Main output variable from this class.
-	 *
-	 * @var string
-	 */
-	protected $result = '';
-
-	/**
 	 * Function to set the number of characters that divide the hash value.
 	 *
-	 * @param  integer  $chars_per_line
+	 * @param  integer  $chars
 	 * @return \App\Admin\Addons\Display\Column\Hash
 	 */
 	public function setMaxCharactersPerLine($chars) {
@@ -41,34 +37,13 @@ class Hash extends Text {
 	}
 
 	/**
-	 * Function to return this object as an array.
-	 *
-	 * @return array
-	 */
-	public function toArray() {
-		return parent::toArray() + [
-			'result' => $this->result,
-		];
-	}
-
-	/**
 	 * Function to perform this class' main action.
 	 *
 	 * @return void
 	 */
-	private function process() {
+	protected function process() {
 		$hash_lines = str_split($this->getModelValue(), $this->chars_per_line);
 		$this->result = implode('<br />', $hash_lines);
-	}
-
-	/**
-	 * Function to retrieve the rendered html.
-	 *
-	 * @return \Illuminate\View\View
-	 */
-	public function render() {
-		$this->process();
-		return view('admin::addons.display.column.hash', $this->toArray(), []);
 	}
 }
 

@@ -87,4 +87,23 @@ class Language {
 		}
 		return $folders;
 	}
+
+	public static function dateString($date) {
+		$DateTime = new DateTime($date);
+		$language = Language::get();
+
+		if($language==='en') {
+			return date_format($DateTime, 'jS F Y');
+		}
+
+		$month = strtolower(date_format($DateTime, 'm'));
+		$exp = explode(' ', date_format($DateTime, 'j F Y'));
+		$exp[1] = Language::trans('date.months-'.$month);
+
+		$exp[0] = Language::trans('date.before-day').$exp[0].Language::trans('date.after-day');
+		$exp[1] = Language::trans('date.before-month').$exp[1].Language::trans('date.after-month');
+		$exp[2] = Language::trans('date.before-year').$exp[2].Language::trans('date.after-year');
+
+		return implode(' ', $exp);
+	}
 }

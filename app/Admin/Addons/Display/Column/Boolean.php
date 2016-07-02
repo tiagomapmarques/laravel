@@ -2,9 +2,12 @@
 
 namespace App\Admin\Addons\Display\Column;
 
-use SleepingOwl\Admin\Display\Column\Text as Text;
+use \App\Admin\Addons\Display\Column\LurkBase as LurkBase;
 
-// TODO: check if bug is gone...
+// TODO: get updates on the following github threads
+//       - https://github.com/LaravelRUS/SleepingOwlAdmin/pull/85
+//       - https://github.com/LaravelRUS/SleepingOwlAdmin/issues/131
+//
 // AdminServiceProvider from SlpeeingOwl includes files by using "require"
 // instead of "require_once", so it basically loads any custom class twice,
 // which is a major bug. To counter this, we must check if our class exists
@@ -14,7 +17,7 @@ if(!class_exists(\App\Admin\Addons\Display\Column\Boolean::class)) {
 /**
  * Column for displaying the return of a boolean function on Sleeping Owl
  */
-class Boolean extends Text {
+class Boolean extends LurkBase {
 	/**
 	 * Font-awesome class to represent "true".
 	 *
@@ -30,15 +33,9 @@ class Boolean extends Text {
 	protected $fa_false = 'fa-minus';
 
 	/**
-	 * Main output variable from this class.
-	 *
-	 * @var string
-	 */
-	protected $result = '';
-
-	/**
 	 * Function to set the font-awesome class for "true".
 	 *
+	 * @param  string  $class
 	 * @return \App\Admin\Addons\Display\Column\Boolean
 	 */
 	public function setTrueClass($class) {
@@ -49,6 +46,7 @@ class Boolean extends Text {
 	/**
 	 * Function to set the font-awesome class for "false".
 	 *
+	 * @param  string  $class
 	 * @return \App\Admin\Addons\Display\Column\Boolean
 	 */
 	public function setFalseClass($class) {
@@ -57,12 +55,13 @@ class Boolean extends Text {
 	}
 
 	/**
-	 * Override of function to avoid it accessing the $name attribute.
+	 * Override of function to avoid it accessing the $name attribute
+	 * during the toArray function on SleepingOwl\Admin\Display\Column\Text
 	 *
 	 * @return \App\Admin\Addons\Display\Column\Boolean
 	 */
 	public function getModelValue() {
-		return $this;
+		return '';
 	}
 
 	/**
@@ -74,7 +73,6 @@ class Boolean extends Text {
 		return parent::toArray() + [
 			'fa_true'  => $this->fa_true,
 			'fa_false' => $this->fa_false,
-			'result'   => $this->result,
 		];
 	}
 
@@ -83,27 +81,17 @@ class Boolean extends Text {
 	 *
 	 * @return void
 	 */
-	private function process() {
+	protected function process() {
 		$class = get_class($this->model);
 		$name = $this->name;
 		$object = $class::find($this->model->id);
+
+		$this->result = '';
 		if(method_exists($object, $name)) {
 			$this->result = $object->$name();
 		} else if(property_exists($object, $name)) {
 			$this->result = $object->$name;
-		} else {
-			$this->result = null;
 		}
-	}
-
-	/**
-	 * Function to retrieve the rendered html.
-	 *
-	 * @return \Illuminate\View\View
-	 */
-	public function render() {
-		$this->process();
-		return view('admin::addons.display.column.boolean', $this->toArray(), []);
 	}
 }
 
