@@ -97,6 +97,9 @@
         ],
         "test": [
             "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c .. && cd ../.."
+        ],
+        "rebuild": [
+            "composer clean && composer setup-no-interaction && composer compile && composer set-local"
         ]
     },
     "config": {
