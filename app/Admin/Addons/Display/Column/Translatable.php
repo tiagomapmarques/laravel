@@ -51,6 +51,7 @@ class Translatable extends Reference {
 	 * Class constructor.
 	 *
 	 * @param  string  $name
+	 * @param  string  $translatable
 	 * @param  string|null  $label
 	 */
 	public function __construct($name, $translatable, $label = null) {
@@ -85,7 +86,7 @@ class Translatable extends Reference {
 		if(!is_null($this->referenceClass)) {
 			$model = $this->referenceClass;
 			$modelAttribute = $this->referenceClassAttribute;
-			$translatable = $this->referenceClassAttribute;
+			$translatable = $this->referenceClassTranslatable;
 			$value = $model::where($modelAttribute, $value)->first()->$translatable;
 		}
 
@@ -93,8 +94,8 @@ class Translatable extends Reference {
 		$modelArray = explode('\\',$model);
 		$modelName = strtolower($modelArray[count($modelArray)-1]);
 		$translationString =
-			$modelName.$this->divider .
-			$translatable.$this->divider .
+			$modelName.$this->divider.
+			$translatable.$this->divider.
 			$value;
 
 		// preform the translation
