@@ -84,7 +84,7 @@ trait FilePathing {
 	 */
 	public static function defaultFile() {
 		return self::filesPath().DS.self::$defaultFileName.
-			(self::$defaultFileExtension===''? '': '.'.self::$defaultFileExtension);
+			(self::$defaultFileExtension===''? '' : '.'.self::$defaultFileExtension);
 	}
 
 	/**
