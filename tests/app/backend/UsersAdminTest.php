@@ -17,7 +17,7 @@ class UsersAdminTest extends AdminTestCase {
 	 *
 	 * @var integer|null
 	 */
-	protected $user_id = null;
+	protected $userId = null;
 
 	/**
 	 * Test the reponse of the Users page.
@@ -41,10 +41,10 @@ class UsersAdminTest extends AdminTestCase {
 			$Users = User::allRaw()->take(15);
 			$this->see('All');
 			foreach($Users as $User) {
-				$hash_split = str_split($User->hash, 16);
+				$hashSplit = str_split($User->hash, 16);
 				$this->see($User->name)
-					->see($hash_split[0])
-					->see($hash_split[1])
+					->see($hashSplit[0])
+					->see($hashSplit[1])
 					->see($User->email)
 					->see($User->image)
 					->see(Language::trans('common.download').' '.Language::trans('database.users-image'))
@@ -65,10 +65,10 @@ class UsersAdminTest extends AdminTestCase {
 				->click($model_title)
 				->within('.content-wrapper', function() use ($Users) {
 					foreach($Users as $User) {
-						$hash_split = str_split($User->hash, 16);
+						$hashSplit = str_split($User->hash, 16);
 						$this->see($User->name)
-							->see($hash_split[0])
-							->see($hash_split[1])
+							->see($hashSplit[0])
+							->see($hashSplit[1])
 							->see($User->email)
 							->see($User->image)
 							->see(Language::trans('common.download').' '.Language::trans('database.users-image'))
@@ -121,23 +121,23 @@ class UsersAdminTest extends AdminTestCase {
 	 * @return void
 	 */
 	public function testUpdateUser() {
-		$User = factory(User::class)->create();
-		$User2 = factory(User::class)->make();
+		$UserOne = factory(User::class)->create();
+		$UserTwo = factory(User::class)->make();
 
 		// test the update process
-		$this->visit('/users/'.$User->id.'/edit')
-			->type($User2->name, 'name')
-			->type($User2->email, 'email')
+		$this->visit('/users/'.$UserOne->id.'/edit')
+			->type($UserTwo->name, 'name')
+			->type($UserTwo->email, 'email')
 			->press('Save');
 
 		// check the User was created
 		$this->seeInDatabase('users', [
-			'name' => $User2->name,
-			'email' => $User2->email,
+			'name' => $UserTwo->name,
+			'email' => $UserTwo->email,
 			'image' => ''
 		]);
 
-		User::destroy($User->id);
+		User::destroy($UserOne->id);
 	}
 
 	/**
@@ -170,7 +170,7 @@ class UsersAdminTest extends AdminTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->user_id = factory(User::class)->create()->id;
+		$this->userId = factory(User::class)->create()->id;
 	}
 
 	/**
@@ -179,8 +179,8 @@ class UsersAdminTest extends AdminTestCase {
 	 * @return void
 	 */
 	public function tearDown() {
-		User::destroy($this->user_id);
-		$this->user_id = null;
+		User::destroy($this->userId);
+		$this->userId = null;
 		parent::tearDown();
 	}
 }

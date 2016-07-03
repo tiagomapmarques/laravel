@@ -1,7 +1,8 @@
-<p>This is the Lurk administration section.</p>
-<p>Feel free to explore and edit it as you like!</p>
-<p>This application is (so far) provided in the following languages:
+{!! Language::trans('web.admin-welcome') !!}
+
+<{!! Language::getTag() !!}>
+{{ Language::trans('web.admin-languages') }}:
 @foreach(Language::getAll() as $locale)
 	{{ Language::trans('web.language-name', 1, $locale).', ' }}
 @endforeach
-</p>
+</{!! Language::getTag() !!}>

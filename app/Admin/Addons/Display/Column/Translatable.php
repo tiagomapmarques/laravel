@@ -38,7 +38,7 @@ class Translatable extends Reference {
 	 *
 	 * @var string|null
 	 */
-	protected $reference_class_translatable = null;
+	protected $referenceClassTranslatable = null;
 
 	/**
 	 * Quantity of the translation (singular, plural, ...).
@@ -55,7 +55,7 @@ class Translatable extends Reference {
 	 */
 	public function __construct($name, $translatable, $label = null) {
 		parent::__construct($name, $label);
-		$this->reference_class_translatable = $translatable;
+		$this->referenceClassTranslatable = $translatable;
 	}
 
 	/**
@@ -79,27 +79,27 @@ class Translatable extends Reference {
 		$model = get_class($this->model);
 		$translatable = $this->name;
 		$value = $this->getModelValue();
-		$translation_string = '';
+		$translationString = '';
 
 		// if there is a reference class, get the referenced object's value
-		if(!is_null($this->reference_class)) {
-			$model = $this->reference_class;
-			$model_attr = $this->reference_class_attribute;
-			$translatable = $this->reference_class_translatable;
-			$value = $model::where($model_attr, $value)->first()->$translatable;
+		if(!is_null($this->referenceClass)) {
+			$model = $this->referenceClass;
+			$modelAttribute = $this->referenceClassAttribute;
+			$translatable = $this->referenceClassAttribute;
+			$value = $model::where($modelAttribute, $value)->first()->$translatable;
 		}
 
 		// build the translation string
-		$model_array = explode('\\',$model);
-		$model_name = strtolower($model_array[count($model_array)-1]);
-		$translation_string =
-			$model_name.$this->divider .
+		$modelArray = explode('\\',$model);
+		$modelName = strtolower($modelArray[count($modelArray)-1]);
+		$translationString =
+			$modelName.$this->divider .
 			$translatable.$this->divider .
 			$value;
 
 		// preform the translation
 		$this->result = Language::trans(
-			$this->prefix.'.'.$translation_string,
+			$this->prefix.'.'.$translationString,
 			$this->choice
 		);
 	}

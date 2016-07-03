@@ -54,34 +54,34 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testUserUpdate() {
 		// make new User and save it to the database
-		$upload_test_file = realpath(base_path().'/tests/files/upload_test.png');
-		if(!file_exists($upload_test_file)) {
+		$uploadTestFile = realpath(base_path().'/tests/files/upload_test.png');
+		if(!file_exists($uploadTestFile)) {
 			$this->fail('Upload test file is missing!');
 		}
-		$old_image = $this->User->getImage();
-		$new_name = Generate::string();
+		$oldImage = $this->User->getImage();
+		$newName = Generate::string();
 		$Role = Role::where('name', 'user')->first();
 
 		// navigate to and submit new User details
-		$this->visit('/home')->within('.body-content', function() use($old_image) {
-			$this->see('/'.$old_image);
+		$this->visit('/home')->within('.body-content', function() use($oldImage) {
+			$this->see('/'.$oldImage);
 		});
 		$this->visit('/home')
 			->click('#user-update-button')
 			->seePageIs('/user/update')
-			->type($new_name, 'name')
-			->attach($upload_test_file, 'image')
+			->type($newName, 'name')
+			->attach($uploadTestFile, 'image')
 			->press('Save');
 
 		// check the details have been updated
 		$this->seeInDatabase('users', [
 			'email' => $this->User->email,
-			'name' => $new_name
+			'name' => $newName
 		]);
 
 		// update our User object and check the image name has changed
 		$this->User = User::find($this->User->id);
-		if($old_image===$this->User->getImage()) {
+		if($oldImage===$this->User->getImage()) {
 			$this->fail('Image was not updated!');
 		}
 	}
@@ -93,7 +93,7 @@ class UserControllerTest extends TestCase {
 	 */
 	public function testUserPassword() {
 		// make new User and save it to the database
-		$new_password = Generate::hash();
+		$newPassword = Generate::hash();
 
 		// change the User password
 		$this->visit('/home')
@@ -102,8 +102,8 @@ class UserControllerTest extends TestCase {
 			->click('Change Password')
 			->seePageIs('/user/password')
 			->type($this->password, 'old_password')
-			->type($new_password, 'password')
-			->type($new_password, 'password_confirmation')
+			->type($newPassword, 'password')
+			->type($newPassword, 'password_confirmation')
 			->press('Change Password')
 			->seePageIs('/home')
 			->see('Your password was changed successfully!')
@@ -116,7 +116,7 @@ class UserControllerTest extends TestCase {
 			->click('#login-button')
 			->seePageIs('/login')
 			->type($this->User->email, 'email')
-			->type($new_password, 'password')
+			->type($newPassword, 'password')
 			->press('Login')
 			->seePageIs('/home')
 			->within('#nav', function() {

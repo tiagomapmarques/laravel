@@ -14,4 +14,10 @@ return [
 	'description'   => 'Description of your webpage',
 	'keywords'      => 'lurk,laravel',
 	'title'         => 'Lurk',
+
+	'admin-welcome'   => [
+		'This is the Lurk administration section.',
+		'Feel free to explore and edit it as you like!',
+	],
+	'admin-languages' => 'This application is (so far) provided in the following languages',
 ];

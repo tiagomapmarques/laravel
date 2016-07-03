@@ -10,24 +10,24 @@ class Generate {
 	 * Function to generate a random string.
 	 *
 	 * @param  integer  $length
-	 * @param  boolean  $case_sensitive
-	 * @param  boolean  $additional_chars
+	 * @param  boolean  $caseSensitive
+	 * @param  boolean  $additionalChars
 	 * @return string
 	 */
-	public static function string($length = 32, $case_sensitive = false, $additional_chars = false) {
+	public static function string($length = 32, $caseSensitive = false, $additionalChars = false) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-		if($case_sensitive) {
+		if($caseSensitive) {
 			$characters .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		}
-		if($additional_chars) {
+		if($additionalChars) {
 			$characters .= '-_';
 		}
-		$characters_length = strlen($characters);
-		$random_string = '';
+		$charactersLength = strlen($characters);
+		$randomString = '';
 		for ($i = 0; $i < $length; $i++) {
-			$random_string .= $characters[rand(0, $characters_length - 1)];
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
-		return $random_string;
+		return $randomString;
 	}
 
 	/**

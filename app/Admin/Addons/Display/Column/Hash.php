@@ -23,7 +23,7 @@ class Hash extends LurkBase {
 	 *
 	 * @var integer
 	 */
-	protected $chars_per_line = 16;
+	protected $charsPerLine = 16;
 
 	/**
 	 * Function to set the number of characters that divide the hash value.
@@ -32,7 +32,7 @@ class Hash extends LurkBase {
 	 * @return \App\Admin\Addons\Display\Column\Hash
 	 */
 	public function setMaxCharactersPerLine($chars) {
-		$this->chars_per_line = $chars;
+		$this->charsPerLine = $chars;
 		return $this;
 	}
 
@@ -42,8 +42,8 @@ class Hash extends LurkBase {
 	 * @return void
 	 */
 	protected function process() {
-		$hash_lines = str_split($this->getModelValue(), $this->chars_per_line);
-		$this->result = implode('<br />', $hash_lines);
+		$hashLines = str_split($this->getModelValue(), $this->charsPerLine);
+		$this->result = implode('<br />', $hashLines);
 	}
 }
 

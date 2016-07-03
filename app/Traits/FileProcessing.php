@@ -21,27 +21,27 @@ trait FileProcessing {
 	 * @param  string   $path
 	 * @param  string   $filename
 	 * @param  boolean  $overwrite
-	 * @param  boolean  $full_hierarchy
+	 * @param  boolean  $fullHierarchy
 	 * @return boolean
 	 */
-	protected function createZip($files, $path, $filename, $overwrite = false, $full_hierarchy = false) {
+	protected function createZip($files, $path, $filename, $overwrite = false, $fullHierarchy = false) {
 		if(is_null($files) || !is_array($files) || count($files)<1) {
 			return false;
 		}
-		$valid_files = array();
+		$validFiles = [];
 		foreach($files as $file) {
 			if(file_exists($file)) {
-				if($full_hierarchy) {
-					$valid_files[] = [ $file, $file ];
+				if($fullHierarchy) {
+					$validFiles[] = [$file, $file];
 				}
 				else {
 					$split = explode(DS, $file);
 					$value = array_splice($split, count($split)-1, 1);
-					$valid_files[] = [ $file, $value[0] ];
+					$validFiles[] = [$file, $value[0]];
 				}
 			}
 		}
-		if(count($valid_files)<1) {
+		if(count($validFiles)<1) {
 			return false;
 		}
 
@@ -49,7 +49,7 @@ trait FileProcessing {
 		if($zip->open($path.DS.$filename, $overwrite? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true) {
 			return false;
 		}
-		foreach($valid_files as $file) {
+		foreach($validFiles as $file) {
 			$zip->addFile($file[0], $file[1]);
 		}
 

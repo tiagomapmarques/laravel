@@ -23,14 +23,14 @@ class Boolean extends LurkBase {
 	 *
 	 * @var string
 	 */
-	protected $fa_true = 'fa-check';
+	protected $faTrue = 'fa-check';
 
 	/**
 	 * Font-awesome class to represent "false".
 	 *
 	 * @var string
 	 */
-	protected $fa_false = 'fa-minus';
+	protected $faFalse = 'fa-minus';
 
 	/**
 	 * Function to set the font-awesome class for "true".
@@ -39,7 +39,7 @@ class Boolean extends LurkBase {
 	 * @return \App\Admin\Addons\Display\Column\Boolean
 	 */
 	public function setTrueClass($class) {
-		$this->fa_true = $class;
+		$this->faTrue = $class;
 		return $this;
 	}
 
@@ -50,7 +50,7 @@ class Boolean extends LurkBase {
 	 * @return \App\Admin\Addons\Display\Column\Boolean
 	 */
 	public function setFalseClass($class) {
-		$this->fa_false = $class;
+		$this->faFalse = $class;
 		return $this;
 	}
 
@@ -71,8 +71,8 @@ class Boolean extends LurkBase {
 	 */
 	public function toArray() {
 		return parent::toArray() + [
-			'fa_true'  => $this->fa_true,
-			'fa_false' => $this->fa_false,
+			'fa_true'  => $this->faTrue,
+			'fa_false' => $this->faFalse,
 		];
 	}
 
