@@ -55,6 +55,7 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 			AdminFormElement::text('name', Language::trans('database.users-name'))
 				->required(),
 			AdminFormElement::text('email', Language::trans('database.users-email'))
+				->unique()
 				->required(),
 			AdminFormElement::image('image', Language::trans('database.users-image')),
 			AdminFormElement::translatableSelect('role_id', 'name', Language::trans('database.roles'))

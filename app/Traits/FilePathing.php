@@ -31,7 +31,14 @@ trait FilePathing {
 	 *
 	 * @var string
 	 */
-	protected static $defaultFileName = 'default.jpg';
+	protected static $defaultFileName = 'default';
+
+	/**
+	 * Default file extension.
+	 *
+	 * @var string
+	 */
+	protected static $defaultFileExtension = '';
 
 	/**
 	 * Default class attribute to be called to get the file location.
@@ -39,6 +46,17 @@ trait FilePathing {
 	 * @var string
 	 */
 	protected static $childClassFileAttribute = 'file';
+
+	/**
+	 * Function to setup the FilePathing trait.
+	 *
+	 * @return void
+	 */
+	protected static function filePathingConfig($filePath, $attribute, $extension) {
+		self::$baseFilePath = $filePath;
+		self::$childClassFileAttribute = $attribute;
+		self::$defaultFileExtension = $extension;
+	}
 
 	/**
 	 * Function to retrieve the file path the class.
@@ -65,7 +83,8 @@ trait FilePathing {
 	 * @return string
 	 */
 	public static function defaultFile() {
-		return self::filesPath().DS.self::$defaultFileName;
+		return self::filesPath().DS.self::$defaultFileName.
+			(self::$defaultFileExtension===''? '': '.'.self::$defaultFileExtension);
 	}
 
 	/**
@@ -115,8 +134,13 @@ trait FilePathing {
 			$filename = $path[count($path)-1];
 		}
 
+		if(!is_dir($location) && !mkdir($location, 0777, true)) {
+			return false;
+		}
+
 		$destination = $location.DS.$filename;
 		File::move($file, $destination);
 		$this->$fileAttribute = $destination;
+		return true;
 	}
 }

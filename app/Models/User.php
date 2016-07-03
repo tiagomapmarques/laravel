@@ -56,8 +56,7 @@ class User extends Authenticatable {
 	protected static function boot() {
 		parent::boot();
 		// define FilePathing variables for User image
-		self::$baseFilePath = 'images';
-		self::$childClassFileAttribute = 'image';
+		self::filePathingConfig('images', 'image', 'jpg');
 		// before saving a new User to the database
 		static::creating(function($User) {
 			$User->hash = Generate::hash();
