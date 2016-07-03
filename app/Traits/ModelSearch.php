@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 /**
- * Mated model search
+ * Model search
  *
  * Trait that can be used to extend a class' ability to search through another
  * class' objects, provided the class has a static "all" method that returns
@@ -59,7 +59,7 @@ trait ModelSearch {
 		foreach($words as $word) {
 			if(strlen($word)>0) {
 				$searchAttributes = [];
-				if(property_exists($class, 'searchable')) {
+				if(property_exists($class, 'searchable') && is_array($class::$searchable)) {
 					$searchAttributes = $class::$searchable;
 				}
 				foreach($searchAttributes as $attribute) {
