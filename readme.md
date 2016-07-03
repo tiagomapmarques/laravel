@@ -1,5 +1,6 @@
 # LURK (Laravel Up and Running Kit)
 
+![Author: tiagomapmarques](https://img.shields.io/badge/author-tiagomapmarques-orange.svg)
 [![Build Status](https://travis-ci.org/tiagomapmarques/lurk.svg?branch=lurk)](https://travis-ci.org/tiagomapmarques/lurk)
 
 LURK is a Laravel fork that includes a bunch of useful dependencies, utilities and tune-ups.
@@ -18,8 +19,8 @@ Aside from all the benefits of an active, community-driven, MVC for PHP, Lurk br
 - **Search** - Searching mechanism for models is versatile and effortless
 - **Blade/Bootstrap/Sass** - Templates and basic structure for quick deployment
 - **Authentication** - User roles implemented and extensible, with fully scaffolded and tweaked authentication
-- **SleepingOwl** - Admin pages, routing and useful addons are configured and tuned-up to be ready to go
-- **Demo** - _coming June 2016_
+- **SleepingOwl** - Admin pages, routing and useful addons are configured, tuned-up and ready to go
+- **Demo** - _coming July 2016_
 - **Stability** - Production-oriented versioning (composer.lock) and fully e2e tested
 - **Also linting** - _Beautiful code_ needs beautiful standards for programming
 
