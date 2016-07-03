@@ -2,25 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\AutoModelSearch as AutoModelSearch;
 use Illuminate\Http\Request;
+
+use \App\Http\Controllers\API\Search as Search;
 
 /**
  * Class to implement the search controller
  */
 class SearchController extends Controller {
-
-	use AutoModelSearch;
-
-	/**
-	 * Models to be be automatically included in the search.
-	 *
-	 * @var array
-	 */
-	protected $search_targets = [
-		'user'
-	];
-
 	/**
 	 * Function to get the view for the index action.
 	 *
@@ -31,7 +20,7 @@ class SearchController extends Controller {
 		return view('search.index', [
 			'_navigation_search' => false,
 			'_search_text' => $request->q,
-			'_search_results' => $this->get_search_results($request->q)
+			'_search_results' => (new Search())->query($request->q)
 		]);
 	}
 }

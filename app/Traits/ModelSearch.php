@@ -3,13 +3,13 @@
 namespace App\Traits;
 
 /**
- * Automated model search
+ * Mated model search
  *
  * Trait that can be used to extend a class' ability to search through another
  * class' objects, provided the class has a static "all" method that returns
  * an array.
  */
-trait AutoModelSearch {
+trait ModelSearch {
 	/**
 	 * Function to get all search results from models.
 	 *
@@ -20,21 +20,21 @@ trait AutoModelSearch {
 	 * TODO: implement result relevance
 	 *
 	 * @param  string  $query
-	 * @param  string  $class_path
+	 * @param  string  $classPath
 	 * @return string
 	 */
-	protected function get_search_results($query, $class_path = '\\App\\Models\\') {
+	protected function searchResults($query, $classPath = '\\App\\Models\\') {
 		$results = [];
 		$targets = [];
-		if(isset($this->search_targets) && is_array($this->search_targets)) {
-			$targets = $this->search_targets;
+		if(isset($this->searchTargets) && is_array($this->searchTargets)) {
+			$targets = $this->searchTargets;
 		}
 		foreach ($targets as $target) {
 			$results[$target] = [];
-			$class_name = $class_path.ucfirst($target);
-			$all = $class_name::all();
+			$className = $classPath.ucfirst($target);
+			$all = $className::all();
 			foreach ($all as $item) {
-				if($this->check_result($class_name, $item, $query)) {
+				if($this->checkResult($className, $item, $query)) {
 					$results[$target][] = $item;
 				}
 			}
@@ -51,14 +51,18 @@ trait AutoModelSearch {
 	 * @param  string                              $separator
 	 * @return boolean
 	 */
-	private function check_result($class, $object, $string, $separator = ' ') {
+	private function checkResult($class, $object, $string, $separator = ' ') {
 		if(is_null($string) || !is_string($string) || strlen($string)<=0) {
 			return false;
 		}
 		$words = explode($separator, $string);
 		foreach($words as $word) {
 			if(strlen($word)>0) {
-				foreach($class::$searchable as $attribute) {
+				$searchAttributes = [];
+				if(property_exists($class, 'searchable')) {
+					$searchAttributes = $class::$searchable;
+				}
+				foreach($searchAttributes as $attribute) {
 					if(stripos($object->$attribute, $word)!==false) {
 						return true;
 					}

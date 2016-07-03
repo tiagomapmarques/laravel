@@ -29,7 +29,7 @@ abstract class API extends BaseController {
 	 *
 	 * @var string
 	 */
-	protected $default_error = 404;
+	protected $defaultError = 404;
 
 	/**
 	 * Constructor for all API classes.
@@ -66,7 +66,7 @@ abstract class API extends BaseController {
 			return $this->execute();
 		}
 		else {
-			abort($this->$default_error);
+			abort($this->defaultError);
 		}
 	}
 

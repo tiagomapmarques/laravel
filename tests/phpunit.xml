@@ -9,11 +9,14 @@
 				 processIsolation="false"
 				 stopOnFailure="false">
 	<testsuites>
-		<testsuite name="frontend">
-			<directory suffix="Test.php">./app/frontend</directory>
+		<testsuite name="api">
+			<directory suffix="APITest.php">./app/api</directory>
 		</testsuite>
 		<testsuite name="backend">
-			<directory suffix="Test.php">./app/backend</directory>
+			<directory suffix="AdminTest.php">./app/backend</directory>
+		</testsuite>
+		<testsuite name="frontend">
+			<directory suffix="ControllerTest.php">./app/frontend</directory>
 		</testsuite>
 	</testsuites>
 	<filter>
