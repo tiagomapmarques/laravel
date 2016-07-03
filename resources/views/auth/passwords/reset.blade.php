@@ -9,7 +9,7 @@
 					<div class="panel-body">
 						{!! Form::open(['url' => route('password_reset_post'), 'class' => 'form-horizontal']) !!}
 
-							{{ Form::hidden('token', $token); }}
+							{{ Form::hidden('token', $token) }}
 
 							<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 								{{ Form::label('email', Language::trans('auth.email'), ['for' => 'email', 'class' => 'col-md-4 control-label']) }}

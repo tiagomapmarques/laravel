@@ -8,6 +8,13 @@
  * database. Just tell the factory how a default model should look.
  *
  */
+$factory->define(App\Models\Role::class, function (Faker\Generator $faker) use ($factory) {
+	$jobTitle = $faker->jobTitle;
+	return [
+		'name' => strtolower($jobTitle),
+		'model' => $jobTitle,
+	];
+});
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) use ($factory) {
 	return [
 		'name' => $faker->name,

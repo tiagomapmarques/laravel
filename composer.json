@@ -41,7 +41,8 @@
     "autoload-dev": {
         "classmap": [
             "tests/base/TestCase.php",
-            "tests/base/AdminTestCase.php"
+            "tests/base/AdminTestCase.php",
+            "tests/base/APITestCase.php"
         ]
     },
     "scripts": {
@@ -84,6 +85,9 @@
             "touch database/database.sqlite database/testing.sqlite",
             "php artisan migrate",
             "php artisan db:seed"
+        ],
+        "test-api": [
+            "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c .. --testsuite api && cd ../.."
         ],
         "test-frontend": [
             "mkdir -p tests/public/ && cd tests/public/ && ../../vendor/bin/phpunit -c .. --testsuite frontend && cd ../.."

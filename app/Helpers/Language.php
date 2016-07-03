@@ -12,6 +12,34 @@ use Session as Session;
  */
 class Language {
 	/**
+	 * HTML tag for when there are multiple lines in a translation.
+	 *
+	 * @var string
+	 */
+	protected static $translationHtmlTag = 'p';
+
+	/**
+	 * Function to get the HTML tag for when there are multiple lines in a translation.
+	 *
+	 * @param  string  $tag
+	 * @return string
+	 */
+	public static function getTag() {
+		return self::$translationHtmlTag;
+	}
+
+	/**
+	 * Function to set the HTML tag for when there are multiple lines in a translation.
+	 *
+	 * @param  string  $tag
+	 * @return string
+	 */
+	public static function setTag($tag) {
+		self::$translationHtmlTag = $tag;
+		return self::getTag();
+	}
+
+	/**
 	 * Function to translate single or multiple phrases.
 	 *
 	 * This function can be seen as an alias for the "trans" and "trans_choice"
@@ -26,23 +54,43 @@ class Language {
 	 * @return string
 	 */
 	public static function trans($identifier, $choice = 1, $locale = null) {
-		$locale_is_available = in_array($locale, Language::getAll());
-		if($locale_is_available) {
-			$previous_locale = Language::get();
+		$localeIsAvailable = in_array($locale, Language::getAll());
+		if($localeIsAvailable) {
+			$previousLocale = Language::get();
 			Language::apply($locale);
 		}
-		$original_translation = trans($identifier);
-		if($locale_is_available) {
-			Language::apply($previous_locale);
+		$originalTranslation = trans($identifier);
+		if($localeIsAvailable) {
+			Language::apply($previousLocale);
 		}
-		$phrase = explode('|', $original_translation);
-		if(count($phrase)<$choice) {
-			$choice = count($phrase);
+
+		if(is_array($originalTranslation)) {
+			$translations = $originalTranslation;
+		} else {
+			$translations = [$originalTranslation];
 		}
-		if($choice<1) {
-			return $original_translation;
+
+		$result = '';
+		foreach($translations as $translation) {
+			$phrase = explode('|', $translation);
+			$phraseChoice = $choice;
+			if(count($phrase)<$choice) {
+				$phraseChoice = count($phrase);
+			}
+			if($phraseChoice<1) {
+				$result .= $translation;
+			} else {
+				if(count($translations)>1) {
+					$result .= '<'.self::$translationHtmlTag.'>'.
+						$phrase[$phraseChoice-1].
+						'</'.self::$translationHtmlTag.'>';
+				} else {
+					$result .= $phrase[$phraseChoice-1];
+				}
+			}
 		}
-		return $phrase[$choice-1];
+
+		return $result;
 	}
 
 	/**

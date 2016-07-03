@@ -30,14 +30,14 @@ abstract class LurkBase extends Text {
 	 *
 	 * @var string
 	 */
-	protected $view_base = 'admin::addons.display.column.';
+	protected $viewBase = 'admin::addons.display.column.';
 
 	/**
 	 * Base string for the display column view.
 	 *
 	 * @var string
 	 */
-	protected $view_class = '';
+	protected $viewClass = '';
 
 	/**
 	 * Constructor for the LurkBase class.
@@ -47,8 +47,8 @@ abstract class LurkBase extends Text {
 	 */
 	public function __construct($name, $label = null) {
 		parent::__construct($name, $label);
-		$called_class = explode('\\', strtolower(get_called_class()));
-		$this->view_class = $called_class[count($called_class)-1];
+		$calledClass = explode('\\', strtolower(get_called_class()));
+		$this->viewClass = $calledClass[count($calledClass)-1];
 	}
 
 	/**
@@ -76,7 +76,7 @@ abstract class LurkBase extends Text {
 	 */
 	public function render() {
 		$this->process();
-		return view($this->view_base.$this->view_class, $this->toArray(), []);
+		return view($this->viewBase.$this->viewClass, $this->toArray(), []);
 	}
 }
 

@@ -28,16 +28,16 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::boolean('isAdmin', Language::trans('database.role-name-admin').'?')
 			];
 
-			$all_table = AdminDisplay::table()->paginate(15);
-			$all_table->setColumns($columns);
-			$tabs[] = AdminDisplay::tab($all_table)->setLabel('All')->setActive();
+			$allTable = AdminDisplay::table()->paginate(15);
+			$allTable->setColumns($columns);
+			$tabs[] = AdminDisplay::tab($allTable)->setLabel('All')->setActive();
 
 			$Roles = Role::all();
 			foreach($Roles as $Role) {
-				$role_table = AdminDisplay::table()->paginate(15);
-				$role_table->getScopes()->push($Role->name);
-				$role_table->setColumns($columns);
-				$tabs[] = AdminDisplay::tab($role_table)
+				$roleTable = AdminDisplay::table()->paginate(15);
+				$roleTable->getScopes()->push($Role->name);
+				$roleTable->setColumns($columns);
+				$tabs[] = AdminDisplay::tab($roleTable)
 					->setLabel(Language::trans('database.role-name-'.$Role->name, 2));
 			}
 			return $tabs;

@@ -16,7 +16,7 @@ class Helper {
 	 * @return string
 	 */
 	public static function version() {
-		return '0.5-beta3';
+		return '0.6-rc2';
 	}
 
 	/**
@@ -37,11 +37,11 @@ class Helper {
 	 * @return array
 	 */
 	public static function toSimpleArray($array, $attribute) {
-		$final_array = [];
+		$finalArray = [];
 		foreach($array as $key => $value) {
-			$final_array[] = $value->$attribute;
+			$finalArray[] = $value->$attribute;
 		}
-		return $final_array;
+		return $finalArray;
 	}
 
 	/**
@@ -69,13 +69,13 @@ class Helper {
 			return null;
 		}
 		//select maximum upload size
-		$max_upload = Helper::bytesFromConfig(ini_get('upload_max_filesize'));
+		$maxUpload = Helper::bytesFromConfig(ini_get('upload_max_filesize'));
 		//select post limit
-		$max_post = Helper::bytesFromConfig(ini_get('post_max_size'));
+		$maxPost = Helper::bytesFromConfig(ini_get('post_max_size'));
 		//select memory limit
-		$memory_limit = Helper::bytesFromConfig(ini_get('memory_limit'));
+		$memoryLimit = Helper::bytesFromConfig(ini_get('memory_limit'));
 
-		return floor(min($max_upload, $max_post, $memory_limit) * $multiplier);
+		return floor(min($maxUpload, $maxPost, $memoryLimit) * $multiplier);
 	}
 
 	/**

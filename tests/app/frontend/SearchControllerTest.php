@@ -50,13 +50,13 @@ class SearchControllerTest extends TestCase {
 	 * @return array(array)
 	 */
 	public function searchData() {
-		return array(
-			array('', null),
-			array(Generate::string(), '0 results'),
-			array(Generate::string().' ', null),
-			array('*', '0 results'),
-			array('', '0 results'),
-		);
+		return [
+			['', null],
+			[Generate::string(), '0 results'],
+			[Generate::string().' ', null],
+			['*', '0 results'],
+			['', '0 results'],
+		];
 	}
 
 	/**

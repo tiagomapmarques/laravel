@@ -4,11 +4,13 @@
 	}
 ?>
 @if(Auth::user() && Auth::user()->isAdmin())
-	@if(Helper::routeIsAdmin())
-		<li style="{{ $_nav_style!==''?$_nav_style:'' }}"><a href="{{ url('/') }}">{{ Language::trans('auth.root') }}</a></li>
-	@else
-		<li style="{{ $_nav_style!==''?$_nav_style:'' }}"><a href="{{ url('/admin') }}">{{ Language::trans('auth.admin') }}</a></li>
-	@endif
+	<li style="{{ $_nav_style!==''?$_nav_style:'' }}">
+		@if(Helper::routeIsAdmin())
+			<a href="{{ url('/') }}">{{ Language::trans('auth.root') }}</a>
+		@else
+			<a href="{{ url('/admin') }}">{{ Language::trans('auth.admin') }}</a>
+		@endif
+	</li>
 @endif
 <?php
 	unset($_nav_style);

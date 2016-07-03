@@ -24,14 +24,14 @@ class Reference extends LurkBase {
 	 *
 	 * @var string|null
 	 */
-	protected $reference_class = null;
+	protected $referenceClass = null;
 
 	/**
 	 * Attribute of the class that is referenced by the $name attribute.
 	 *
 	 * @var string|null
 	 */
-	protected $reference_class_attribute = null;
+	protected $referenceClassAttribute = null;
 
 	/**
 	 * Class constructor.
@@ -52,20 +52,20 @@ class Reference extends LurkBase {
 	 * @return boolean
 	 */
 	private function guessModelAndAttribute($name) {
-		$name_split = explode('_', $name);
-		if(count($name_split)<2) {
+		$nameSplit = explode('_', $name);
+		if(count($nameSplit)<2) {
 			return false;
 		}
-		$model = 'App\\Models\\'.ucfirst($name_split[0]);
-		$attr = $name_split[1];
+		$model = 'App\\Models\\'.ucfirst($nameSplit[0]);
+		$attr = $nameSplit[1];
 		$value = $this->getModelValue();
 
 		if(!class_exists($model)) {
 			return false;
 		}
 
-		$model_plural = str_plural($name_split[0]);
-		if(class_exists($model) && Schema::hasColumn($model_plural, $attr)) {
+		$modelPlural = str_plural($nameSplit[0]);
+		if(class_exists($model) && Schema::hasColumn($modelPlural, $attr)) {
 			$this->setReference($model, $attr);
 			return true;
 		}
@@ -80,8 +80,8 @@ class Reference extends LurkBase {
 	 * @return \App\Admin\Addons\Display\Column\Reference
 	 */
 	public function setReference($class, $attribute) {
-		$this->reference_class = $class;
-		$this->reference_class_attribute = $attribute;
+		$this->referenceClass = $class;
+		$this->referenceClassAttribute = $attribute;
 		return $this;
 	}
 
@@ -92,10 +92,10 @@ class Reference extends LurkBase {
 	 */
 	protected function process() {
 		// get the referenced object's value
-		$model = $this->reference_class;
-		$model_attr = $this->reference_class_attribute;
+		$model = $this->referenceClass;
+		$modelAttribute = $this->referenceClassAttribute;
 		$value = $this->getModelValue();
-		$this->result = $model::where($model_attr, $value)->first()->$model_attr;
+		$this->result = $model::where($modelAttribute, $value)->first()->$modelAttribute;
 	}
 }
 

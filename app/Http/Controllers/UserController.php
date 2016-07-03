@@ -65,11 +65,11 @@ class UserController extends Controller {
 		$file = $request->file('image');
 		if(!is_null($file) && $file->isValid()) {
 			$filename = Generate::filename().'.jpg';
-			$file_was_written = $this->processImage(
+			$fileWasWritten = $this->processImage(
 				$file, User::imagesPath(), $filename,
 				'jpg', 640, 640
 			);
-			if($file_was_written) {
+			if($fileWasWritten) {
 				if(file_exists($User->image)) {
 					// remove old image file to save disk space
 					File::delete($User->image);

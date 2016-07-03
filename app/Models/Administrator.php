@@ -52,7 +52,7 @@ class Administrator extends User {
 	 */
 	public static function all($columns = ['*']) {
 		$Roles = Role::allAdmin(['id']);
-		$role_ids = Helper::toSimpleArray($Roles, 'id');
-		return parent::_all($columns, $role_ids);
+		$roleIds = Helper::toSimpleArray($Roles, 'id');
+		return parent::_all($columns, $roleIds);
 	}
 }

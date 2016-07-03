@@ -17,28 +17,28 @@ trait FilePathing {
 	 *
 	 * @var string
 	 */
-	protected static $base_file_path = 'files';
+	protected static $baseFilePath = 'files';
 
 	/**
 	 * Class file path under base file path.
 	 *
 	 * @var string|boolean
 	 */
-	protected static $class_file_folder = false;
+	protected static $classFileFolder = false;
 
 	/**
 	 * Default file located under every classes' file path.
 	 *
 	 * @var string
 	 */
-	protected static $default_file_name = 'default.jpg';
+	protected static $defaultFileName = 'default.jpg';
 
 	/**
 	 * Default class attribute to be called to get the file location.
 	 *
 	 * @var string
 	 */
-	protected static $child_class_file_attribute = 'file';
+	protected static $childClassFileAttribute = 'file';
 
 	/**
 	 * Function to retrieve the file path the class.
@@ -49,14 +49,14 @@ trait FilePathing {
 	 * @return string
 	 */
 	public static function filesPath() {
-		if(self::$class_file_folder===false || !is_string(self::$class_file_folder) || strlen(self::$class_file_folder)<1) {
-			$child_class_array = explode('\\', get_called_class());
-			$class_folder = strtolower($child_class_array[count($child_class_array)-1]);
+		if(self::$classFileFolder===false || !is_string(self::$classFileFolder) || strlen(self::$classFileFolder)<1) {
+			$childClassArray = explode('\\', get_called_class());
+			$classFolder = strtolower($childClassArray[count($childClassArray)-1]);
 		}
 		else {
-			$class_folder = self::$class_file_folder;
+			$classFolder = self::$classFileFolder;
 		}
-		return self::$base_file_path.DS.$class_folder;
+		return self::$baseFilePath.DS.$classFolder;
 	}
 
 	/**
@@ -65,7 +65,7 @@ trait FilePathing {
 	 * @return string
 	 */
 	public static function defaultFile() {
-		return self::filesPath().DS.self::$default_file_name;
+		return self::filesPath().DS.self::$defaultFileName;
 	}
 
 	/**
@@ -77,8 +77,8 @@ trait FilePathing {
 	 * @return string
 	 */
 	public function getFile() {
-		$file_attribute = self::$child_class_file_attribute;
-		$file = (string)($this->$file_attribute);
+		$fileAttribute = self::$childClassFileAttribute;
+		$file = (string)($this->$fileAttribute);
 		if(!$file || $file==='' || !file_exists($file)) {
 			return self::defaultFile();
 		}
@@ -98,8 +98,8 @@ trait FilePathing {
 	 * @return boolean
 	 */
 	public function moveFile($location = null, $filename = false) {
-		$file_attribute = self::$child_class_file_attribute;
-		$file = $this->$file_attribute;
+		$fileAttribute = self::$childClassFileAttribute;
+		$file = $this->$fileAttribute;
 		if(is_null($file) || $file==='') {
 			return false;
 		}
@@ -117,6 +117,6 @@ trait FilePathing {
 
 		$destination = $location.DS.$filename;
 		File::move($file, $destination);
-		$this->$file_attribute = $destination;
+		$this->$fileAttribute = $destination;
 	}
 }

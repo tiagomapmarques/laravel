@@ -56,8 +56,8 @@ class User extends Authenticatable {
 	protected static function boot() {
 		parent::boot();
 		// define FilePathing variables for User image
-		self::$base_file_path = 'images';
-		self::$child_class_file_attribute = 'image';
+		self::$baseFilePath = 'images';
+		self::$childClassFileAttribute = 'image';
 		// before saving a new User to the database
 		static::creating(function($User) {
 			$User->hash = Generate::hash();
@@ -126,11 +126,11 @@ class User extends Authenticatable {
 	 * Function to help querying the database for Users.
 	 *
 	 * @param  array  $columns
-	 * @param  array  $role_ids
+	 * @param  array  $roleIds
 	 * @return array
 	 */
-	protected static function _all($columns = ['*'], $role_ids) {
-		return parent::all($columns)->whereIn('role_id', $role_ids);
+	protected static function _all($columns = ['*'], $roleIds) {
+		return parent::all($columns)->whereIn('role_id', $roleIds);
 	}
 
 	/**
@@ -141,8 +141,8 @@ class User extends Authenticatable {
 	 */
 	public static function all($columns = ['*']) {
 		$Roles = Role::allUser(['id']);
-		$role_ids = Helper::toSimpleArray($Roles, 'id');
-		return self::_all($columns, $role_ids);
+		$roleIds = Helper::toSimpleArray($Roles, 'id');
+		return self::_all($columns, $roleIds);
 	}
 
 	/**
