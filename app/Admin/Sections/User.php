@@ -19,10 +19,14 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::text('email', Language::trans('database.users-email')),
 				AdminColumn::hash('hash', Language::trans('database.users-id')),
 				AdminColumn::image('image', Language::trans('database.users-image')),
-				AdminColumn::download(
+				AdminColumn::stringFunction('imagesPath', Language::trans('database.users-image')),
+				AdminColumn::link(
 					'getImage',
-					Language::trans('common.download').' '.Language::trans('database.users-image'),
 					Language::trans('common.download', 2)),
+				AdminColumn::button(
+					'getImage',
+					Language::trans('common.download', 2),
+					Language::trans('common.download').' '.Language::trans('database.users-image')),
 				AdminColumn::reference('role_id', Language::trans('database.roles').' '.Language::trans('database.roles-id')),
 				AdminColumn::translatable('role_id', 'name', Language::trans('database.roles')),
 				AdminColumn::boolean('isAdmin', Language::trans('database.role-name-admin').'?')
@@ -53,9 +57,7 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 			AdminFormElement::text('email', Language::trans('database.users-email'))
 				->required(),
 			AdminFormElement::image('image', Language::trans('database.users-image')),
-			AdminFormElement::select('role_id', Language::trans('database.roles'))
-				->setModelForOptions(new Role)
-				->setDisplay('name')
+			AdminFormElement::translatableSelect('role_id', 'name', Language::trans('database.roles'))
 		);
 		return $form;
 	});

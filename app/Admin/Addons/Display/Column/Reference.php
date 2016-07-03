@@ -51,22 +51,21 @@ class Reference extends LurkBase {
 	 * @param  string  $name
 	 * @return boolean
 	 */
-	private function guessModelAndAttribute($name) {
+	private function guessModelAndAttribute($name, $modelPath = 'App\\Models\\') {
 		$nameSplit = explode('_', $name);
 		if(count($nameSplit)<2) {
 			return false;
 		}
-		$model = 'App\\Models\\'.ucfirst($nameSplit[0]);
-		$attr = $nameSplit[1];
-		$value = $this->getModelValue();
+		$model = $modelPath.ucfirst($nameSplit[0]);
+		$attribute = $nameSplit[1];
 
 		if(!class_exists($model)) {
 			return false;
 		}
 
 		$modelPlural = str_plural($nameSplit[0]);
-		if(class_exists($model) && Schema::hasColumn($modelPlural, $attr)) {
-			$this->setReference($model, $attr);
+		if(Schema::hasColumn($modelPlural, $attribute)) {
+			$this->setReference($model, $attribute);
 			return true;
 		}
 		return false;
