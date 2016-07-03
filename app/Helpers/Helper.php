@@ -45,6 +45,31 @@ class Helper {
 	}
 
 	/**
+	 * Turns an array of objects to an array of a certain Model.
+	 *
+	 * This function transforms an array of objects to an array of a certain Model.
+	 * The first argument may simply be an array of primary keys or a collection
+	 * of models themselves.
+	 *
+	 * @param  array   $array
+	 * @param  string  $model
+	 * @param  string  $primaryKey
+	 * @return array
+	 */
+	public static function toModelArray($array, $model, $primaryKey = 'id') {
+		$final_array = [];
+		foreach($array as $key => $value) {
+			if(isset($value->$primaryKey)) {
+				$final_array[] = $model::find($value->$primaryKey);
+			}
+			else if(is_string($value) || is_numeric($value)) {
+				$final_array[] = $model::find($value);
+			}
+		}
+		return $final_array;
+	}
+
+	/**
 	 * Function to predict the maximum upload limit in bytes, KB or MB.
 	 *
 	 * This function will get the lowest value from three locations:

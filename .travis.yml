@@ -12,9 +12,8 @@ before_script:
   - echo "\n" | pecl install imagick
   - composer self-update
   - npm install -g npm@2
-  - composer setup-no-interaction
-  - composer compile
-  - composer set-local
+  - export COMPOSER_PROCESS_TIMEOUT=600
+  - composer rebuild
 
 script:
   - composer test
