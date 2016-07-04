@@ -9,13 +9,13 @@ View::addNamespace('admin', resource_path().'/views/admin/');
 
 // Register custom Display Columns
 AdminColumn::register([
-	'boolean'        => \App\Admin\Addons\Display\Column\Boolean::class,
-	'button'         => \App\Admin\Addons\Display\Column\Button::class,
-	'hash'           => \App\Admin\Addons\Display\Column\Hash::class,
-	'link'           => \App\Admin\Addons\Display\Column\Link::class,
-	'reference'      => \App\Admin\Addons\Display\Column\Reference::class,
-	'stringFunction' => \App\Admin\Addons\Display\Column\StringFunction::class,
-	'translatable'   => \App\Admin\Addons\Display\Column\Translatable::class,
+	'boolean'      => \App\Admin\Addons\Display\Column\Boolean::class,
+	'button'       => \App\Admin\Addons\Display\Column\Button::class,
+	'hash'         => \App\Admin\Addons\Display\Column\Hash::class,
+	'link'         => \App\Admin\Addons\Display\Column\Link::class,
+	'reference'    => \App\Admin\Addons\Display\Column\Reference::class,
+	'textFunction' => \App\Admin\Addons\Display\Column\TextFunction::class,
+	'translatable' => \App\Admin\Addons\Display\Column\Translatable::class,
 ]);
 
 // Register custom Form Elements

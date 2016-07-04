@@ -23,7 +23,14 @@ class Link extends Custom {
 	 *
 	 * @var string
 	 */
-	protected $htmlClasses = 'link'; //btn btn-action btn-default
+	protected $htmlClasses = 'link';
+
+	/**
+	 * Prefix for the link.
+	 *
+	 * @var string
+	 */
+	protected $linkPrefix = '/';
 
 	/**
 	 * Class reference of the $name attribute.
@@ -52,6 +59,7 @@ class Link extends Custom {
 		$this->text = $text;
 		$this->setCallback(function($Object) {
 			$attr = $this->attribute;
+			$prefix = $this->linkPrefix;
 			if(method_exists($Object, $attr)) {
 				$result = $Object->$attr();
 			} else if(property_exists($Object, $attr)) {
@@ -59,12 +67,18 @@ class Link extends Custom {
 			} else {
 				$result = '';
 			}
-			$text = $this->text;
-			if(is_null($this->text)) {
-				$text = $result;
-			}
-			return '<a class="'.$this->htmlClasses.'" href="/'.$result.'">'.$text.'</a>';
+			$text = is_null($this->text)? $result : $this->text;
+			return '<a class="'.$this->htmlClasses.'" href="'.$prefix.$result.'">'.$text.'</a>';
 		});
+	}
+
+	/**
+	 * Function to set the link prefix.
+	 *
+	 * @param  string  $prefix
+	 */
+	public function setPrefix($prefix) {
+		$this->linkPrefix = $prefix;
 	}
 }
 

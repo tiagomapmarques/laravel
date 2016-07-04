@@ -12,12 +12,12 @@ use \App\Admin\Addons\Display\Column\LurkBase as LurkBase;
 // instead of "require_once", so it basically loads any custom class twice,
 // which is a major bug. To counter this, we must check if our class exists
 // before creating it.
-if(!class_exists(\App\Admin\Addons\Display\Column\StringFunction::class)) {
+if(!class_exists(\App\Admin\Addons\Display\Column\TextFunction::class)) {
 
 /**
  * Column for displaying hash values on Sleeping Owl
  */
-class StringFunction extends LurkBase {
+class TextFunction extends LurkBase {
 	/**
 	 * Override of function to avoid it accessing the $name attribute
 	 * during the toArray function on SleepingOwl\Admin\Display\Column\Text

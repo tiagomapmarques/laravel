@@ -19,10 +19,8 @@ AdminSection::registerModel(User::class, function(ModelConfiguration $model) {
 				AdminColumn::text('email', Language::trans('database.users-email')),
 				AdminColumn::hash('hash', Language::trans('database.users-id')),
 				AdminColumn::image('image', Language::trans('database.users-image')),
-				AdminColumn::stringFunction('imagesPath', Language::trans('database.users-image')),
-				AdminColumn::link(
-					'getImage',
-					Language::trans('common.download', 2)),
+				AdminColumn::textFunction('imagesPath', Language::trans('database.users-image')),
+				AdminColumn::link('getImage', Language::trans('common.download', 2)),
 				AdminColumn::button(
 					'getImage',
 					Language::trans('common.download', 2),
