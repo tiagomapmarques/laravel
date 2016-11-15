@@ -4,79 +4,83 @@
  */
 
 // Initializes the search buttons interaction
-function nav_init() {
-	$('.navbar-toggle').click(toggle_nav_click);
-	$('#search-button-nav').click(search_button_nav_click);
-	$('#search-button-bar').click(search_button_bar_click);
-	$('#search-cancel-bar').click(search_cancel_bar_click);
-	if($('#search-bar').is(":visible")) {
-		var input = $('#search-bar input')
-		input.focus();
+function navInit() {
+	$('.navbar-toggle').click(navbarToggle);
+	$('#nav-search').click(navSearchClick);
+	$('#search-bar-submit').click(searchBarSubmit);
+	$('#search-bar-cancel').click(searchBarCancel);
+	if ($('#search-bar').is(':visible')) {
+		$('#search-bar-input').focus();
 	}
 }
 
-//
-function toggle_nav_click() {
-	if($('.navbar-toggle').attr('class').indexOf('collapsed')<0) {
-		$('#navbar-toggle-icon-2')
-			.scale(1.25,1)
-			.rotate(-50)
-			.translate(5,0);
-		$('#navbar-toggle-icon-3')
-			.scale(1.25,1)
-			.rotate(50)
-			.translate(-5,6);
-	}
-	else {
-		$('#navbar-toggle-icon-2')
+// Toggles the navbar (on small displays)
+function navbarToggle() {
+	var defaultSelector = 'navbar-toggle';
+	var element = this ? $(this) : $('.' + defaultSelector);
+	var isCollapsed = element.attr('class').indexOf('collapsed') >= 0;
+	if (isCollapsed) {
+		$('#' + defaultSelector + '-icon-mid')
 			.translate(-5,0)
 			.rotate(50)
 			.scale(0.8,1);
-		$('#navbar-toggle-icon-3')
+		$('#' + defaultSelector + '-icon-bot')
 			.translate(5,-6)
 			.rotate(-50)
 			.scale(0.8,1);
+	} else {
+		$('#' + defaultSelector + '-icon-mid')
+			.scale(1.25,1)
+			.rotate(-50)
+			.translate(5,0);
+		$('#' + defaultSelector + '-icon-bot')
+			.scale(1.25,1)
+			.rotate(50)
+			.translate(-5,6);
 	}
 
 }
 
 // performs the search buttons' click actions
-function search_button_nav_click() {
+function navSearchClick() {
 	var bar = $('#search-bar');
-	if(parseInt(bar.css('marginTop'))<0) {
-		search_bar_show();
+	if (parseInt(bar.css('marginTop')) < 0) {
+		searchBarShow();
 	}
 }
-function search_button_bar_click() {
+function searchBarSubmit() {
 	var form = $('#search-bar').find('form');
 	form.submit();
 }
-function search_cancel_bar_click() {
+function searchBarCancel() {
 	var bar = $('#search-bar');
-	if(parseInt(bar.css('marginTop'))>=0) {
-		search_bar_hide();
+	if(parseInt(bar.css('marginTop')) >= 0) {
+		searchBarHide();
 	}
 }
 
 // functions to animate the search bar
-function search_bar_show() {
+function searchBarShow() {
 	var bar = $('#search-bar');
-	search_bar_animate('+', bar.outerHeight());
+	searchBarAnimate('down', bar.outerHeight());
 	// focus the search input
 	$('#search-input-bar form input').focus();
 }
-function search_bar_hide() {
+function searchBarHide() {
 	var bar = $('#search-bar');
-	search_bar_animate('-', bar.outerHeight());
+	searchBarAnimate('up', bar.outerHeight());
 }
 
 // search bar animation
-function search_bar_animate(signal, height) {
-	if(signal==='+') {
-		$('#nav .container-fluid').animate({ "opacity": '0' }, 100);
+function searchBarAnimate(direction, height) {
+	var signal = '';
+	if (direction === 'down') {
+		$('#nav .container-fluid').animate({ 'opacity': '0' }, 100);
+		signal = '+';
 	}
-	else if(signal==='-') {
-		$('#nav .container-fluid').animate({ "opacity": '1' }, 400);
+	else if (direction === 'up') {
+		$('#nav .container-fluid').animate({ 'opacity': '1' }, 400);
+		signal = '-';
 	}
-	$('#search-bar').animate({ "margin-top": signal + '=' + height + 'px' }, 300);
+	$('#search-bar').animate({ 'margin-top': signal  + '=' + height + 'px' }, 300);
 }

@@ -1,6 +1,6 @@
 <?php
 	// $_app_html5 variable must exist and make sure it's a boolean value
-	if(!isset($_app_html5) || ($_app_html5!==true && $_app_html5!==false)) {
+	if(!isset($_app_html5) || ($_app_html5 !== true && $_app_html5 !== false)) {
 		// defaults to true
 		$_app_html5 = true;
 	}
