@@ -16,9 +16,9 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav-1" aria-expanded="false">
 					<span class="sr-only">{{ Language::trans('common.toggle').' '.Language::trans('common.navigation') }}</span>
-					<span id="navbar-toggle-icon-1" class="icon-bar"></span>
-					<span id="navbar-toggle-icon-2" class="icon-bar"></span>
-					<span id="navbar-toggle-icon-3" class="icon-bar"></span>
+					<span id="navbar-toggle-icon-top" class="icon-bar"></span>
+					<span id="navbar-toggle-icon-mid" class="icon-bar"></span>
+					<span id="navbar-toggle-icon-bot" class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="{{ route('root') }}">Lurk</a>
 			</div>
@@ -32,7 +32,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					@if($_navigation_search)
 						<li class="hidden-xs">
-							<a id="search-button-nav"><span class="fa fa-search"></span></a>
+							<a id="nav-search"><span class="fa fa-search"></span></a>
 						<li>
 					@endif
 
@@ -61,10 +61,10 @@
 	@endif
 			<div class="container">
 				<ul class="nav navbar-nav navbar-right">
-					<li id="search-button-bar">
+					<li id="search-bar-submit">
 						<a><span class="fa fa-search"></span></a>
 					<li>
-					<li id="search-cancel-bar">
+					<li id="search-bar-cancel">
 						<a><span class="fa fa-times"></span></a>
 					<li>
 				</ul>
